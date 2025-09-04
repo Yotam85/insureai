@@ -19,6 +19,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_MODEL   = os.getenv("OPENAI_MODEL", "gpt-5-mini-2025-08-07")
 
 
 # Quick-start development settings - unsuitable for production
@@ -197,9 +198,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # settings.py
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"   # dev only
-DEFAULT_FROM_EMAIL = "InsureAI <no-reply@insure.ai>"
-
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mail.estimai@gmail.com'
+EMAIL_HOST_PASSWORD = 'tvjhuqpggpuyvicr'
+EMAIL_PORT = 587
 
 
 MEDIA_URL = "/uploads/"

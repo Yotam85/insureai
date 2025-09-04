@@ -33,6 +33,12 @@ class EstimateJob(models.Model):
     
     )
 
+    agent_kind = models.CharField(
+        max_length=32,
+        choices=[("insurance","insurance"), ("home_project","home_project"), ("contractor","contractor")],
+        default="insurance",
+    )
+
     instructions = models.TextField(
         blank=False,
         help_text="User’s description of the damage, context, etc."

@@ -5,8 +5,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
 from estimate.views import (
-    UploadViewSet, EstimateJobViewSet, EstimateResultViewSet, guest_quota,
-    results_mine, results_guest,   # ← add these
+    UploadViewSet, EstimateJobViewSet, EstimateResultViewSet, guest_quota, results_mine, results_guest,   # ← add these
 )
 
 router = DefaultRouter()
@@ -18,6 +17,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Put these first
+    path("api/guest-quota/", guest_quota, name="guest-quota"),
     path('api/results/mine/',  results_mine,  name='results-mine'),
     path('api/results/guest/', results_guest, name='results-guest'),
 

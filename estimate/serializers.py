@@ -1,30 +1,37 @@
-# estimate/serializers.py
-from rest_framework import serializers
+from __future__ import annotations
+
+from typing import Any, List, Optional
+
 from django.db import transaction
+from django.utils.html import escape
+from rest_framework import serializers
 
 from .models import Upload, EstimateJob, EstimateResult
-from .utils import get_guest_key  # <-- we’ll scope uploads by guest key
+from .utils import get_guest_key
 
+
+# -----------------------------
+# Uploads
+# -----------------------------
 class UploadSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model  = Upload
-        fields = ["id", "file", "mime", "owner", "job"]   # owner/job read-only
+        fields = ["id", "file", "mime", "owner", "job"]
         read_only_fields = ["owner", "job"]
 
 
-# estimate/serializers.py
-from rest_framework import serializers
-from django.db import transaction
-from .models import Upload, EstimateJob
-from .utils import get_guest_key
-
+# -----------------------------
+# Jobs
+# -----------------------------
 class EstimateJobSerializer(serializers.ModelSerializer):
-    property_type = serializers.ChoiceField(choices=[("res","res"),("com","com")])
-    damage_type   = serializers.ChoiceField(choices=[("water","water"),("fire","fire"),("wind","wind")])
+    property_type = serializers.ChoiceField(choices=[("res", "res"), ("com", "com")])
+    damage_type   = serializers.ChoiceField(choices=[("water", "water"),
+                                                     ("fire", "fire"),
+                                                     ("wind", "wind")])
 
-    # Keep queryset *broad* (only unattached); we’ll enforce ownership in validate_uploads
+    # Keep queryset broad (unattached only); enforce ownership in validate_uploads
     uploads = serializers.PrimaryKeyRelatedField(
         many=True,
         queryset=Upload.objects.filter(job__isnull=True),
@@ -32,10 +39,22 @@ class EstimateJobSerializer(serializers.ModelSerializer):
         required=True,
     )
 
+    # Optional selector for triage override ("insurance" | "contractor" | "home_project")
+    agent_kind = serializers.CharField(required=False, allow_blank=True)
+
     class Meta:
         model  = EstimateJob
-        fields = ["id","instructions","property_type","damage_type","uploads","status","created"]
-        read_only_fields = ["status","created"]
+        fields = [
+            "id",
+            "instructions",
+            "property_type",
+            "damage_type",
+            "uploads",
+            "status",
+            "created",
+            "agent_kind",  # optional; your task may ignore this if you always use triage
+        ]
+        read_only_fields = ["status", "created"]
 
     def validate_uploads(self, uploads):
         if not uploads:
@@ -45,8 +64,9 @@ class EstimateJobSerializer(serializers.ModelSerializer):
         user = getattr(request, "user", None)
         gk   = get_guest_key(request)
 
-        errors = []
+        errors: List[str] = []
         for u in uploads:
+            # owner/guest access control
             if user and user.is_authenticated:
                 if u.owner_id != user.id:
                     errors.append(f"Upload {u.pk} does not belong to you.")
@@ -55,11 +75,11 @@ class EstimateJobSerializer(serializers.ModelSerializer):
                     errors.append("Missing guest key.")
                 elif u.owner_id is not None or u.guest_key != gk:
                     errors.append(f"Upload {u.pk} does not belong to this guest.")
+            # must be unattached
             if u.job_id is not None:
                 errors.append(f"Upload {u.pk} is already attached to a job.")
 
         if errors:
-            # Join all reasons so you see them in the Network tab
             raise serializers.ValidationError(errors)
 
         return uploads
@@ -72,59 +92,38 @@ class EstimateJobSerializer(serializers.ModelSerializer):
         return job
 
 
-# estimate/serializers.py
-# estimate/serializers.py
-# estimate/serializers.py
-from rest_framework import serializers
-from django.utils.html import escape
-from .models import EstimateResult
-
-class EstimateResultSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(source="pk", read_only=True) 
-    job = serializers.IntegerField(source="job_id", read_only=True)
-    created  = serializers.DateTimeField(read_only=True)   # 👈 add this
-    pdf_url  = serializers.SerializerMethodField()
-    uploads  = serializers.SerializerMethodField()
-    html_report = serializers.SerializerMethodField()
-
-    class Meta:
-        model  = EstimateResult
-        fields = ("id", "job", "created", "raw_json", "premium",
-                  "pdf_url", "uploads", "html_report")
-
-
-
-# --- Sidebar list item (lean) -----------------------------------------------
+# -----------------------------
+# Results – list (lean for sidebar)
+# -----------------------------
 class EstimateResultListItemSerializer(serializers.ModelSerializer):
+    id      = serializers.IntegerField(source="pk", read_only=True)
     job     = serializers.IntegerField(source="job_id", read_only=True)
     created = serializers.SerializerMethodField()
     peril   = serializers.SerializerMethodField()
+    premium = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     pdf_url = serializers.SerializerMethodField()
 
     class Meta:
         model  = EstimateResult
         fields = ("id", "job", "created", "peril", "premium", "pdf_url")
 
-    def get_created(self, obj):
-        # tolerate older rows without .created
-        try:
-            return obj.created
-        except Exception:
-            try:
-                return obj.job.created
-            except Exception:
-                return None
-
-    def get_peril(self, obj):
-        payload = obj.raw_json or {}
-        # unified shape: payload["peril"]; legacy may nest
-        return payload.get("peril") or (payload.get("estimate") or {}).get("peril")
-
-    def _abs(self, url):
+    def _abs(self, url: Optional[str]) -> Optional[str]:
         if not url:
             return None
         req = self.context.get("request")
-        return req.build_absolute_uri(url) if req else url
+        try:
+            return req.build_absolute_uri(url) if req else url
+        except Exception:
+            return url
+
+    def get_created(self, obj):
+        # tolerate older rows without .created
+        dt = getattr(obj, "created", None) or getattr(getattr(obj, "job", None), "created", None)
+        return dt  # DRF will format DateTime
+
+    def get_peril(self, obj):
+        payload = obj.raw_json or {}
+        return payload.get("peril") or (payload.get("estimate") or {}).get("peril")
 
     def get_pdf_url(self, obj):
         f = getattr(obj, "pdf_file", None)
@@ -135,110 +134,48 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
         except Exception:
             return None
 
-
-
-# estimate/serializers.py
-from rest_framework import serializers
+import json
+# serializers.py
+from typing import Any, Dict, List, Optional
 from django.utils.html import escape
-from .models import EstimateResult
-
-class EstimateResultSafeSerializer(serializers.ModelSerializer):
-    """Minimal, ultra-defensive serializer for by_job detail."""
-    id       = serializers.IntegerField(source="pk", read_only=True)
-    job      = serializers.IntegerField(source="job_id", read_only=True)
-    created  = serializers.DateTimeField(read_only=True)
-    pdf_url  = serializers.SerializerMethodField()
-    uploads  = serializers.SerializerMethodField()
-    raw_json = serializers.SerializerMethodField()  # avoid direct access surprises
-
-    class Meta:
-        model  = EstimateResult
-        fields = ("id", "job", "created", "raw_json", "premium", "pdf_url", "uploads")
-
-    def _abs(self, url):
-        try:
-            if not url:
-                return None
-            req = self.context.get("request")
-            return req.build_absolute_uri(url) if req else url
-        except Exception:
-            return None
-
-    def get_pdf_url(self, obj):
-        try:
-            f = getattr(obj, "pdf_file", None)
-            return self._abs(f.url) if f else None
-        except Exception:
-            return None
-
-    def get_uploads(self, obj):
-        out = []
-        try:
-            for up in obj.job.uploads.all():
-                try:
-                    url = self._abs(getattr(up.file, "url", None))
-                except Exception:
-                    url = None
-                out.append({"id": up.id, "file": url or "", "mime": up.mime})
-        except Exception:
-            # if even that fails, return empty list rather than throw a 500
-            return []
-        return out
-
-    def get_raw_json(self, obj):
-        try:
-            data = obj.raw_json or {}
-            # ensure JSON-serializable fallback if any weird types sneak in
-            return data if isinstance(data, dict) else {}
-        except Exception:
-            return {}
 
 
 
-# In your existing EstimateResultSerializer
-def get_html_report(self, obj):
-    try:
-        payload = obj.raw_json or {}
-        ...
-        return "\n".join(lines)
-    except Exception as e:
-        # never let this break the API
-        return "<div class='estimate-report'><p>Report not available.</p></div>"
-
-
-
-# estimate/serializers.py
-from rest_framework import serializers
-from django.utils.html import escape
-from .models import EstimateResult
-
+# -----------------------------
+# Results – detail (used by /results/by-job/:id/)
+# -----------------------------
 class EstimateResultDetailSerializer(serializers.ModelSerializer):
-    """
-    Safe detail serializer used by /results/by-job/:id/
-    Includes html_report, but never throws.
-    """
-    id       = serializers.IntegerField(source="pk", read_only=True)
-    job      = serializers.IntegerField(source="job_id", read_only=True)
-    created  = serializers.DateTimeField(read_only=True)
-    pdf_url  = serializers.SerializerMethodField()
-    uploads  = serializers.SerializerMethodField()
+    id          = serializers.IntegerField(source="pk", read_only=True)
+    job         = serializers.IntegerField(source="job_id", read_only=True)
+    created     = serializers.DateTimeField(read_only=True)
+    premium     = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    pdf_url     = serializers.SerializerMethodField()
+    uploads     = serializers.SerializerMethodField()
     html_report = serializers.SerializerMethodField()
-    raw_json = serializers.SerializerMethodField()
+    raw_json    = serializers.SerializerMethodField()
 
     class Meta:
         model  = EstimateResult
-        fields = ("id", "job", "created", "raw_json", "premium",
-                  "pdf_url", "uploads", "html_report")
+        fields = (
+            "id",
+            "job",
+            "created",
+            "raw_json",
+            "premium",
+            "pdf_url",
+            "uploads",
+            "html_report",
+        )
 
     # ---- helpers -------------------------------------------------
-    def _abs(self, url):
+    def _abs(self, url: Optional[str]) -> Optional[str]:
+        if not url:
+            return None
+        req = self.context.get("request")
         try:
-            if not url:
-                return None
-            req = self.context.get("request")
             return req.build_absolute_uri(url) if req else url
         except Exception:
-            return None
+            return url
 
     # ---- fields --------------------------------------------------
     def get_pdf_url(self, obj):
@@ -263,72 +200,157 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
 
     def get_raw_json(self, obj):
         try:
-            data = obj.raw_json or {}
-            return data if isinstance(data, dict) else {}
+            data = obj.raw_json
+            # Pass through dicts and lists as-is (both are valid JSON roots)
+            if isinstance(data, (dict, list)):
+                return data
+            # If something stored a string, try to decode it
+            if isinstance(data, str):
+                try:
+                    parsed = json.loads(data)
+                    return parsed if isinstance(parsed, (dict, list)) else {"_raw_text": data}
+                except Exception:
+                    return {"_raw_text": data}
+            # Unknown type → make it serializable but don’t hide it
+            return {"_repr": repr(data)}
         except Exception:
             return {}
 
+
     def get_html_report(self, obj):
         """
-        Build a minimal HTML report; never throw.
-        Fixes the 'lines is not defined' by defining it up front.
+        Build an HTML report that works with:
+        - dict payloads: { items: [...], summary: {...}, currency?: "USD" }
+        - legacy dicts: { sections: [{items: [...]}], ... }
+        - list root:    [ {...}, {...} ]   (treated as items)
+        Never throws.
         """
         try:
-            payload = obj.raw_json or {}
-            summary = payload.get("summary") or {}
-            items   = payload.get("items") or []
+            # --- normalize payload to { items: [...], summary: {...}, currency: ... } ---
+            data = obj.raw_json
+            if isinstance(data, str):
+                try:
+                    data = json.loads(data)
+                except Exception:
+                    data = {}
 
-            # allow legacy shape: sections[].items
-            if not items and isinstance(payload.get("sections"), list):
-                items = []
-                for s in payload["sections"]:
-                    its = s.get("items") or []
-                    if isinstance(its, list):
-                        items.extend([it for it in its if isinstance(it, dict)])
+            currency = "USD"
+            items: List[Dict[str, Any]] = []
+            summary: Dict[str, Any] = {}
 
-            currency = payload.get("currency") or "USD"
-            total    = summary.get("total_project_cost")
-            reason   = summary.get("estimate_reasoning") or ""
+            if isinstance(data, list):
+                # list root → treat as items
+                items = [it for it in data if isinstance(it, dict)]
+            elif isinstance(data, dict):
+                currency = data.get("currency") or "USD"
+                if isinstance(data.get("items"), list):
+                    items = [it for it in data["items"] if isinstance(it, dict)]
+                elif isinstance(data.get("sections"), list):  # legacy
+                    for sec in data["sections"]:
+                        for it in (sec or {}).get("items") or []:
+                            if isinstance(it, dict):
+                                items.append(it)
+                summary = data.get("summary") or {}
 
-            def fmt_money(v):
+            # fill summary total if missing
+            if "total_project_cost" not in summary:
+                total_sum = 0.0
+                for it in items:
+                    try:
+                        total_sum += float(it.get("TOTAL_PRICE", 0) or 0)
+                    except Exception:
+                        pass
+                summary["total_project_cost"] = total_sum
+
+            reason = (summary.get("estimate_reasoning") or "").strip()
+
+            def m(v):
                 try:
                     return f"{currency} {float(v):,.2f}"
                 except Exception:
                     return f"{currency} {v}"
 
-            # ✅ define lines up front so it's always in scope
-            lines: list[str] = []
+            # --- render HTML ---
+            lines: List[str] = []
             lines.append('<div class="estimate-report">')
             lines.append('<h2>Estimate Summary</h2>')
-
-            if total is not None:
-                lines.append(f'<p><strong>Total Project Cost:</strong> {fmt_money(total)}</p>')
+            lines.append(
+                f"<p><strong>Total Project Cost:</strong> {m(summary.get('total_project_cost', 0))}</p>"
+            )
 
             if reason:
                 lines.append('<h3>Reasoning</h3>')
-                lines.append(f"<p>{escape(str(reason))}</p>")
+                lines.append(f"<p>{escape(reason)}</p>")
 
             if items:
                 lines.append('<h3>Line Items</h3>')
-                lines.append('<table border="1" cellpadding="6" cellspacing="0">')
-                lines.append('<thead><tr><th>#</th><th>Category</th><th>Description</th><th>Total</th></tr></thead>')
+                lines.append('<div style="overflow:auto">')
+                lines.append(
+                    '<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; min-width:720px">'
+                )
+                lines.append(
+                    "<thead><tr>"
+                    "<th>#</th><th>Item</th><th>Qty</th><th>Unit</th>"
+                    "<th>Unit Price</th><th>Tax</th><th>Total</th><th>Category</th>"
+                    "</tr></thead>"
+                )
                 lines.append("<tbody>")
                 for idx, it in enumerate(items, 1):
-                    cat   = it.get("category") or ""
-                    desc  = it.get("line_items") or it.get("description") or ""
-                    total_price = it.get("TOTAL_PRICE", "")
+                    desc = it.get("line_items") or it.get("description") or ""
+                    qty  = it.get("QUANTITY", "")
+                    unit = it.get("unit_code") or it.get("unit") or ""
+                    up   = it.get("UNIT_PRICE", 0)
+                    tax  = it.get("TAX", 0)
+                    tot  = it.get("TOTAL_PRICE", 0)
+                    cat  = it.get("category", "")
                     lines.append(
                         "<tr>"
                         f"<td>{idx}</td>"
-                        f"<td>{escape(str(cat))}</td>"
                         f"<td>{escape(str(desc))}</td>"
-                        f"<td style='text-align:right'>{fmt_money(total_price)}</td>"
+                        f"<td style='text-align:right'>{escape(str(qty))}</td>"
+                        f"<td>{escape(str(unit))}</td>"
+                        f"<td style='text-align:right'>{m(up)}</td>"
+                        f"<td style='text-align:right'>{m(tax)}</td>"
+                        f"<td style='text-align:right'><strong>{m(tot)}</strong></td>"
+                        f"<td>{escape(str(cat))}</td>"
                         "</tr>"
                     )
                 lines.append("</tbody></table>")
+                lines.append("</div>")  # overflow wrapper
+
+                # Optional appendix with details/tags/source
+                if any(it.get("Details") or it.get("tags") or it.get("source") for it in items):
+                    lines.append('<h3 style="margin-top:1.25rem">Item Details</h3>')
+                    for idx, it in enumerate(items, 1):
+                        desc = it.get("line_items") or it.get("description") or ""
+                        details = (it.get("Details") or "").strip()
+                        tags = it.get("tags") or []
+                        src  = it.get("source") or {}
+                        if not (details or tags or src):
+                            continue
+                        lines.append(f"<p><strong>#{idx} — {escape(str(desc))}</strong></p>")
+                        if details:
+                            lines.append(f"<p>{escape(details)}</p>")
+                        extra_bits = []
+                        if tags:
+                            try:
+                                extra_bits.append("Tags: " + ", ".join(map(escape, map(str, tags))))
+                            except Exception:
+                                pass
+                        if isinstance(src, dict) and (src.get("file") or src.get("page")):
+                            parts = []
+                            if src.get("file"): parts.append(f"file: {escape(str(src['file']))}")
+                            if src.get("page"): parts.append(f"page: {escape(str(src['page']))}")
+                            if parts:
+                                extra_bits.append("Source: " + ", ".join(parts))
+                        if extra_bits:
+                            lines.append("<p>" + " &nbsp; | &nbsp; ".join(extra_bits) + "</p>")
 
             lines.append("</div>")
             return "\n".join(lines)
         except Exception:
-            # Never break the endpoint
             return "<div class='estimate-report'><p>Report not available.</p></div>"
+
+
+# Backwards-compat alias (some code imports this name)
+EstimateResultSerializer = EstimateResultDetailSerializer

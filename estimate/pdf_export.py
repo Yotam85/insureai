@@ -35,11 +35,16 @@ def _flatten_items(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     return items
 
 def export_estimate_pdf_bytes(
-    payload: Dict[str, Any],
+    payload: Union[str, Dict[str, Any]],
     schema: Optional[Dict[str, Any]] = None,
     validate_schema: bool = False
 ) -> bytes:
     """Render estimate JSON -> PDF bytes."""
+    if isinstance(payload, str):
+        try:
+            payload = _parse_result_final_output(payload)
+        except Exception:
+            payload = {}
 
     # Optional: validate
     if validate_schema and schema and jsonschema:
@@ -95,13 +100,19 @@ def export_estimate_pdf_bytes(
         table_header = ["ID", "Item", "Qty", "Unit", "Unit Price", "Tax", "Total", "Category"]
         rows = [table_header]
         for it in items:
+            qty = it.get("QUANTITY", it.get("quantity", ""))
+            unit = it.get("unit_code", it.get("unit", ""))  # ← add unit
+            unit_price = it.get("UNIT_PRICE", it.get("unit_rcv", 0))
+            tax = it.get("TAX", 0)
+            total = it.get("TOTAL_PRICE", it.get("total_rcv", 0))
             rows.append([
                 _p(it.get("id", "")),
                 _p(it.get("line_items") or it.get("description", "")),
-                _p(it.get("QUANTITY", "")),
-                _p(_fmt_money(it.get("UNIT_PRICE", 0), currency)),
-                _p(_fmt_money(it.get("TAX", 0), currency)),
-                _p(_fmt_money(it.get("TOTAL_PRICE", 0), currency)),
+                _p(qty),
+                _p(unit),  # ← now present
+                _p(_fmt_money(unit_price, currency)),
+                _p(_fmt_money(tax, currency)),
+                _p(_fmt_money(total, currency)),
                 _p(it.get("category", "")),
             ])
 

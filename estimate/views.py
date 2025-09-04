@@ -7,6 +7,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404, render
 
 
 from .models import Upload, EstimateJob, EstimateResult
@@ -14,14 +15,98 @@ from .serializers import (
     UploadSerializer,
     EstimateJobSerializer
 )
+
+import json
+from typing import Any, Dict, List, Union, Optional
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from .tasks import run_estimate
 from .utils import get_guest_key
+from .pdf_export import export_estimate_pdf_bytes
 
-# ---- config -------------------------------------------------
+
+# estimate/views.py (add near imports)
+
 
 FREE_GUEST_JOB_LIMIT = 3   # or whatever you prefer
 
-# ---- Uploads ------------------------------------------------
+
+# --- small helpers to normalize payloads safely ---
+def _payload_for_pdf(payload: Union[Dict[str, Any], List[Any], str, bytes, None]) -> Dict[str, Any]:
+    """
+    Coerce whatever is stored in raw_json into the object shape our PDF wants:
+    { items: [...], summary: { total_project_cost, estimate_reasoning, future_actions }, currency? }
+    """
+    # bytes/str -> parse
+    if isinstance(payload, (bytes, bytearray)):
+        try:
+            payload = payload.decode("utf-8", errors="replace")
+        except Exception:
+            payload = ""
+    if isinstance(payload, str):
+        try:
+            payload = json.loads(payload)
+        except Exception:
+            payload = {}
+
+    # list -> wrap
+    if isinstance(payload, list):
+        total = 0.0
+        for it in payload:
+            try:
+                total += float((it or {}).get("TOTAL_PRICE", 0) or 0)
+            except Exception:
+                pass
+        return {
+            "items": payload,
+            "summary": {
+                "total_project_cost": total,
+                "estimate_reasoning": "",
+                "future_actions": [],
+            },
+        }
+
+    # dict -> ensure keys exist and are well-typed
+    if isinstance(payload, dict):
+        data: Dict[str, Any] = dict(payload)  # shallow copy
+        # items
+        items = data.get("items")
+        if not isinstance(items, list):
+            # support legacy sections[].items
+            items = []
+            for sec in (data.get("sections") or []) if isinstance(data.get("sections"), list) else []:
+                its = (sec or {}).get("items")
+                if isinstance(its, list):
+                    items.extend([x for x in its if isinstance(x, dict)])
+        data["items"] = items or []
+
+        # summary
+        summary = data.get("summary")
+        if not isinstance(summary, dict):
+            summary = {}
+        # totals
+        if "total_project_cost" not in summary:
+            try:
+                summary["total_project_cost"] = sum(float((i or {}).get("TOTAL_PRICE", 0) or 0) for i in data["items"])
+            except Exception:
+                summary["total_project_cost"] = 0.0
+        summary.setdefault("estimate_reasoning", "")
+        summary.setdefault("future_actions", [])
+        data["summary"] = summary
+
+        # sane default currency
+        if not isinstance(data.get("currency"), str) or len(data.get("currency", "")) != 3:
+            data["currency"] = "USD"
+
+        return data
+
+    # anything else
+    return {
+        "items": [],
+        "summary": {"total_project_cost": 0.0, "estimate_reasoning": "", "future_actions": []},
+        "currency": "USD",
+    }
+
 
 class UploadViewSet(viewsets.ModelViewSet):
     """
@@ -44,17 +129,10 @@ class UploadViewSet(viewsets.ModelViewSet):
 
 
 # ---- Jobs ---------------------------------------------------
+from django.db import transaction
+
 
 class EstimateJobViewSet(viewsets.ModelViewSet):
-    """
-    POST /api/jobs/ with body:
-    {
-      "instructions": "...",
-      "property_type": "res" | "com",
-      "damage_type":   "water" | "fire" | "wind",
-      "uploads": [<upload ids>]
-    }
-    """
     serializer_class = EstimateJobSerializer
     permission_classes = [AllowAny]
     throttle_classes = [ScopedRateThrottle]
@@ -63,29 +141,19 @@ class EstimateJobViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.user.is_authenticated:
             return EstimateJob.objects.filter(owner=self.request.user)
-        # guests can’t list all; they’ll hit /api/results/by-job/:id/
         return EstimateJob.objects.none()
 
     def create(self, request, *args, **kwargs):
+        from django.db import transaction
+
         user = request.user if request.user.is_authenticated else None
         gk   = get_guest_key(request)
-
-        if not user and not gk:
-            return Response({"detail": "Missing guest key."}, status=400)
-
-        if not user:
-            used = EstimateJob.objects.filter(guest_key=gk).count()
-            if used >= FREE_GUEST_JOB_LIMIT:
-                return Response(
-                    {"detail": "Free trial limit reached.", "code": "guest_quota_exhausted"},
-                    status=403,
-                )
 
         ser = self.get_serializer(data=request.data)
         ser.is_valid(raise_exception=True)
         job: EstimateJob = ser.save(owner=user, guest_key=None if user else (gk or ""))
 
-        run_estimate.delay(job.id)
+        transaction.on_commit(lambda: run_estimate.delay(job.id))
         return Response({"id": job.id}, status=status.HTTP_201_CREATED)
 
 
@@ -100,10 +168,11 @@ from .serializers import (
     EstimateResultDetailSerializer,  # <-- use this
 )
 
-class EstimateResultViewSet(viewsets.ReadOnlyModelViewSet):
+class EstimateResultViewSet(viewsets.ModelViewSet):
     queryset = EstimateResult.objects.all()
-    serializer_class = EstimateResultDetailSerializer  # default, but we set explicitly in by_job too
+    serializer_class = EstimateResultDetailSerializer
     permission_classes = [AllowAny]
+    throttle_classes: list = []
 
     @action(detail=False, methods=["get"], url_path="by-job/(?P<job_id>[^/.]+)")
     def by_job(self, request, job_id=None):
@@ -112,7 +181,7 @@ class EstimateResultViewSet(viewsets.ReadOnlyModelViewSet):
             job = EstimateJob.objects.get(pk=job_id)
         except EstimateJob.DoesNotExist:
             return Response({"detail": "Job not found."}, status=404)
-
+        
         # ACL
         if request.user.is_authenticated:
             if job.owner_id != request.user.id:
@@ -130,7 +199,40 @@ class EstimateResultViewSet(viewsets.ReadOnlyModelViewSet):
         data = EstimateResultDetailSerializer(result, context={"request": request}).data
         return Response(data, status=200)
 
-# ---- Optional utility endpoints ----------------------------
+
+    @action(detail=True, methods=["patch"])
+    def update_json(self, request, pk=None):
+        result = self.get_object()
+        result.raw_json = request.data.get("raw_json", result.raw_json)
+        result.save(update_fields=["raw_json"])
+        return Response(self.get_serializer(result).data)
+    
+    
+    @action(detail=True, methods=["post"])
+    def create_pdf(self, request, pk=None):
+        result = self.get_object()
+        try:
+            safe_payload = _payload_for_pdf(result.raw_json)
+            pdf_bytes = export_estimate_pdf_bytes(safe_payload)
+
+            # Replace previous PDF if present
+            if result.pdf_file:
+                try:
+                    default_storage.delete(result.pdf_file.name)
+                except Exception:
+                    pass
+
+            filename = f"estimates/job-{result.job_id}.pdf"
+            saved = default_storage.save(filename, ContentFile(pdf_bytes))
+            result.pdf_file = saved
+            result.save(update_fields=["pdf_file"])
+        except Exception as e:
+            log.exception("create_pdf failed for result %s", pk)
+            return Response({"detail": f"PDF generation failed: {e}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        data = self.get_serializer(result, context={"request": request}).data
+        return Response(data, status=200)
+    
 
 @api_view(["GET"])
 @permission_classes([AllowAny])
@@ -141,7 +243,6 @@ def guest_quota(request):
     gk = get_guest_key(request)
     used = EstimateJob.objects.filter(guest_key=gk).count() if gk else 0
     return Response({"remaining": max(0, FREE_GUEST_JOB_LIMIT - used)})
-
 
 
 # estimate/views.py
@@ -205,3 +306,6 @@ def results_guest(request):
     except Exception:
         logging.getLogger(__name__).exception("results_guest failed")
         return Response({"detail": "results_guest failed"}, status=500)
+
+
+

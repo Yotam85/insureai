@@ -23,14 +23,25 @@ def _hash_code(email: str, code: str) -> str:
     s = f"{settings.SECRET_KEY}:{email.lower().strip()}:{code.strip()}"
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
 
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+
+import logging
+logger = logging.getLogger(__name__)
+
 def _send_code_email(email: str, code: str) -> None:
-    send_mail(
-        "Your InsureAI sign-in code",
-        f"Your sign-in code is: {code}\n\nThis code expires in {CODE_TTL_MIN} minutes.",
-        settings.DEFAULT_FROM_EMAIL,
-        [email],
-        fail_silently=False,
-    )
+    try:
+        send_mail(
+            "Your Estimai sign-in code",
+            f"Your sign-in code is: {code}\n\nThis code expires in {CODE_TTL_MIN} minutes.",
+            settings.DEFAULT_FROM_EMAIL,
+            [email],
+            fail_silently=False,
+        )
+    except Exception as e:
+        logger.exception("Failed to send email")
+        raise
+
 
 class StartLogin(APIView):
     permission_classes = [AllowAny]

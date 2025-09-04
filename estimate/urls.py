@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
+from estimate.views import update_json_by_job
 
 from estimate.views import (
     UploadViewSet, EstimateJobViewSet, EstimateResultViewSet,
@@ -22,6 +23,7 @@ urlpatterns = [
     path('api/results/mine/',  results_mine,  name='results-mine'),
     path('api/results/guest/', results_guest, name='results-guest'),
 
+
     # Router (viewsets)
     path('api/', include(router.urls)),
 
@@ -31,3 +33,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+c
