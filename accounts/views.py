@@ -13,7 +13,7 @@ from rest_framework.decorators import api_view, permission_classes
 
 from .models import LoginCode
 from estimate.utils import get_guest_key
-from estimate.models import Upload, EstimateJob, EstimateResult
+from estimate.models import Upload, EstimateJob, EstimateResult, Project
 
 CODE_TTL_MIN = 10
 MAX_ATTEMPTS = 5
@@ -95,6 +95,8 @@ class VerifyCode(APIView):
         # auto-claim guest work (uploads, jobs, results) by guest key
         gk = get_guest_key(request)
         if gk:
+            # Transfer guest-owned entities to this user, including projects
+            Project.objects.filter(guest_key=gk, owner__isnull=True).update(owner=user, guest_key=None)
             Upload.objects.filter(guest_key=gk, owner__isnull=True).update(owner=user, guest_key=None)
             EstimateJob.objects.filter(guest_key=gk, owner__isnull=True).update(owner=user, guest_key=None)
             EstimateResult.objects.filter(guest_key=gk, owner__isnull=True).update(owner=user, guest_key=None)
@@ -113,7 +115,11 @@ def claim_guest_work(request):
     gk = get_guest_key(request)
     if not gk:
         return Response({"detail": "guest_key missing."}, status=400)
+
+    # Transfer ownership of everything, including projects
+    Project.objects.filter(guest_key=gk, owner__isnull=True).update(owner=request.user, guest_key=None)
     Upload.objects.filter(guest_key=gk, owner__isnull=True).update(owner=request.user, guest_key=None)
     EstimateJob.objects.filter(guest_key=gk, owner__isnull=True).update(owner=request.user, guest_key=None)
     EstimateResult.objects.filter(guest_key=gk, owner__isnull=True).update(owner=request.user, guest_key=None)
+
     return Response({"detail": "Claimed."}, status=200)

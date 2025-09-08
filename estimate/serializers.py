@@ -6,7 +6,7 @@ from django.db import transaction
 from django.utils.html import escape
 from rest_framework import serializers
 
-from .models import Upload, EstimateJob, EstimateResult
+from .models import Upload, EstimateJob, EstimateResult, Project
 from .utils import get_guest_key
 
 
@@ -22,10 +22,56 @@ class UploadSerializer(serializers.ModelSerializer):
         read_only_fields = ["owner", "job"]
 
 
+
+class ProjectSerializer(serializers.ModelSerializer):
+    job_count = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model  = Project
+        fields = ["id", "name", "zip", "created", "job_count"]
+
+
+
+class EstimateJobCreateSerializer(serializers.ModelSerializer):
+    project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all(), required=True)
+    uploads = serializers.ListField(
+        child=serializers.IntegerField(min_value=1),
+        required=False,
+        allow_empty=True
+    )
+
+    class Meta:
+        model  = EstimateJob
+        fields = ["project", "agent_kind", "instructions", "property_type", "damage_type", "uploads"]
+
+    def validate_instructions(self, v: str):
+        if not v or len(v.strip()) < 5:
+            raise serializers.ValidationError("Please describe the scope (≥ 5 chars).")
+        return v.strip()
+
+    def validate_agent_kind(self, v: str):
+        allowed = {"insurance", "home_project", "contractor"}
+        if v not in allowed:
+            raise serializers.ValidationError(f"agent_kind must be one of {sorted(allowed)}")
+        return v
+
+    def validate_damage_type(self, v: str | None):
+        # If you want to allow None, that's fine; else enforce:
+        allowed = {None, "water", "fire", "wind", "other"}  # include "other" if you use it on the FE
+        if v not in allowed:
+            raise serializers.ValidationError(f"damage_type must be one of {sorted(x for x in allowed if x)}")
+        return v
+
+
 # -----------------------------
 # Jobs
 # -----------------------------
 class EstimateJobSerializer(serializers.ModelSerializer):
+    project = serializers.PrimaryKeyRelatedField(
+        queryset=Project.objects.all(), required=True
+    )
+    title   = serializers.CharField(max_length=160, required=False, allow_blank=True)
+    project_seq = serializers.IntegerField(read_only=True)
     property_type = serializers.ChoiceField(choices=[("res", "res"), ("com", "com")])
     damage_type   = serializers.ChoiceField(choices=[("water", "water"),
                                                      ("fire", "fire"),
@@ -45,14 +91,8 @@ class EstimateJobSerializer(serializers.ModelSerializer):
     class Meta:
         model  = EstimateJob
         fields = [
-            "id",
-            "instructions",
-            "property_type",
-            "damage_type",
-            "uploads",
-            "status",
-            "created",
-            "agent_kind",  # optional; your task may ignore this if you always use triage
+            "id", "project", "title", "project_seq", "agent_kind", "instructions",
+            "claim_number", "property_type", "damage_type", "status", "created"
         ]
         read_only_fields = ["status", "created"]
 
@@ -98,14 +138,16 @@ class EstimateJobSerializer(serializers.ModelSerializer):
 class EstimateResultListItemSerializer(serializers.ModelSerializer):
     id      = serializers.IntegerField(source="pk", read_only=True)
     job     = serializers.IntegerField(source="job_id", read_only=True)
+    job_number = serializers.SerializerMethodField()
     created = serializers.SerializerMethodField()
+    job_title = serializers.SerializerMethodField()
     peril   = serializers.SerializerMethodField()
     premium = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     pdf_url = serializers.SerializerMethodField()
 
     class Meta:
         model  = EstimateResult
-        fields = ("id", "job", "created", "peril", "premium", "pdf_url")
+        fields = ("id", "job", "job_number", "job_title", "created", "peril", "premium", "pdf_url")
 
     def _abs(self, url: Optional[str]) -> Optional[str]:
         if not url:
@@ -120,6 +162,18 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
         # tolerate older rows without .created
         dt = getattr(obj, "created", None) or getattr(getattr(obj, "job", None), "created", None)
         return dt  # DRF will format DateTime
+
+    def get_job_title(self, obj):
+        try:
+            return getattr(obj.job, "title", "")
+        except Exception:
+            return ""
+
+    def get_job_number(self, obj):
+        try:
+            return getattr(obj.job, "project_seq", None)
+        except Exception:
+            return None
 
     def get_peril(self, obj):
         payload = obj.raw_json or {}
@@ -147,6 +201,9 @@ from django.utils.html import escape
 class EstimateResultDetailSerializer(serializers.ModelSerializer):
     id          = serializers.IntegerField(source="pk", read_only=True)
     job         = serializers.IntegerField(source="job_id", read_only=True)
+    job_title   = serializers.SerializerMethodField()
+    job_number  = serializers.SerializerMethodField()
+    inventory   = serializers.JSONField(required=False)
     created     = serializers.DateTimeField(read_only=True)
     premium     = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     pdf_url     = serializers.SerializerMethodField()
@@ -159,7 +216,10 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "job",
+            "job_number",
+            "job_title",
             "created",
+            "inventory",
             "raw_json",
             "premium",
             "pdf_url",
@@ -182,6 +242,18 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
         try:
             f = getattr(obj, "pdf_file", None)
             return self._abs(f.url) if f else None
+        except Exception:
+            return None
+
+    def get_job_title(self, obj):
+        try:
+            return getattr(obj.job, "title", "")
+        except Exception:
+            return ""
+
+    def get_job_number(self, obj):
+        try:
+            return getattr(obj.job, "project_seq", None)
         except Exception:
             return None
 

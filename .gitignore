@@ -12,14 +12,13 @@ uploads/
 .env
 *.env
 celerybeat-schedule
+insureai/settings.py
 insureai_core/settings.py
-
 # Node/React
 frontend/node_modules/
 frontend/dist/
 frontend/.env*
 !frontend/.env.example
-
 # OS/IDE
 .DS_Store
 .idea/

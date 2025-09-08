@@ -16,6 +16,7 @@ from django.core.files.storage import default_storage
 
 from .models import EstimateJob, EstimateResult
 from .pdf_export import export_estimate_pdf_bytes
+from django.utils import timezone
 
 from estimate.agentkit.insurance_agents import (
     build_agent,          # pick one by job.agent_kind (or triage)
@@ -412,3 +413,6 @@ def run_estimate(self, job_id: int) -> None:
         "✅ Saved EstimateResult for job %s (premium=%s, pdf=%s)",
             log.info("✅ Saved EstimateResult for job %s (premium=%s)", job.id, str(premium))
     )
+
+
+

@@ -8,12 +8,13 @@ from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404, render
+from django.db.models import Count
 
 
-from .models import Upload, EstimateJob, EstimateResult
+from .models import Upload, EstimateJob, EstimateResult, Project
 from .serializers import (
     UploadSerializer,
-    EstimateJobSerializer
+    EstimateJobSerializer, ProjectSerializer
 )
 
 import json
@@ -28,7 +29,7 @@ from .pdf_export import export_estimate_pdf_bytes
 # estimate/views.py (add near imports)
 
 
-FREE_GUEST_JOB_LIMIT = 3   # or whatever you prefer
+FREE_GUEST_JOB_LIMIT = 1   # or whatever you prefer
 
 
 # --- small helpers to normalize payloads safely ---
@@ -107,15 +108,103 @@ def _payload_for_pdf(payload: Union[Dict[str, Any], List[Any], str, bytes, None]
         "currency": "USD",
     }
 
+# estimate/views.py
 
+import json
+import logging
+log = logging.getLogger(__name__)
+
+FREE_GUEST_JOB_LIMIT = 3
+
+
+# ---------- Projects ----------
+class ProjectViewSet(viewsets.ModelViewSet):
+    """
+    /api/projects/
+      GET -> list my projects (or guest projects)
+      POST {name, zip} -> create or get existing for this identity
+    /api/projects/:id/
+      GET -> details
+      DELETE -> remove (owner or guest only)
+    """
+    serializer_class = ProjectSerializer
+    permission_classes = [AllowAny]
+    throttle_classes: list = []
+
+    @action(detail=True, methods=["get"])
+    def jobs(self, request, pk=None):
+        proj = self.get_object()  # ACL enforced by get_queryset
+        qs = (EstimateJob.objects
+              .filter(project=proj)
+              .only("id", "project_seq", "title", "status", "agent_kind", "created")
+              .order_by("-created"))
+        data = [
+            {
+                "id": j.id,
+                "number": j.project_seq,
+                "title": j.title,
+                "status": j.status,
+                "agent_kind": j.agent_kind,
+                "created": j.created.isoformat() if j.created else None,
+            }
+            for j in qs
+        ]
+        return Response(data, status=200)
+    
+    def get_queryset(self):
+        qs = Project.objects.all().annotate(job_count=Count("jobs"))
+        user = self.request.user if self.request.user.is_authenticated else None
+        if user:
+            return qs.filter(owner=user)
+        gk = get_guest_key(self.request)
+        if gk:
+            return qs.filter(owner__isnull=True, guest_key=gk)
+        return Project.objects.none()
+
+    def perform_create(self, serializer):
+        user = self.request.user if self.request.user.is_authenticated else None
+        gk   = get_guest_key(self.request)
+
+        # idempotent "get or create" by identity+name+zip
+        existing = None
+        if user:
+            existing = Project.objects.filter(owner=user, name=serializer.validated_data["name"], zip=serializer.validated_data["zip"]).first()
+        elif gk:
+            existing = Project.objects.filter(owner__isnull=True, guest_key=gk, name=serializer.validated_data["name"], zip=serializer.validated_data["zip"]).first()
+
+        if existing:
+            self.instance = existing
+            return
+
+        self.instance = serializer.save(owner=user, guest_key=None if user else (gk or ""))
+
+    def create(self, request, *args, **kwargs):
+        ser = self.get_serializer(data=request.data)
+        ser.is_valid(raise_exception=True)
+        self.perform_create(ser)
+        # always return the (possibly existing) instance serialized with job_count
+        inst = Project.objects.annotate(job_count=Count("jobs")).get(pk=self.instance.pk)
+        out  = ProjectSerializer(inst).data
+        return Response(out, status=status.HTTP_201_CREATED)
+
+    def retrieve(self, request, *args, **kwargs):
+        proj = self.get_object()
+        # ACL already enforced by get_queryset(); re-fetch with annotation
+        proj = Project.objects.annotate(job_count=Count("jobs")).get(pk=proj.pk)
+        return Response(ProjectSerializer(proj).data)
+
+    def destroy(self, request, *args, **kwargs):
+        proj = self.get_object()
+        proj.delete()
+        return Response(status=204)
+
+
+# ---------- Uploads ----------
 class UploadViewSet(viewsets.ModelViewSet):
-    """
-    POST /api/files/   (multipart/form-data) -> { id, file, mime }
-    """
     serializer_class = UploadSerializer
     permission_classes = [AllowAny]
-    throttle_classes = [ScopedRateThrottle]
-    throttle_scope = "guest_uploads"
+    throttle_classes  = [ScopedRateThrottle]
+    throttle_scope    = "guest_uploads"
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -128,33 +217,108 @@ class UploadViewSet(viewsets.ModelViewSet):
         serializer.save(owner=user, guest_key=None if user else (gk or ""))
 
 
-# ---- Jobs ---------------------------------------------------
+# estimate/views.py
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from rest_framework.throttling import ScopedRateThrottle
 from django.db import transaction
+from django.shortcuts import get_object_or_404
+from django.db.models import Count
+import logging
 
+from .models import Upload, EstimateJob, Project
+from .serializers import EstimateJobCreateSerializer, ProjectSerializer
+from .tasks import run_estimate
+from .utils import get_guest_key
+
+log = logging.getLogger(__name__)
 
 class EstimateJobViewSet(viewsets.ModelViewSet):
-    serializer_class = EstimateJobSerializer
     permission_classes = [AllowAny]
-    throttle_classes = [ScopedRateThrottle]
-    throttle_scope = "guest_jobs"
+    throttle_classes   = [ScopedRateThrottle]
+    throttle_scope     = "guest_jobs"
+
+    # Use the create serializer for POSTs; for GETs you can keep your detail serializer
+    def get_serializer_class(self):
+        if self.request.method == "POST":
+            return EstimateJobCreateSerializer
+        # fallback to whatever you use elsewhere (e.g., list/detail)
+        from .serializers import EstimateJobSerializer
+        return EstimateJobSerializer
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            return EstimateJob.objects.filter(owner=self.request.user)
+            return EstimateJob.objects.filter(owner=self.request.user).select_related("project")
         return EstimateJob.objects.none()
 
+    def _get_project_checked(self, request, project_id: int) -> Project:
+        proj = get_object_or_404(Project, pk=project_id)
+        if request.user.is_authenticated:
+            if proj.owner_id != request.user.id:
+                # Hide existence
+                raise get_object_or_404(Project, pk=0)
+        else:
+            gk = get_guest_key(request)
+            if not gk or proj.owner_id is not None or proj.guest_key != gk:
+                raise get_object_or_404(Project, pk=0)
+        return proj
+
     def create(self, request, *args, **kwargs):
-        from django.db import transaction
+        ser = self.get_serializer(data=request.data)
+        if not ser.is_valid():
+            return Response(ser.errors, status=400)
 
         user = request.user if request.user.is_authenticated else None
         gk   = get_guest_key(request)
 
-        ser = self.get_serializer(data=request.data)
-        ser.is_valid(raise_exception=True)
-        job: EstimateJob = ser.save(owner=user, guest_key=None if user else (gk or ""))
+        project_id = ser.validated_data["project"].id if hasattr(ser.validated_data["project"], "id") else ser.validated_data["project"]
+        try:
+            proj = self._get_project_checked(request, project_id)
+        except Exception as e:
+            # Will be a 404; let it bubble
+            raise
 
-        transaction.on_commit(lambda: run_estimate.delay(job.id))
-        return Response({"id": job.id}, status=status.HTTP_201_CREATED)
+        # Optional uploads list
+        upload_ids = ser.validated_data.pop("uploads", [])
+
+        try:
+            with transaction.atomic():
+                job = EstimateJob.objects.create(
+                    project=proj,
+                    owner=user,
+                    guest_key=None if user else (gk or ""),
+                    agent_kind=ser.validated_data.get("agent_kind"),
+                    instructions=ser.validated_data.get("instructions"),
+                    property_type=ser.validated_data.get("property_type"),
+                    damage_type=ser.validated_data.get("damage_type"),
+                    status="PENDING",
+                )
+
+                # Attach uploads if provided (and belong to same identity)
+                if upload_ids:
+                    uq = Upload.objects.filter(pk__in=set(upload_ids))
+                    if user:
+                        uq = uq.filter(owner=user)
+                    else:
+                        uq = uq.filter(owner__isnull=True, guest_key=gk)
+                    updated = uq.update(job=job)
+                    if updated != len(set(upload_ids)):
+                        log.warning("Some uploads not attached due to ACL mismatch or missing: requested=%s updated=%s",
+                                    len(set(upload_ids)), updated)
+
+            # Kick off Celery after commit
+            transaction.on_commit(lambda: run_estimate.delay(job.id))
+            return Response({"id": job.id}, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            log.exception("Job create failed: %s", e)
+            # Bubble a helpful 400 instead of 500:
+            return Response({"detail": f"Job creation failed: {type(e).__name__}: {e}"}, status=400)
+
+
+# ---------- Results (unchanged except they continue to work) ----------
+# ... (keep your existing EstimateResultViewSet, by_job, create_pdf, etc.)
 
 
 # ---- Results ------------------------------------------------
@@ -213,6 +377,9 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         result = self.get_object()
         try:
             safe_payload = _payload_for_pdf(result.raw_json)
+
+      
+
             pdf_bytes = export_estimate_pdf_bytes(safe_payload)
 
             # Replace previous PDF if present
@@ -232,6 +399,50 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
 
         data = self.get_serializer(result, context={"request": request}).data
         return Response(data, status=200)
+
+    @action(detail=True, methods=["get", "patch"], url_path="inventory")
+    def inventory(self, request, pk=None):
+        """Get or update the saved inventory for this result.
+        Enforces the same ACL as by_job: owner or matching guest_key.
+        GET returns { inventory: [...] }
+        PATCH accepts { inventory: [...] } and saves it.
+        """
+        result = self.get_object()
+
+        # ACL: allow only owner or matching guest
+        job = getattr(result, "job", None)
+        req = request
+        if req.user.is_authenticated:
+            if not job or job.owner_id != req.user.id:
+                return Response({"detail": "Not found."}, status=404)
+        else:
+            gk = get_guest_key(req)
+            if not gk or not job or job.owner_id is not None or job.guest_key != gk:
+                return Response({"detail": "Not found."}, status=404)
+
+        if request.method.lower() == "get":
+            return Response({"inventory": result.inventory or []}, status=200)
+
+        # PATCH
+        inv = (request.data or {}).get("inventory", None)
+        # Basic validation: must be a list of dict-like items
+        if inv is None or not isinstance(inv, list):
+            return Response({"detail": "inventory must be a list"}, status=400)
+        # Normalize items
+        cleaned = []
+        for item in inv:
+            if not isinstance(item, dict):
+                continue
+            cleaned.append({
+                "name": str(item.get("name", ""))[:200],
+                "quantity": float(item.get("quantity", 0) or 0),
+                "unit": str(item.get("unit", "")).upper()[:16],
+                "unit_cost": float(item.get("unit_cost", 0) or 0),
+            })
+
+        result.inventory = cleaned
+        result.save(update_fields=["inventory"])
+        return Response({"inventory": result.inventory}, status=200)
     
 
 @api_view(["GET"])
@@ -306,6 +517,3 @@ def results_guest(request):
     except Exception:
         logging.getLogger(__name__).exception("results_guest failed")
         return Response({"detail": "results_guest failed"}, status=500)
-
-
-
