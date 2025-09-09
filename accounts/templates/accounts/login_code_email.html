@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ product }} sign-in code</title>
+  </head>
+  <body style="margin:0;padding:0;background:#f6f8fb;color:#0f172a;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8fb;padding:24px 0;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,0.08);padding:32px;">
+            <tr>
+              <td style="text-align:center;padding-bottom:8px;">
+                <div style="font-size:18px;font-weight:600;color:#0f172a;">{{ product }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align:center;padding-top:8px;padding-bottom:16px;">
+                <div style="font-size:16px;color:#334155;">Your sign-in code</div>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:12px 0 8px 0;">
+                <div style="display:inline-block;background:#0f172a;color:#ffffff;border-radius:10px;padding:16px 20px;letter-spacing:6px;font-size:28px;font-weight:700;font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">
+                  {{ code }}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align:center;padding-top:4px;padding-bottom:16px;color:#64748b;font-size:12px;">
+                Expires in {{ ttl }} minutes
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top:8px;color:#334155;font-size:14px;line-height:22px;">
+                Enter this code in the browser where you requested it. If you didn’t request this, you can safely ignore this email.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top:24px;color:#94a3b8;font-size:12px;text-align:center;">
+                © {{ product }}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+  </html>
+

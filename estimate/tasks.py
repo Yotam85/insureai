@@ -24,6 +24,11 @@ from estimate.agentkit.insurance_agents import (
     build_input_messages, # input_text + N images
 )
 from agents import Runner
+from estimate.agentkit.inventory_agent import (
+    build_inventory_agent as build_inv_agent,
+    build_run_config as build_inv_run_config,
+    build_inventory_message,
+)
 
 
 log = logging.getLogger(__name__)
@@ -261,13 +266,101 @@ def _to_safe_payload(payload: Any) -> Dict[str, Any]:
     }
 
 
+# ---------------- Inventory agent helpers ----------------
+
+def generate_inventory_suggestion_from_items(items: List[Dict[str, Any]], *, currency: str = "USD") -> List[Dict[str, Any]]:
+    """
+    Run the inventory agent synchronously on normalized estimate items and return a list of
+    {name, quantity, unit, unit_cost} dicts. Never raises; returns [] on failure.
+    """
+    try:
+        agent = build_inv_agent(currency=currency)
+        run_cfg = build_inv_run_config(os.environ.get("OPENAI_MODEL"))
+        try:
+            run_cfg.workflow_name = "InventorySuggestion"
+        except Exception:
+            pass
+
+        # Keep the payload compact: only fields the user cares about
+        compact_items = []
+        for it in items or []:
+            if isinstance(it, dict):
+                compact_items.append({
+                    "description": it.get("line_items") or it.get("description") or "",
+                    "quantity": it.get("QUANTITY") or it.get("quantity") or 0,
+                    "unit": it.get("unit_code") or it.get("unit") or "EA",
+                })
+
+        messages = build_inventory_message({"items": compact_items}, currency=currency)
+
+        # Ensure an event loop exists for Runner.run_sync in request threads
+        created_loop = None
+        try:
+            asyncio.get_running_loop()
+        except RuntimeError:
+            created_loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(created_loop)
+
+        try:
+            result = Runner.run_sync(agent, messages, run_config=run_cfg, max_turns=4)
+        finally:
+            if created_loop is not None:
+                try:
+                    created_loop.close()
+                except Exception:
+                    pass
+                asyncio.set_event_loop(None)
+
+        payload = _extract_json(getattr(result, "final_output", None)) or _extract_json(getattr(result, "text", "")) or {}
+        inv = (payload or {}).get("inventory")
+        if isinstance(inv, list):
+            cleaned: List[Dict[str, Any]] = []
+            for row in inv:
+                if not isinstance(row, dict):
+                    continue
+                try:
+                    cleaned.append({
+                        "name": str(row.get("name", ""))[:200],
+                        "quantity": float(row.get("quantity", 0) or 0),
+                        "unit": str(row.get("unit", "")).upper()[:16],
+                        "unit_cost": float(row.get("unit_cost", 0) or 0),
+                    })
+                except Exception:
+                    continue
+            return cleaned
+    except Exception:
+        log.exception("Inventory suggestion generation failed")
+    return []
+
+
+@shared_task(bind=True, max_retries=2)
+def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
+    """
+    Celery wrapper to generate inventory suggestions for a given EstimateResult.
+    Returns the suggested list (not persisted).
+    """
+    try:
+        result = EstimateResult.objects.select_related("job").get(pk=result_id)
+    except EstimateResult.DoesNotExist:
+        return []
+
+    data = result.raw_json or {}
+    items: List[Dict[str, Any]] = []
+    currency = "USD"
+    if isinstance(data, dict):
+        currency = data.get("currency") or "USD"
+        if isinstance(data.get("items"), list):
+            items = _normalize_items(data["items"])  # normalize again just in case
+
+    return generate_inventory_suggestion_from_items(items, currency=currency)
+
+
 # --------------- misc helpers ------------------
 
 def _build_user_text(job: EstimateJob) -> str:
     base = (
-        "You're a senior public adjuster / construction estimator. "
-        "Create an estimate from the attached damage images. "
-        "For each item, choose repair OR replace (never both). "
+        "You're a senior apprisel / construction estimator. "
+        "Carfully analyse my image(s) and create an estimate according your knowledge. some users may include floor plans and existing takeoff plans to be aware of that. "
         "Return ONLY raw JSON matching the role schema."
     )
     parts = [base]
@@ -275,6 +368,8 @@ def _build_user_text(job: EstimateJob) -> str:
         parts.append(f"User instructions: {job.instructions}")
     if job.property_type:
         parts.append(f"Property type: {job.property_type}")
+    if getattr(job, "work_grade", None):
+        parts.append(f"Work grade: {job.work_grade}")
     return "\n".join(parts)
 
 
@@ -345,7 +440,14 @@ def run_estimate(self, job_id: int) -> None:
 
     # 2) Build agent + run_config
     try:
-        agent = build_agent((job.agent_kind or "").strip() or None)
+        # Build agent with contextual settings from job/project
+        settings = {
+            "currency": "USD",
+            "property_type": job.property_type or "",
+            "work_grade": getattr(job, "work_grade", "") or "",
+            "location": getattr(getattr(job, "project", None), "zip", "") or "",
+        }
+        agent = build_agent((job.agent_kind or "").strip() or None, settings=settings)
 
         run_cfg = build_run_config(os.environ.get("OPENAI_MODEL"))
 
@@ -357,6 +459,9 @@ def run_estimate(self, job_id: int) -> None:
                 "job_id": str(job.id),
                 "agent_kind": str(getattr(job, "agent_kind", "") or ""),
                 "user_id": str(getattr(job, "owner_id", "") or ""),
+                "property_type": str(job.property_type or ""),
+                "work_grade": str(getattr(job, "work_grade", "") or ""),
+                "location": str(getattr(getattr(job, "project", None), "zip", "") or ""),
             }
         except Exception:
             pass
@@ -413,6 +518,3 @@ def run_estimate(self, job_id: int) -> None:
         "✅ Saved EstimateResult for job %s (premium=%s, pdf=%s)",
             log.info("✅ Saved EstimateResult for job %s (premium=%s)", job.id, str(premium))
     )
-
-
-

@@ -1,0 +1,6 @@
+Your {{ product }} sign-in code: {{ code }}
+
+Expires in {{ ttl }} minutes.
+
+Enter this code in the browser where you requested it. If you didn’t request this, you can safely ignore this email.
+

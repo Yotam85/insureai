@@ -149,7 +149,7 @@ def make_role_instructions(
     settings = settings or {}
     currency      = (settings.get("currency") or "USD").upper()
     location      = settings.get("location") or ""
-    peril         = settings.get("peril") or ""
+    work_grade    = settings.get("work_grade") or ""   # low | standard | high
     property_type = settings.get("property_type") or ""  # "res" / "com" (or human readable)
 
     header_template = {
@@ -159,7 +159,7 @@ def make_role_instructions(
         "workflow": role,               # MUST equal the role constant
         "location": location,           # optional
         # Optional context hints that the model should include when known:
-        "peril": peril,                 # e.g., "water", "fire", "wind"
+        "work_grade": work_grade,       # e.g., "low", "standard", "high"
         "property_type": property_type  # e.g., "res", "com"
     }
 
@@ -168,7 +168,7 @@ def make_role_instructions(
         "You will receive the user's description and images in the conversation input.\n"
         "Use the shared knowledge base for pricing vernacular and structure.\n"
         f"{STRICT_JSON}\n\n"
-        "Before you start, populate these header fields exactly (use values shown or leave as empty strings if unknown):\n"
+        "Before you start, populate these header fields exactly (use values shown and pay attention to the Grade and Type of Property to construct pricing):\n"
         f"{json.dumps(header_template, indent=2)}\n\n"
         "KNOWLEDGE BASE:\n"
         f"{kb}\n\n"
@@ -197,7 +197,7 @@ def build_insurance_agents(*, kb: str | None = None, settings: Dict[str, Any] | 
 
     home_project_agent = Agent(
         name="Home Project Agent",
-        handoff_description="Specialist for homeowner project planning. Outputs ONLY raw JSON conforming to the embedded schema.",
+        handoff_description="Specialist for homeowner project planning. This include home renovation, flipping houses, or remodeling for rental. Few expert guidlines: 1. if a block (roof slop, floor, wall etc.) is damage more then 40% you replace the entire block. 2. in case there are more then 3 contractors involved in the project you add 10% to the estimate total pricing.  Outputs ONLY raw JSON conforming to the embedded schema.",
         instructions=make_role_instructions("home_project", kb_text, home_schema, settings),
     )
     adjuster_agent = Agent(
@@ -208,7 +208,7 @@ def build_insurance_agents(*, kb: str | None = None, settings: Dict[str, Any] | 
     )
     contractor_agent = Agent(
         name="Contractor Agent",
-        handoff_description="Specialist for contractor scope, bid line items, and schedule. Outputs ONLY raw JSON conforming to the embedded schema.",
+        handoff_description="Specialist for contractor scope, bid line items, and schedule. Few expert guidlines: 1. if a block (roof slop, floor, wall etc.) is damage more then 40% you replace the entire block. 2. in case there are more then 3 contractors involved in the project you add 10% to the estimate total pricing. Outputs ONLY raw JSON conforming to the embedded schema.",
         instructions=make_role_instructions("contractor", kb_text, con_schema, settings),
     )
 
@@ -216,8 +216,7 @@ def build_insurance_agents(*, kb: str | None = None, settings: Dict[str, Any] | 
         name="Role Triage Agent",
         instructions=(
             "Analyze the user's images and description like a senior PM/adjuster/contractor/architect. "
-            "Choose the single best specialist: Home Project / Insurance Adjuster / Contractor. "
-            "HAND OFF to that agent. The specialist must return ONLY raw JSON conforming to its schema. "
+            "The specialist must return ONLY raw JSON conforming to its schema."
             "When handing off, preserve the original user message verbatim; do not summarize it.\n"
             f"{RECOMMENDED_PROMPT_PREFIX}"
         ),
@@ -242,4 +241,4 @@ def build_agent(kind: Optional[str], *, kb: str | None = None, settings: Dict[st
 
 
 def build_run_config(model_name: Optional[str] = None) -> RunConfig:
-    return RunConfig(model=model_name or "gpt-5-mini-2025-08-07")
+    return RunConfig(model=model_name or "gpt-5-2025-08-07")

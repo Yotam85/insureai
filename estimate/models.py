@@ -87,9 +87,14 @@ class EstimateJob(models.Model):
     property_type = models.CharField(max_length=3, choices=PROPERTY_CHOICES,
                                      null=True, blank=True)
 
+    # Deprecated: damage_type. Kept for backward compatibility; use work_grade instead.
     DAMAGE_CHOICES = [("water", "Water"), ("fire", "Fire"), ("wind", "Wind")]
     damage_type = models.CharField(max_length=5, choices=DAMAGE_CHOICES,
                                    null=True, blank=True)
+
+    WORK_GRADE_CHOICES = [("low", "Low end"), ("standard", "Standard"), ("high", "High end")]
+    work_grade = models.CharField(max_length=9, choices=WORK_GRADE_CHOICES,
+                                  null=True, blank=True, help_text="Material/finish level")
 
     status  = models.CharField(max_length=12, default="PENDING")
     created = models.DateTimeField(auto_now_add=True)

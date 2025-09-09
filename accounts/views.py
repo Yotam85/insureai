@@ -30,16 +30,31 @@ import logging
 logger = logging.getLogger(__name__)
 
 def _send_code_email(email: str, code: str) -> None:
+    """Send a nicely formatted sign-in code email with HTML + plain text."""
     try:
-        send_mail(
-            "Your Estimai sign-in code",
-            f"Your sign-in code is: {code}\n\nThis code expires in {CODE_TTL_MIN} minutes.",
-            settings.DEFAULT_FROM_EMAIL,
-            [email],
-            fail_silently=False,
+        subject = "Your Estimai sign-in code"
+        ctx = {"code": code, "ttl": CODE_TTL_MIN, "product": "Estimai"}
+        # Render templates (falls back gracefully if templates missing)
+        try:
+            html_body = render_to_string("accounts/login_code_email.html", ctx)
+        except Exception:
+            html_body = None
+        try:
+            text_body = render_to_string("accounts/login_code_email.txt", ctx)
+        except Exception:
+            text_body = f"Your sign-in code is: {code}\nThis code expires in {CODE_TTL_MIN} minutes.\n"
+
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=text_body,
+            from_email=getattr(settings, "DEFAULT_FROM_EMAIL", None),
+            to=[email],
         )
-    except Exception as e:
-        logger.exception("Failed to send email")
+        if html_body:
+            msg.attach_alternative(html_body, "text/html")
+        msg.send(fail_silently=False)
+    except Exception:
+        logger.exception("Failed to send sign-in code email")
         raise
 
 

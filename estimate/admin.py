@@ -5,7 +5,7 @@ from .models import Project, EstimateJob, EstimateResult, Upload
 class EstimateJobInline(admin.TabularInline):
     model = EstimateJob
     extra = 0
-    fields = ("id", "status", "agent_kind", "instructions", "property_type", "damage_type", "created")
+    fields = ("id", "status", "agent_kind", "instructions", "property_type", "work_grade", "created")
     readonly_fields = ("id", "created")
     show_change_link = True
 
@@ -28,8 +28,8 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(EstimateJob)
 class EstimateJobAdmin(admin.ModelAdmin):
-    list_display = ("id", "project", "project_seq", "title", "owner", "status", "agent_kind", "property_type", "damage_type", "created")
-    list_filter  = ("status", "agent_kind", "property_type", "damage_type")
+    list_display = ("id", "project", "project_seq", "title", "owner", "status", "agent_kind", "property_type", "work_grade", "created")
+    list_filter  = ("status", "agent_kind", "property_type", "work_grade")
     search_fields = ("project_seq", "title", "instructions", "claim_number", "project__name", "project__zip", "owner__email")
     autocomplete_fields = ("project", "owner")
     date_hierarchy = "created"

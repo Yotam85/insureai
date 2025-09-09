@@ -136,14 +136,16 @@ class ProjectViewSet(viewsets.ModelViewSet):
         proj = self.get_object()  # ACL enforced by get_queryset
         qs = (EstimateJob.objects
               .filter(project=proj)
-              .only("id", "project_seq", "title", "status", "agent_kind", "created")
+              .only("id", "claim_number", "project_seq", "title", "status", "agent_kind", "work_grade", "created")
               .order_by("-created"))
         data = [
             {
                 "id": j.id,
                 "number": j.project_seq,
                 "title": j.title,
+                "claim_number_short": (j.claim_number or "")[:15] if getattr(j, "claim_number", None) else "",
                 "status": j.status,
+                "work_grade": j.work_grade,
                 "agent_kind": j.agent_kind,
                 "created": j.created.isoformat() if j.created else None,
             }
@@ -152,7 +154,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return Response(data, status=200)
     
     def get_queryset(self):
-        qs = Project.objects.all().annotate(job_count=Count("jobs"))
+        qs = Project.objects.all().annotate(job_count=Count("jobs")).order_by("-created", "-id")
         user = self.request.user if self.request.user.is_authenticated else None
         if user:
             return qs.filter(owner=user)
@@ -288,10 +290,11 @@ class EstimateJobViewSet(viewsets.ModelViewSet):
                     project=proj,
                     owner=user,
                     guest_key=None if user else (gk or ""),
+                    title=ser.validated_data.get("title", ""),
                     agent_kind=ser.validated_data.get("agent_kind"),
                     instructions=ser.validated_data.get("instructions"),
                     property_type=ser.validated_data.get("property_type"),
-                    damage_type=ser.validated_data.get("damage_type"),
+                    work_grade=ser.validated_data.get("work_grade"),
                     status="PENDING",
                 )
 
@@ -443,6 +446,86 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         result.inventory = cleaned
         result.save(update_fields=["inventory"])
         return Response({"inventory": result.inventory}, status=200)
+
+    @action(detail=True, methods=["post"], url_path="inventory/suggest")
+    def inventory_suggest(self, request, pk=None):
+        """
+        Generate suggested inventory using the AI agent. Does not persist the suggestion.
+        Accepts optional { items: [...] } in the body to override; otherwise uses result.raw_json.items.
+        Returns { inventory: [...] } for the client to place into the form.
+        """
+        result = self.get_object()
+
+        # ACL: same as inventory write
+        job = getattr(result, "job", None)
+        req = request
+        if req.user.is_authenticated:
+            if not job or job.owner_id != req.user.id:
+                return Response({"detail": "Not found."}, status=404)
+        else:
+            gk = get_guest_key(req)
+            if not gk or not job or job.owner_id is not None or job.guest_key != gk:
+                return Response({"detail": "Not found."}, status=404)
+
+        override = (request.data or {}).get("items")
+        currency = (result.raw_json or {}).get("currency") if isinstance(result.raw_json, dict) else "USD"
+
+        from .tasks import generate_inventory_suggestion_from_items
+
+        if isinstance(override, list):
+            # trust FE-provided items (already itemized by user)
+            items = override
+        else:
+            data = result.raw_json or {}
+            items = (data.get("items") or []) if isinstance(data, dict) else []
+
+        # Generate suggestion synchronously to give immediate response
+        inv = generate_inventory_suggestion_from_items(items, currency=currency or "USD")
+        return Response({"inventory": inv}, status=200)
+
+    @action(detail=False, methods=["get", "post", "patch"], url_path="by-job/(?P<job_id>[^/.]+)/inventory/suggest")
+    def inventory_suggest_by_job(self, request, job_id=None):
+        """
+        Convenience route to generate inventory suggestion by job id.
+        - GET: use the job's EstimateResult.raw_json.items as input
+        - POST/PATCH: if body includes { items: [...] }, use those instead
+        Returns { inventory: [...] }. Never persists.
+        """
+        # Locate job and enforce ACL
+        try:
+            job = EstimateJob.objects.get(pk=job_id)
+        except EstimateJob.DoesNotExist:
+            return Response({"detail": "Job not found."}, status=404)
+
+        if request.user.is_authenticated:
+            if job.owner_id != request.user.id:
+                return Response({"detail": "Not found."}, status=404)
+        else:
+            gk = get_guest_key(request)
+            if not gk or job.guest_key != gk:
+                return Response({"detail": "Not found."}, status=404)
+
+        # Ensure result exists
+        try:
+            result = job.estimateresult
+        except EstimateResult.DoesNotExist:
+            return Response({"detail": "Result not ready."}, status=status.HTTP_202_ACCEPTED)
+
+        override = (request.data or {}).get("items") if request.method.lower() in {"post", "patch"} else None
+        currency = "USD"
+        if isinstance(result.raw_json, dict):
+            currency = result.raw_json.get("currency") or "USD"
+
+        from .tasks import generate_inventory_suggestion_from_items
+
+        if isinstance(override, list):
+            items = override
+        else:
+            data = result.raw_json or {}
+            items = (data.get("items") or []) if isinstance(data, dict) else []
+
+        inv = generate_inventory_suggestion_from_items(items, currency=currency)
+        return Response({"inventory": inv}, status=200)
     
 
 @api_view(["GET"])

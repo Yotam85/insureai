@@ -34,6 +34,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 class EstimateJobCreateSerializer(serializers.ModelSerializer):
     project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all(), required=True)
+    title   = serializers.CharField(max_length=160, required=False, allow_blank=True)
+    work_grade = serializers.ChoiceField(choices=[("low","low"),("standard","standard"),("high","high")], required=False)
     uploads = serializers.ListField(
         child=serializers.IntegerField(min_value=1),
         required=False,
@@ -42,7 +44,7 @@ class EstimateJobCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = EstimateJob
-        fields = ["project", "agent_kind", "instructions", "property_type", "damage_type", "uploads"]
+        fields = ["project", "title", "agent_kind", "instructions", "property_type", "work_grade", "uploads"]
 
     def validate_instructions(self, v: str):
         if not v or len(v.strip()) < 5:
@@ -55,12 +57,14 @@ class EstimateJobCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(f"agent_kind must be one of {sorted(allowed)}")
         return v
 
-    def validate_damage_type(self, v: str | None):
-        # If you want to allow None, that's fine; else enforce:
-        allowed = {None, "water", "fire", "wind", "other"}  # include "other" if you use it on the FE
-        if v not in allowed:
-            raise serializers.ValidationError(f"damage_type must be one of {sorted(x for x in allowed if x)}")
-        return v
+    def validate_work_grade(self, v: str | None):
+        if v is None or v == "":
+            return None
+        norm = str(v).strip().lower()
+        mapping = {"low": "low", "low end": "low", "standard": "standard", "standert": "standard", "mid": "standard", "high": "high", "high end": "high"}
+        if norm not in mapping:
+            raise serializers.ValidationError("work_grade must be one of: low, standard, high")
+        return mapping[norm]
 
 
 # -----------------------------
@@ -72,10 +76,9 @@ class EstimateJobSerializer(serializers.ModelSerializer):
     )
     title   = serializers.CharField(max_length=160, required=False, allow_blank=True)
     project_seq = serializers.IntegerField(read_only=True)
+    claim_number_short = serializers.SerializerMethodField()
     property_type = serializers.ChoiceField(choices=[("res", "res"), ("com", "com")])
-    damage_type   = serializers.ChoiceField(choices=[("water", "water"),
-                                                     ("fire", "fire"),
-                                                     ("wind", "wind")])
+    work_grade    = serializers.ChoiceField(choices=[("low","low"),("standard","standard"),("high","high")], required=False)
 
     # Keep queryset broad (unattached only); enforce ownership in validate_uploads
     uploads = serializers.PrimaryKeyRelatedField(
@@ -92,7 +95,7 @@ class EstimateJobSerializer(serializers.ModelSerializer):
         model  = EstimateJob
         fields = [
             "id", "project", "title", "project_seq", "agent_kind", "instructions",
-            "claim_number", "property_type", "damage_type", "status", "created"
+            "claim_number", "claim_number_short", "property_type", "work_grade", "status", "created"
         ]
         read_only_fields = ["status", "created"]
 
@@ -131,6 +134,13 @@ class EstimateJobSerializer(serializers.ModelSerializer):
         Upload.objects.filter(pk__in=[u.pk for u in upload_list]).update(job=job)
         return job
 
+    def get_claim_number_short(self, obj):
+        try:
+            cn = getattr(obj, "claim_number", "") or ""
+            return cn[:15]
+        except Exception:
+            return ""
+
 
 # -----------------------------
 # Results – list (lean for sidebar)
@@ -141,13 +151,14 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
     job_number = serializers.SerializerMethodField()
     created = serializers.SerializerMethodField()
     job_title = serializers.SerializerMethodField()
+    job_claim_short = serializers.SerializerMethodField()
     peril   = serializers.SerializerMethodField()
     premium = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     pdf_url = serializers.SerializerMethodField()
 
     class Meta:
         model  = EstimateResult
-        fields = ("id", "job", "job_number", "job_title", "created", "peril", "premium", "pdf_url")
+        fields = ("id", "job", "job_number", "job_title", "job_claim_short", "created", "peril", "premium", "pdf_url")
 
     def _abs(self, url: Optional[str]) -> Optional[str]:
         if not url:
@@ -174,6 +185,13 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
             return getattr(obj.job, "project_seq", None)
         except Exception:
             return None
+
+    def get_job_claim_short(self, obj):
+        try:
+            cn = getattr(obj.job, "claim_number", "") or ""
+            return cn[:15]
+        except Exception:
+            return ""
 
     def get_peril(self, obj):
         payload = obj.raw_json or {}
@@ -203,6 +221,7 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
     job         = serializers.IntegerField(source="job_id", read_only=True)
     job_title   = serializers.SerializerMethodField()
     job_number  = serializers.SerializerMethodField()
+    job_claim_short = serializers.SerializerMethodField()
     inventory   = serializers.JSONField(required=False)
     created     = serializers.DateTimeField(read_only=True)
     premium     = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
@@ -218,6 +237,7 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
             "job",
             "job_number",
             "job_title",
+            "job_claim_short",
             "created",
             "inventory",
             "raw_json",
@@ -256,6 +276,13 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
             return getattr(obj.job, "project_seq", None)
         except Exception:
             return None
+
+    def get_job_claim_short(self, obj):
+        try:
+            cn = getattr(obj.job, "claim_number", "") or ""
+            return cn[:15]
+        except Exception:
+            return ""
 
     def get_uploads(self, obj):
         out = []
