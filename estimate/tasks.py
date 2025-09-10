@@ -352,13 +352,36 @@ def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
         if isinstance(data.get("items"), list):
             items = _normalize_items(data["items"])  # normalize again just in case
 
-    return generate_inventory_suggestion_from_items(items, currency=currency)
+    inv = generate_inventory_suggestion_from_items(items, currency=currency)
+    try:
+        # Persist suggestion to result for better UX
+        result.inventory = inv
+        result.save(update_fields=["inventory"])
+    except Exception:
+        log.exception("Failed saving inventory suggestion for result %s", result_id)
+    return inv
 
 
 @shared_task(bind=True, max_retries=2)
 def run_inventory_suggestion_from_items(self, items: List[Dict[str, Any]], currency: str = "USD") -> List[Dict[str, Any]]:
     """Celery wrapper to generate inventory from provided items (no DB lookup)."""
     return generate_inventory_suggestion_from_items(items, currency=currency)
+
+
+@shared_task(bind=True, max_retries=2)
+def run_inventory_suggestion_with_override(self, result_id: int, items: List[Dict[str, Any]], currency: str = "USD") -> List[Dict[str, Any]]:
+    """Generate inventory for a specific result using provided items; persist to DB."""
+    try:
+        result = EstimateResult.objects.get(pk=result_id)
+    except EstimateResult.DoesNotExist:
+        return []
+    inv = generate_inventory_suggestion_from_items(items or [], currency=currency)
+    try:
+        result.inventory = inv
+        result.save(update_fields=["inventory"])
+    except Exception:
+        log.exception("Failed saving override inventory for result %s", result_id)
+    return inv
 
 
 # --------------- misc helpers ------------------

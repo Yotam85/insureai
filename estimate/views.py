@@ -475,8 +475,8 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         async_flag = str(request.query_params.get("async", "0")).strip() == "1"
         if async_flag:
             if isinstance(override, list):
-                from .tasks import run_inventory_suggestion_from_items
-                task = run_inventory_suggestion_from_items.delay(override, currency or "USD")
+                from .tasks import run_inventory_suggestion_with_override
+                task = run_inventory_suggestion_with_override.delay(result.pk, override, currency or "USD")
             else:
                 from .tasks import run_inventory_suggestion
                 task = run_inventory_suggestion.delay(result.pk)
@@ -490,7 +490,12 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
             data = result.raw_json or {}
             items = (data.get("items") or []) if isinstance(data, dict) else []
         inv = generate_inventory_suggestion_from_items(items, currency=currency or "USD")
-        return Response({"inventory": inv}, status=200)
+        try:
+            result.inventory = inv
+            result.save(update_fields=["inventory"])
+        except Exception:
+            log.exception("Failed to save generated inventory for result %s", result.pk)
+        return Response({"inventory": inv, "saved": True}, status=200)
 
     @action(detail=False, methods=["get", "post", "patch"], url_path="by-job/(?P<job_id>[^/.]+)/inventory/suggest")
     def inventory_suggest_by_job(self, request, job_id=None):
@@ -529,8 +534,8 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         async_flag = str(request.query_params.get("async", "0")).strip() == "1"
         if async_flag:
             if isinstance(override, list):
-                from .tasks import run_inventory_suggestion_from_items
-                task = run_inventory_suggestion_from_items.delay(override, currency)
+                from .tasks import run_inventory_suggestion_with_override
+                task = run_inventory_suggestion_with_override.delay(result.pk, override, currency)
             else:
                 from .tasks import run_inventory_suggestion
                 task = run_inventory_suggestion.delay(result.pk)
@@ -544,7 +549,12 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
             data = result.raw_json or {}
             items = (data.get("items") or []) if isinstance(data, dict) else []
         inv = generate_inventory_suggestion_from_items(items, currency=currency)
-        return Response({"inventory": inv}, status=200)
+        try:
+            result.inventory = inv
+            result.save(update_fields=["inventory"])
+        except Exception:
+            log.exception("Failed to save generated inventory for result %s", result.pk)
+        return Response({"inventory": inv, "saved": True}, status=200)
 
     @action(detail=False, methods=["get"], url_path="inventory/suggest/status")
     def inventory_suggest_status(self, request):
