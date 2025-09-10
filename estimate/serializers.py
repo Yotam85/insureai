@@ -28,7 +28,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = Project
-        fields = ["id", "name", "zip", "created", "job_count"]
+        fields = ["id", "name", "zip", "created",
+            "inventory_status",
+            "inventory_updated", "job_count"]
 
 
 
@@ -158,7 +160,9 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = EstimateResult
-        fields = ("id", "job", "job_number", "job_title", "job_claim_short", "created", "peril", "premium", "pdf_url")
+        fields = ("id", "job", "job_number", "job_title", "job_claim_short", "created",
+            "inventory_status",
+            "inventory_updated", "peril", "premium", "pdf_url")
 
     def _abs(self, url: Optional[str]) -> Optional[str]:
         if not url:
@@ -171,7 +175,11 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
 
     def get_created(self, obj):
         # tolerate older rows without .created
-        dt = getattr(obj, "created", None) or getattr(getattr(obj, "job", None), "created", None)
+        dt = getattr(obj, "created",
+            "inventory_status",
+            "inventory_updated", None) or getattr(getattr(obj, "job", None), "created",
+            "inventory_status",
+            "inventory_updated", None)
         return dt  # DRF will format DateTime
 
     def get_job_title(self, obj):
@@ -224,6 +232,8 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
     job_claim_short = serializers.SerializerMethodField()
     inventory   = serializers.JSONField(required=False)
     created     = serializers.DateTimeField(read_only=True)
+    inventory_status = serializers.CharField(read_only=True)
+    inventory_updated = serializers.DateTimeField(read_only=True)
     premium     = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     pdf_url     = serializers.SerializerMethodField()
     uploads     = serializers.SerializerMethodField()
@@ -239,6 +249,8 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
             "job_title",
             "job_claim_short",
             "created",
+            "inventory_status",
+            "inventory_updated",
             "inventory",
             "raw_json",
             "premium",

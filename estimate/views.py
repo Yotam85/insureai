@@ -472,15 +472,19 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         currency = (result.raw_json or {}).get("currency") if isinstance(result.raw_json, dict) else "USD"
 
         # Async path: queue a Celery task and return 202 with task id
-        async_flag = str(request.query_params.get("async", "0")).strip() == "1"
-        if async_flag:
-            if isinstance(override, list):
-                from .tasks import run_inventory_suggestion_with_override
-                task = run_inventory_suggestion_with_override.delay(result.pk, override, currency or "USD")
-            else:
-                from .tasks import run_inventory_suggestion
-                task = run_inventory_suggestion.delay(result.pk)
-            return Response({"task": task.id}, status=status.HTTP_202_ACCEPTED)
+        if isinstance(override, list):
+            from .tasks import run_inventory_suggestion_with_override
+            task = run_inventory_suggestion_with_override.delay(result.pk, override, currency or "USD")
+        else:
+            from .tasks import run_inventory_suggestion
+            task = run_inventory_suggestion.delay(result.pk)
+        try:
+            result.inventory_status = "PENDING"
+            result.inventory_task_id = task.id
+            result.save(update_fields=["inventory_status", "inventory_task_id"])
+        except Exception:
+            pass
+        return Response({"task": task.id, "status": "PENDING"}, status=status.HTTP_202_ACCEPTED)
 
         # Sync fallback: generate immediately
         from .tasks import generate_inventory_suggestion_from_items

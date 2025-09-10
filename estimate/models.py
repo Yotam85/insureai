@@ -138,6 +138,14 @@ class EstimateResult(models.Model):
     guest_key = models.CharField(max_length=64, blank=True, null=True)
     raw_json  = models.JSONField(default=dict)
     inventory = models.JSONField(default=list, blank=True)
+    inventory_status = models.CharField(
+        max_length=10,
+        default="IDLE",
+        choices=[("IDLE","IDLE"), ("PENDING","PENDING"), ("RUNNING","RUNNING"), ("DONE","DONE"), ("FAILED","FAILED")],
+        help_text="Background status for inventory generation"
+    )
+    inventory_task_id = models.CharField(max_length=64, blank=True, null=True)
+    inventory_updated = models.DateTimeField(blank=True, null=True)
     premium   = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     pdf_file  = models.FileField(upload_to="estimates/", null=True, blank=True)
     created   = models.DateTimeField(auto_now_add=True)

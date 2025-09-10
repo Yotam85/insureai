@@ -11,6 +11,7 @@ import re
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from celery import shared_task
+from django.utils import timezone
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
@@ -344,6 +345,14 @@ def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
     except EstimateResult.DoesNotExist:
         return []
 
+    # Mark running
+    try:
+        result.inventory_status = "RUNNING"
+        result.inventory_task_id = getattr(self.request, "id", None)
+        result.save(update_fields=["inventory_status", "inventory_task_id"])
+    except Exception:
+        pass
+
     data = result.raw_json or {}
     items: List[Dict[str, Any]] = []
     currency = "USD"
@@ -356,9 +365,17 @@ def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
     try:
         # Persist suggestion to result for better UX
         result.inventory = inv
-        result.save(update_fields=["inventory"])
+        result.inventory_status = "DONE"
+        result.inventory_updated = timezone.now()
+        result.save(update_fields=["inventory", "inventory_status", "inventory_updated"])
     except Exception:
         log.exception("Failed saving inventory suggestion for result %s", result_id)
+        try:
+            result.inventory_status = "FAILED"
+            result.inventory_updated = timezone.now()
+            result.save(update_fields=["inventory_status", "inventory_updated"])
+        except Exception:
+            pass
     return inv
 
 
@@ -378,9 +395,17 @@ def run_inventory_suggestion_with_override(self, result_id: int, items: List[Dic
     inv = generate_inventory_suggestion_from_items(items or [], currency=currency)
     try:
         result.inventory = inv
-        result.save(update_fields=["inventory"])
+        result.inventory_status = "DONE"
+        result.inventory_updated = timezone.now()
+        result.save(update_fields=["inventory", "inventory_status", "inventory_updated"])
     except Exception:
         log.exception("Failed saving override inventory for result %s", result_id)
+    try:
+        result.inventory_status = "FAILED"
+        result.inventory_updated = timezone.now()
+        result.save(update_fields=["inventory_status", "inventory_updated"])
+    except Exception:
+        pass
     return inv
 
 
