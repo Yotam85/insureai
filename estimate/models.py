@@ -137,7 +137,6 @@ class EstimateResult(models.Model):
     owner     = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
     guest_key = models.CharField(max_length=64, blank=True, null=True)
     raw_json  = models.JSONField(default=dict)
-    # User-maintained inventory for this result (list of items)
     inventory = models.JSONField(default=list, blank=True)
     premium   = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     pdf_file  = models.FileField(upload_to="estimates/", null=True, blank=True)

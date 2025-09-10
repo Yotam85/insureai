@@ -355,6 +355,12 @@ def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
     return generate_inventory_suggestion_from_items(items, currency=currency)
 
 
+@shared_task(bind=True, max_retries=2)
+def run_inventory_suggestion_from_items(self, items: List[Dict[str, Any]], currency: str = "USD") -> List[Dict[str, Any]]:
+    """Celery wrapper to generate inventory from provided items (no DB lookup)."""
+    return generate_inventory_suggestion_from_items(items, currency=currency)
+
+
 # --------------- misc helpers ------------------
 
 def _build_user_text(job: EstimateJob) -> str:

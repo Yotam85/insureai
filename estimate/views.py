@@ -22,6 +22,7 @@ from typing import Any, Dict, List, Union, Optional
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from .tasks import run_estimate
+from celery.result import AsyncResult
 from .utils import get_guest_key
 from .pdf_export import export_estimate_pdf_bytes
 
@@ -470,16 +471,24 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         override = (request.data or {}).get("items")
         currency = (result.raw_json or {}).get("currency") if isinstance(result.raw_json, dict) else "USD"
 
-        from .tasks import generate_inventory_suggestion_from_items
+        # Async path: queue a Celery task and return 202 with task id
+        async_flag = str(request.query_params.get("async", "0")).strip() == "1"
+        if async_flag:
+            if isinstance(override, list):
+                from .tasks import run_inventory_suggestion_from_items
+                task = run_inventory_suggestion_from_items.delay(override, currency or "USD")
+            else:
+                from .tasks import run_inventory_suggestion
+                task = run_inventory_suggestion.delay(result.pk)
+            return Response({"task": task.id}, status=status.HTTP_202_ACCEPTED)
 
+        # Sync fallback: generate immediately
+        from .tasks import generate_inventory_suggestion_from_items
         if isinstance(override, list):
-            # trust FE-provided items (already itemized by user)
             items = override
         else:
             data = result.raw_json or {}
             items = (data.get("items") or []) if isinstance(data, dict) else []
-
-        # Generate suggestion synchronously to give immediate response
         inv = generate_inventory_suggestion_from_items(items, currency=currency or "USD")
         return Response({"inventory": inv}, status=200)
 
@@ -516,16 +525,43 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         if isinstance(result.raw_json, dict):
             currency = result.raw_json.get("currency") or "USD"
 
-        from .tasks import generate_inventory_suggestion_from_items
+        # Async path: queue a Celery task and return 202 with task id
+        async_flag = str(request.query_params.get("async", "0")).strip() == "1"
+        if async_flag:
+            if isinstance(override, list):
+                from .tasks import run_inventory_suggestion_from_items
+                task = run_inventory_suggestion_from_items.delay(override, currency)
+            else:
+                from .tasks import run_inventory_suggestion
+                task = run_inventory_suggestion.delay(result.pk)
+            return Response({"task": task.id}, status=status.HTTP_202_ACCEPTED)
 
+        # Sync fallback
+        from .tasks import generate_inventory_suggestion_from_items
         if isinstance(override, list):
             items = override
         else:
             data = result.raw_json or {}
             items = (data.get("items") or []) if isinstance(data, dict) else []
-
         inv = generate_inventory_suggestion_from_items(items, currency=currency)
         return Response({"inventory": inv}, status=200)
+
+    @action(detail=False, methods=["get"], url_path="inventory/suggest/status")
+    def inventory_suggest_status(self, request):
+        """Poll Celery task status: /api/results/inventory/suggest/status?task=<id>"""
+        task_id = request.query_params.get("task")
+        if not task_id:
+            return Response({"detail": "Missing task id."}, status=400)
+        res = AsyncResult(task_id)
+        if res.successful():
+            try:
+                data = res.result or []
+            except Exception:
+                data = []
+            return Response({"ready": True, "inventory": data}, status=200)
+        if res.failed():
+            return Response({"ready": False, "state": str(res.state), "detail": "failed"}, status=500)
+        return Response({"ready": False, "state": str(res.state)}, status=202)
     
 
 @api_view(["GET"])
