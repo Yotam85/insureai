@@ -35,6 +35,15 @@ from estimate.agentkit.inventory_agent import (
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
 
+# Ensure an event loop policy exists for worker main threads (Py3.13/Celery)
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    try:
+        asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+    except Exception:
+        pass
+
 # ---------------- JSON helpers ----------------
 
 JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]+?)\s*```", re.IGNORECASE)
@@ -98,6 +107,13 @@ def _extract_json(text_or_bytes: Any) -> Optional[Any]:
             pass
 
     return None
+
+
+def _safe_update(model_obj, fields: List[str]) -> None:
+    """Save only fields that actually exist on the model (guards mixed schemas)."""
+    valid = [f for f in fields if hasattr(model_obj, f)]
+    if valid:
+        model_obj.save(update_fields=valid)
 
 
 def _coerce_payload_from_result(result: Any) -> Tuple[Any, str]:
@@ -345,11 +361,13 @@ def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
     except EstimateResult.DoesNotExist:
         return []
 
-    # Mark running
+    # Mark running (only if fields exist)
     try:
-        result.inventory_status = "RUNNING"
-        result.inventory_task_id = getattr(self.request, "id", None)
-        result.save(update_fields=["inventory_status", "inventory_task_id"])
+        if hasattr(result, "inventory_status"):
+            result.inventory_status = "RUNNING"
+        if hasattr(result, "inventory_task_id"):
+            result.inventory_task_id = getattr(self.request, "id", None)
+        _safe_update(result, ["inventory_status", "inventory_task_id"])
     except Exception:
         pass
 
@@ -365,15 +383,19 @@ def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
     try:
         # Persist suggestion to result for better UX
         result.inventory = inv
-        result.inventory_status = "DONE"
-        result.inventory_updated = timezone.now()
-        result.save(update_fields=["inventory", "inventory_status", "inventory_updated"])
+        if hasattr(result, "inventory_status"):
+            result.inventory_status = "DONE"
+        if hasattr(result, "inventory_updated"):
+            result.inventory_updated = timezone.now()
+        _safe_update(result, ["inventory", "inventory_status", "inventory_updated"])
     except Exception:
         log.exception("Failed saving inventory suggestion for result %s", result_id)
         try:
-            result.inventory_status = "FAILED"
-            result.inventory_updated = timezone.now()
-            result.save(update_fields=["inventory_status", "inventory_updated"])
+            if hasattr(result, "inventory_status"):
+                result.inventory_status = "FAILED"
+            if hasattr(result, "inventory_updated"):
+                result.inventory_updated = timezone.now()
+            _safe_update(result, ["inventory_status", "inventory_updated"])
         except Exception:
             pass
     return inv
@@ -395,17 +417,21 @@ def run_inventory_suggestion_with_override(self, result_id: int, items: List[Dic
     inv = generate_inventory_suggestion_from_items(items or [], currency=currency)
     try:
         result.inventory = inv
-        result.inventory_status = "DONE"
-        result.inventory_updated = timezone.now()
-        result.save(update_fields=["inventory", "inventory_status", "inventory_updated"])
+        if hasattr(result, "inventory_status"):
+            result.inventory_status = "DONE"
+        if hasattr(result, "inventory_updated"):
+            result.inventory_updated = timezone.now()
+        _safe_update(result, ["inventory", "inventory_status", "inventory_updated"])
     except Exception:
         log.exception("Failed saving override inventory for result %s", result_id)
-    try:
-        result.inventory_status = "FAILED"
-        result.inventory_updated = timezone.now()
-        result.save(update_fields=["inventory_status", "inventory_updated"])
-    except Exception:
-        pass
+        try:
+            if hasattr(result, "inventory_status"):
+                result.inventory_status = "FAILED"
+            if hasattr(result, "inventory_updated"):
+                result.inventory_updated = timezone.now()
+            _safe_update(result, ["inventory_status", "inventory_updated"])
+        except Exception:
+            pass
     return inv
 
 
@@ -529,8 +555,15 @@ def run_estimate(self, job_id: int) -> None:
     user_text = _build_user_text(job)
     input_messages = build_input_messages(user_text, data_uris)
 
-    # 4) Run the agent graph (sync helper from SDK)
+    # 4) Run the agent graph (ensure an asyncio loop exists in this thread)
+    created_loop = None
     try:
+        try:
+            asyncio.get_running_loop()
+        except RuntimeError:
+            created_loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(created_loop)
+
         result = Runner.run_sync(
             agent,
             input_messages,     # OpenAI Responses API-style inputs
@@ -542,6 +575,13 @@ def run_estimate(self, job_id: int) -> None:
         job.status = "FAILED"
         job.save(update_fields=["status"])
         raise
+    finally:
+        if created_loop is not None:
+            try:
+                created_loop.close()
+            except Exception:
+                pass
+            asyncio.set_event_loop(None)
 
     # 5) Extract payload once (don't overwrite later)
     payload, raw_text = _coerce_payload_from_result(result)
@@ -556,19 +596,27 @@ def run_estimate(self, job_id: int) -> None:
     count = _normalize_for_premium(payload)
     premium = decimal.Decimal("0.8") * decimal.Decimal(count)
 
-    # 8) Persist result — carry owner & guest_key
-    EstimateResult.objects.create(
-        job=job,
-        owner=job.owner,
-        guest_key=job.guest_key,
-        raw_json=safe_payload,
-        premium=premium,
-        pdf_file=None,
-    )
-
-    job.status = "DONE"
-    job.save(update_fields=["status"])
-    log.info(
-        "✅ Saved EstimateResult for job %s (premium=%s, pdf=%s)",
-            log.info("✅ Saved EstimateResult for job %s (premium=%s)", job.id, str(premium))
-    )
+    # 8) Persist result — carry owner & guest_key (idempotent on job)
+    try:
+        res, created = EstimateResult.objects.get_or_create(
+            job=job,
+            defaults={
+                "owner": job.owner,
+                "guest_key": job.guest_key,
+                "raw_json": safe_payload,
+                "premium": premium,
+                "pdf_file": None,
+            },
+        )
+        if not created:
+            res.raw_json = safe_payload
+            res.premium = premium
+            res.save(update_fields=["raw_json", "premium"])
+        job.status = "DONE"
+        job.save(update_fields=["status"])
+        log.info("✅ Saved EstimateResult for job %s (premium=%s)", job.id, str(premium))
+    except Exception:
+        log.exception("Failed to save EstimateResult for job %s", job_id)
+        job.status = "FAILED"
+        job.save(update_fields=["status"])
+        raise

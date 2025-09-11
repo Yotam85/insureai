@@ -28,9 +28,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = Project
-        fields = ["id", "name", "zip", "created",
-            "inventory_status",
-            "inventory_updated", "job_count"]
+        fields = ["id", "name", "zip", "created", "job_count"]
 
 
 
@@ -231,6 +229,9 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
     job_number  = serializers.SerializerMethodField()
     job_claim_short = serializers.SerializerMethodField()
     inventory   = serializers.JSONField(required=False)
+    has_inventory = serializers.SerializerMethodField()
+    inventory_total = serializers.SerializerMethodField()
+    inventory_html  = serializers.SerializerMethodField()
     created     = serializers.DateTimeField(read_only=True)
     inventory_status = serializers.CharField(read_only=True)
     inventory_updated = serializers.DateTimeField(read_only=True)
@@ -252,6 +253,9 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
             "inventory_status",
             "inventory_updated",
             "inventory",
+            "has_inventory",
+            "inventory_total",
+            "inventory_html",
             "raw_json",
             "premium",
             "pdf_url",
@@ -293,6 +297,99 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
         try:
             cn = getattr(obj.job, "claim_number", "") or ""
             return cn[:15]
+        except Exception:
+            return ""
+
+    # ---- inventory helpers --------------------------------------
+    def get_has_inventory(self, obj):
+        try:
+            inv = getattr(obj, "inventory", None) or []
+            return bool(inv)
+        except Exception:
+            return False
+
+    def _currency(self, obj) -> str:
+        try:
+            data = obj.raw_json or {}
+            cur = (data.get("currency") or "USD") if isinstance(data, dict) else "USD"
+            return str(cur)[:8]
+        except Exception:
+            return "USD"
+
+    def _fmt_money(self, v, cur):
+        try:
+            return f"{cur} {float(v):,.2f}"
+        except Exception:
+            return f"{cur} {v}"
+
+    def get_inventory_total(self, obj):
+        try:
+            inv = getattr(obj, "inventory", None) or []
+            total = 0.0
+            for row in inv:
+                if not isinstance(row, dict):
+                    continue
+                q = float(row.get("quantity", 0) or 0)
+                uc = float(row.get("unit_cost", 0) or 0)
+                total += q * uc
+            return total
+        except Exception:
+            return 0.0
+
+    def get_inventory_html(self, obj):
+        try:
+            inv = getattr(obj, "inventory", None) or []
+            if not inv:
+                return ""
+            cur = self._currency(obj)
+
+            lines: list[str] = []
+            lines.append('<div class="inventory-report">')
+            lines.append('<h3>Materials Inventory</h3>')
+            lines.append('<div style="overflow:auto">')
+            lines.append('<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; min-width:560px">')
+            lines.append('<thead><tr>'
+                        '<th>Material</th>'
+                        '<th>Qty</th>'
+                        '<th>Unit</th>'
+                        '<th>Unit Cost</th>'
+                        '<th>Subtotal</th>'
+                        '</tr></thead>')
+            lines.append('<tbody>')
+            total = 0.0
+            for row in inv:
+                if not isinstance(row, dict):
+                    continue
+                name = escape(str(row.get("name", "")))
+                qty  = row.get("quantity", 0) or 0
+                unit = escape(str(row.get("unit", "")))
+                uc   = row.get("unit_cost", 0) or 0
+                try:
+                    qf = float(qty)
+                    ucf = float(uc)
+                except Exception:
+                    qf = 0.0
+                    ucf = 0.0
+                sub = qf * ucf
+                total += sub
+                lines.append(
+                    '<tr>'
+                    f'<td>{name}</td>'
+                    f'<td style="text-align:right">{qf:g}</td>'
+                    f'<td>{unit}</td>'
+                    f'<td style="text-align:right">{self._fmt_money(ucf, cur)}</td>'
+                    f'<td style="text-align:right"><strong>{self._fmt_money(sub, cur)}</strong></td>'
+                    '</tr>'
+                )
+            lines.append('</tbody>')
+            lines.append(
+                f'<tfoot><tr><td colspan="4" style="text-align:right"><strong>Total</strong></td>'
+                f'<td style="text-align:right"><strong>{self._fmt_money(total, cur)}</strong></td></tr></tfoot>'
+            )
+            lines.append('</table>')
+            lines.append('</div>')
+            lines.append('</div>')
+            return "\n".join(lines)
         except Exception:
             return ""
 

@@ -30,7 +30,7 @@ from .pdf_export import export_estimate_pdf_bytes
 # estimate/views.py (add near imports)
 
 
-FREE_GUEST_JOB_LIMIT = 1   # or whatever you prefer
+FREE_GUEST_JOB_LIMIT = 1   # guest jobs allowed when not signed in
 
 
 # --- small helpers to normalize payloads safely ---
@@ -114,8 +114,6 @@ def _payload_for_pdf(payload: Union[Dict[str, Any], List[Any], str, bytes, None]
 import json
 import logging
 log = logging.getLogger(__name__)
-
-FREE_GUEST_JOB_LIMIT = 3
 
 
 # ---------- Projects ----------
@@ -576,6 +574,128 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         if res.failed():
             return Response({"ready": False, "state": str(res.state), "detail": "failed"}, status=500)
         return Response({"ready": False, "state": str(res.state)}, status=202)
+
+    @action(detail=True, methods=["post"], url_path="inventory/refresh")
+    def inventory_refresh(self, request, pk=None):
+        """Queue inventory generation for this result (Celery). Returns 202 with task id."""
+        result = self.get_object()
+
+        # ACL: same as inventory
+        job = getattr(result, "job", None)
+        if request.user.is_authenticated:
+            if not job or job.owner_id != request.user.id:
+                return Response({"detail": "Not found."}, status=404)
+        else:
+            gk = get_guest_key(request)
+            if not gk or not job or job.owner_id is not None or job.guest_key != gk:
+                return Response({"detail": "Not found."}, status=404)
+
+        override = (request.data or {}).get("items")
+        currency = (result.raw_json or {}).get("currency") if isinstance(result.raw_json, dict) else "USD"
+        if isinstance(override, list):
+            from .tasks import run_inventory_suggestion_with_override
+            task = run_inventory_suggestion_with_override.delay(result.pk, override, currency or "USD")
+        else:
+            from .tasks import run_inventory_suggestion
+            task = run_inventory_suggestion.delay(result.pk)
+
+        try:
+            result.inventory_status = "PENDING"
+            result.inventory_task_id = task.id
+            result.save(update_fields=["inventory_status", "inventory_task_id"])
+        except Exception:
+            pass
+        return Response({"task": task.id, "status": "PENDING"}, status=status.HTTP_202_ACCEPTED)
+
+    @action(detail=True, methods=["get"], url_path="inventory/status")
+    def inventory_status(self, request, pk=None):
+        result = self.get_object()
+        # ACL like read
+        job = getattr(result, "job", None)
+        if request.user.is_authenticated:
+            if not job or job.owner_id != request.user.id:
+                return Response({"detail": "Not found."}, status=404)
+        else:
+            gk = get_guest_key(request)
+            if not gk or not job or job.owner_id is not None or job.guest_key != gk:
+                return Response({"detail": "Not found."}, status=404)
+        return Response({
+            "status": getattr(result, "inventory_status", ""),
+            "task": getattr(result, "inventory_task_id", ""),
+            "updated": getattr(result, "inventory_updated", None),
+            "has_inventory": bool(result.inventory),
+        }, status=200)
+
+    @action(detail=False, methods=["post"], url_path="by-job/(?P<job_id>[^/.]+)/inventory/refresh")
+    def inventory_refresh_by_job(self, request, job_id=None):
+        try:
+            job = EstimateJob.objects.get(pk=job_id)
+        except EstimateJob.DoesNotExist:
+            return Response({"detail": "Job not found."}, status=404)
+
+        if request.user.is_authenticated:
+            if job.owner_id != request.user.id:
+                return Response({"detail": "Not found."}, status=404)
+        else:
+            gk = get_guest_key(request)
+            if not gk or job.guest_key != gk:
+                return Response({"detail": "Not found."}, status=404)
+
+        try:
+            result = job.estimateresult
+        except EstimateResult.DoesNotExist:
+            return Response({"detail": "Result not ready."}, status=status.HTTP_202_ACCEPTED)
+
+        override = (request.data or {}).get("items")
+        currency = "USD"
+        if isinstance(result.raw_json, dict):
+            currency = result.raw_json.get("currency") or "USD"
+
+        if isinstance(override, list):
+            from .tasks import run_inventory_suggestion_with_override
+            task = run_inventory_suggestion_with_override.delay(result.pk, override, currency)
+        else:
+            from .tasks import run_inventory_suggestion
+            task = run_inventory_suggestion.delay(result.pk)
+
+        try:
+            result.inventory_status = "PENDING"
+            result.inventory_task_id = task.id
+            result.save(update_fields=["inventory_status", "inventory_task_id"])
+        except Exception:
+            pass
+        return Response({"task": task.id, "status": "PENDING"}, status=status.HTTP_202_ACCEPTED)
+
+    @action(detail=False, methods=["get"], url_path="by-job/(?P<job_id>[^/.]+)/inventory/status")
+    def inventory_status_by_job(self, request, job_id=None):
+        """Return inventory generation status for a job's result.
+        GET /api/results/by-job/:job_id/inventory/status/
+        """
+        try:
+            job = EstimateJob.objects.get(pk=job_id)
+        except EstimateJob.DoesNotExist:
+            return Response({"detail": "Job not found."}, status=404)
+
+        # ACL
+        if request.user.is_authenticated:
+            if job.owner_id != request.user.id:
+                return Response({"detail": "Not found."}, status=404)
+        else:
+            gk = get_guest_key(request)
+            if not gk or job.guest_key != gk:
+                return Response({"detail": "Not found."}, status=404)
+
+        try:
+            result = job.estimateresult
+        except EstimateResult.DoesNotExist:
+            return Response({"detail": "Result not ready."}, status=status.HTTP_202_ACCEPTED)
+
+        return Response({
+            "status": getattr(result, "inventory_status", ""),
+            "task": getattr(result, "inventory_task_id", ""),
+            "updated": getattr(result, "inventory_updated", None),
+            "has_inventory": bool(result.inventory),
+        }, status=200)
     
 
 @api_view(["GET"])

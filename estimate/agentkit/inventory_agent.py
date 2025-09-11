@@ -64,7 +64,7 @@ def build_inventory_agent(*, currency: str = "USD") -> Agent:
 
 
 def build_run_config(model_name: str | None = None) -> RunConfig:
-    return RunConfig(model=model_name or "gpt-5-2025-08-07")
+    return RunConfig(model=model_name or "gpt-5-mini-2025-08-07")
 
 
 def build_inventory_message(items_payload: Any, *, currency: str = "USD") -> list[dict[str, Any]]:
