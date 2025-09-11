@@ -21,17 +21,16 @@ import json
 from typing import Any, Dict, List, Union, Optional
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.core.mail import send_mail
+from django.conf import settings
 from .tasks import run_estimate
 from celery.result import AsyncResult
 from .utils import get_guest_key
 from .pdf_export import export_estimate_pdf_bytes
 
-
 # estimate/views.py (add near imports)
 
-
 FREE_GUEST_JOB_LIMIT = 1   # guest jobs allowed when not signed in
-
 
 # --- small helpers to normalize payloads safely ---
 def _payload_for_pdf(payload: Union[Dict[str, Any], List[Any], str, bytes, None]) -> Dict[str, Any]:
@@ -575,6 +574,104 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
             return Response({"ready": False, "state": str(res.state), "detail": "failed"}, status=500)
         return Response({"ready": False, "state": str(res.state)}, status=202)
 
+    # ----- Contractor bid request (detail by-claim) -------------------
+    @action(detail=True, methods=["post"], url_path="contractor_bid")
+    def contractor_bid(self, request, pk=None):
+        """
+        POST /api/results/<claim>/contractor_bid/
+        Accepts form: { first_name: str, timeframe: str, phone?: str, special_request?: str }
+        Requires authenticated user; emails admins/system with details and total.
+        """
+        result = self.get_object()
+
+        # Require login
+        if not request.user.is_authenticated:
+            return Response({"detail": "Sign in required."}, status=status.HTTP_403_FORBIDDEN)
+
+        # Enforce ownership (reuse claim ACL)
+        job = getattr(result, "job", None)
+        if not job or job.owner_id != request.user.id:
+            return Response({"detail": "Not found."}, status=404)
+
+        payload = request.data or {}
+        first_name = (payload.get("first_name") or "").strip()
+        timeframe  = (payload.get("timeframe") or "").strip()
+        phone      = (payload.get("phone") or "").strip()
+        special    = (payload.get("special_request") or "").strip()
+        tasks_list = payload.get("tasks") or []
+        if not first_name or not timeframe:
+            return Response({"detail": "first_name and timeframe are required."}, status=400)
+
+        # Compute total
+        total = 0.0
+        try:
+            data = result.raw_json or {}
+            if isinstance(data, dict):
+                s = data.get("summary") or {}
+                if isinstance(s, dict) and "total_project_cost" in s:
+                    total = float(s.get("total_project_cost") or 0)
+                elif isinstance(data.get("items"), list):
+                    total = sum(float((it or {}).get("TOTAL_PRICE") or 0) for it in data.get("items") or [])
+        except Exception:
+            total = 0.0
+
+        claim = getattr(job, "claim_number", "") or ""
+        subject = f"Contractor bid request — Claim {claim or job.id}"
+        user_email = getattr(request.user, "email", "") or ""
+
+        # Build a simple text body
+        lines = []
+        lines.append(f"User: {user_email}")
+        lines.append(f"First name: {first_name}")
+        lines.append(f"Timeframe: {timeframe}")
+        if phone:   lines.append(f"Phone: {phone}")
+        if special: lines.append(f"Special request: {special}")
+        if isinstance(tasks_list, list) and tasks_list:
+            try:
+                lines.append("Requested trades/tasks: " + ", ".join(map(str, tasks_list)))
+            except Exception:
+                pass
+        lines.append("")
+        lines.append(f"Job ID: {job.id}")
+        if claim: lines.append(f"Claim: {claim}")
+        lines.append(f"Project total: USD {total:,.2f}")
+        try:
+            # Canonical result link (claim-based)
+            base = request.build_absolute_uri("")
+            if base.endswith("/"): base = base[:-1]
+            if claim:
+                lines.append(f"Result: {base}/api/results/{claim}/")
+        except Exception:
+            pass
+        body = "\n".join(lines)
+
+        # Recipients: DEFAULT_FROM_EMAIL and ADMINS if configured
+        recipients = []
+        try:
+            if getattr(settings, "DEFAULT_FROM_EMAIL", None):
+                recipients.append(settings.DEFAULT_FROM_EMAIL)
+        except Exception:
+            pass
+        try:
+            for name, email in getattr(settings, "ADMINS", []) or []:
+                if email:
+                    recipients.append(email)
+        except Exception:
+            pass
+        if not recipients:
+            # Fallback to user email so at least something is sent in dev
+            if user_email:
+                recipients = [user_email]
+
+        # Try to send; never fail the API if email backend has issues in dev
+        try:
+            send_mail(subject, body, getattr(settings, "DEFAULT_FROM_EMAIL", None), recipients, fail_silently=True)
+        except Exception:
+            # Shouldn't happen with fail_silently=True, but log just in case
+            log.exception("Failed to send contractor bid email for job %s", job.id)
+
+        return Response({"detail": "Request sent."}, status=200)
+
     @action(detail=True, methods=["post"], url_path="inventory/refresh")
     def inventory_refresh(self, request, pk=None):
         """Queue inventory generation for this result (Celery). Returns 202 with task id."""
@@ -665,6 +762,95 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         except Exception:
             pass
         return Response({"task": task.id, "status": "PENDING"}, status=status.HTTP_202_ACCEPTED)
+
+    # ----- Contractor bid request (by job id) -------------------
+    @action(detail=False, methods=["post"], url_path="by-job/(?P<job_id>[^/.]+)/contractor_bid")
+    def contractor_bid_by_job(self, request, job_id=None):
+        try:
+            job = EstimateJob.objects.get(pk=job_id)
+        except EstimateJob.DoesNotExist:
+            return Response({"detail": "Job not found."}, status=404)
+
+        if not request.user.is_authenticated:
+            return Response({"detail": "Sign in required."}, status=403)
+        if job.owner_id != request.user.id:
+            return Response({"detail": "Not found."}, status=404)
+
+        # Delegate to claim-based action for shared logic
+        try:
+            result = job.estimateresult
+        except EstimateResult.DoesNotExist:
+            return Response({"detail": "Result not ready."}, status=202)
+
+        payload = request.data or {}
+        first_name = (payload.get("first_name") or "").strip()
+        timeframe  = (payload.get("timeframe") or "").strip()
+        phone      = (payload.get("phone") or "").strip()
+        special    = (payload.get("special_request") or "").strip()
+        tasks_list = payload.get("tasks") or []
+        if not first_name or not timeframe:
+            return Response({"detail": "first_name and timeframe are required."}, status=400)
+
+        total = 0.0
+        try:
+            data = result.raw_json or {}
+            if isinstance(data, dict):
+                s = data.get("summary") or {}
+                if isinstance(s, dict) and "total_project_cost" in s:
+                    total = float(s.get("total_project_cost") or 0)
+                elif isinstance(data.get("items"), list):
+                    total = sum(float((it or {}).get("TOTAL_PRICE") or 0) for it in data.get("items") or [])
+        except Exception:
+            total = 0.0
+
+        claim = getattr(job, "claim_number", "") or ""
+        subject = f"Contractor bid request — Claim {claim or job.id}"
+        user_email = getattr(request.user, "email", "") or ""
+
+        lines = []
+        lines.append(f"User: {user_email}")
+        lines.append(f"First name: {first_name}")
+        lines.append(f"Timeframe: {timeframe}")
+        if phone:   lines.append(f"Phone: {phone}")
+        if special: lines.append(f"Special request: {special}")
+        if isinstance(tasks_list, list) and tasks_list:
+            try:
+                lines.append("Requested trades/tasks: " + ", ".join(map(str, tasks_list)))
+            except Exception:
+                pass
+        lines.append("")
+        lines.append(f"Job ID: {job.id}")
+        if claim: lines.append(f"Claim: {claim}")
+        lines.append(f"Project total: USD {total:,.2f}")
+        try:
+            base = request.build_absolute_uri("")
+            if base.endswith("/"): base = base[:-1]
+            if claim:
+                lines.append(f"Result: {base}/api/results/{claim}/")
+        except Exception:
+            pass
+        body = "\n".join(lines)
+
+        recipients = []
+        try:
+            if getattr(settings, "DEFAULT_FROM_EMAIL", None):
+                recipients.append(settings.DEFAULT_FROM_EMAIL)
+        except Exception:
+            pass
+        try:
+            for name, email in getattr(settings, "ADMINS", []) or []:
+                if email:
+                    recipients.append(email)
+        except Exception:
+            pass
+        if not recipients and user_email:
+            recipients = [user_email]
+
+        try:
+            send_mail(subject, body, getattr(settings, "DEFAULT_FROM_EMAIL", None), recipients, fail_silently=True)
+        except Exception:
+            log.exception("Failed to send contractor bid email for job %s", job.id)
+        return Response({"detail": "Request sent."}, status=200)
 
     @action(detail=False, methods=["get"], url_path="by-job/(?P<job_id>[^/.]+)/inventory/status")
     def inventory_status_by_job(self, request, job_id=None):
