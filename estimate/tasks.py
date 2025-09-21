@@ -8,6 +8,10 @@ import decimal
 import json
 import logging
 import re
+import shutil
+import subprocess
+import tempfile
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from celery import shared_task
@@ -31,9 +35,27 @@ from estimate.agentkit.inventory_agent import (
     build_inventory_message,
 )
 
+try:
+    import cv2  # type: ignore
+    try:
+        cv2.setNumThreads(0)
+    except Exception:
+        pass
+    try:
+        cv2.ocl.setUseOpenCL(False)
+    except Exception:
+        pass
+except Exception:
+    cv2 = None
+
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
+
+VIDEO_SAMPLE_EVERY_N = int(os.getenv("ESTIMATE_VIDEO_SAMPLE_EVERY", "25"))
+VIDEO_MAX_FRAMES = int(os.getenv("ESTIMATE_VIDEO_MAX_FRAMES", "80"))
+VIDEO_RESIZE_MAX = int(os.getenv("ESTIMATE_VIDEO_RESIZE_MAX", "1280"))
+VIDEO_JPEG_QUALITY = int(os.getenv("ESTIMATE_VIDEO_JPEG_QUALITY", "80"))
 
 # Ensure an event loop policy exists for worker main threads (Py3.13/Celery)
 try:
@@ -107,6 +129,113 @@ def _extract_json(text_or_bytes: Any) -> Optional[Any]:
             pass
 
     return None
+
+
+def _encode_frame_b64(frame, *, resize_max: Optional[int] = VIDEO_RESIZE_MAX, jpeg_quality: int = VIDEO_JPEG_QUALITY) -> str:
+    if cv2 is None:
+        raise RuntimeError("OpenCV (cv2) is required for video processing but is not installed")
+    if frame is None:
+        raise ValueError("Empty video frame")
+    h, w = frame.shape[:2]
+    if resize_max and max(h, w) > resize_max:
+        scale = resize_max / max(h, w)
+        frame = cv2.resize(frame, (max(1, int(w * scale)), max(1, int(h * scale))), interpolation=cv2.INTER_AREA)
+    ok, buf = cv2.imencode(
+        ".jpg",
+        frame,
+        [int(cv2.IMWRITE_JPEG_QUALITY), int(jpeg_quality)],
+    )
+    if not ok:
+        raise RuntimeError("Failed to encode video frame as JPEG")
+    return base64.b64encode(buf).decode("utf-8")
+
+
+def _video_to_base64_frames(
+    path: str | Path,
+    *,
+    sample_every_n: int = VIDEO_SAMPLE_EVERY_N,
+    max_frames: int = VIDEO_MAX_FRAMES,
+    resize_max: Optional[int] = VIDEO_RESIZE_MAX,
+    jpeg_quality: int = VIDEO_JPEG_QUALITY,
+) -> List[str]:
+    frames: List[str] = []
+    sample_every_n = max(1, sample_every_n)
+    max_frames = max(1, max_frames)
+
+    ffmpeg_bin = shutil.which("ffmpeg")
+    if ffmpeg_bin:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            output_pattern = str(Path(tmpdir) / "frame_%05d.jpg")
+            vf_filters: List[str] = [f"select=not(mod(n\,{sample_every_n}))"]
+            if resize_max:
+                vf_filters.append(f"scale='min({resize_max},iw)':-2")
+            vf = ",".join(vf_filters)
+            qscale = "2"
+            try:
+                proc = subprocess.run(
+                    [
+                        ffmpeg_bin,
+                        "-nostdin",
+                        "-hide_banner",
+                        "-loglevel",
+                        "error",
+                        "-i",
+                        str(path),
+                        "-vf",
+                        vf,
+                        "-vsync",
+                        "vfr",
+                        "-frames:v",
+                        str(max_frames),
+                        "-q:v",
+                        qscale,
+                        output_pattern,
+                    ],
+                    check=False,
+                )
+                if proc.returncode == 0:
+                    for fp in sorted(Path(tmpdir).glob("frame_*.jpg")):
+                        try:
+                            frames.append(base64.b64encode(fp.read_bytes()).decode("utf-8"))
+                        except Exception:
+                            log.exception("Failed reading ffmpeg frame %s", fp)
+                    if frames:
+                        return frames[:max_frames]
+                else:
+                    log.warning("ffmpeg exited with code %s while processing %s", proc.returncode, path)
+            except FileNotFoundError:
+                pass
+            except Exception:
+                log.exception("ffmpeg failed to extract frames from %s", path)
+
+    if cv2 is None:
+        log.warning("Video upload provided but neither ffmpeg nor OpenCV usable; skipping %s", path)
+        return frames
+
+    p = str(Path(path).expanduser())
+    cap = cv2.VideoCapture(p)
+    if not cap.isOpened():
+        log.warning("Could not open video %s", p)
+        return frames
+
+    idx = 0
+    try:
+        while cap.isOpened():
+            success, frame = cap.read()
+            if not success:
+                break
+            if idx % sample_every_n == 0:
+                try:
+                    frames.append(_encode_frame_b64(frame, resize_max=resize_max, jpeg_quality=jpeg_quality))
+                except Exception:
+                    log.exception("Failed encoding frame %s from %s", idx, p)
+                if len(frames) >= max_frames:
+                    break
+            idx += 1
+    finally:
+        cap.release()
+
+    return frames
 
 
 def _safe_update(model_obj, fields: List[str]) -> None:
@@ -388,6 +517,18 @@ def run_inventory_suggestion(self, result_id: int) -> List[Dict[str, Any]]:
         if hasattr(result, "inventory_updated"):
             result.inventory_updated = timezone.now()
         _safe_update(result, ["inventory", "inventory_status", "inventory_updated"])
+        try:
+            total = 0.0
+            for r in inv or []:
+                try:
+                    total += float(r.get("quantity", 0) or 0) * float(r.get("unit_cost", 0) or 0)
+                except Exception:
+                    pass
+            job_id = getattr(result, "job_id", None)
+            claim  = getattr(getattr(result, "job", None), "claim_number", "") or ""
+            log.info("INVENTORY_READY job=%s claim=%s rows=%s total=%s", job_id, claim, len(inv or []), total)
+        except Exception:
+            pass
     except Exception:
         log.exception("Failed saving inventory suggestion for result %s", result_id)
         try:
@@ -422,6 +563,18 @@ def run_inventory_suggestion_with_override(self, result_id: int, items: List[Dic
         if hasattr(result, "inventory_updated"):
             result.inventory_updated = timezone.now()
         _safe_update(result, ["inventory", "inventory_status", "inventory_updated"])
+        try:
+            total = 0.0
+            for r in inv or []:
+                try:
+                    total += float(r.get("quantity", 0) or 0) * float(r.get("unit_cost", 0) or 0)
+                except Exception:
+                    pass
+            job_id = getattr(result, "job_id", None)
+            claim  = getattr(getattr(result, "job", None), "claim_number", "") or ""
+            log.info("INVENTORY_READY job=%s claim=%s rows=%s total=%s", job_id, claim, len(inv or []), total)
+        except Exception:
+            pass
     except Exception:
         log.exception("Failed saving override inventory for result %s", result_id)
         try:
@@ -440,7 +593,7 @@ def run_inventory_suggestion_with_override(self, result_id: int, items: List[Dic
 def _build_user_text(job: EstimateJob) -> str:
     base = (
         "You're a senior apprisel / construction estimator. "
-        "Carfully analyse my image(s) and create an estimate according your knowledge. some users may include floor plans and existing takeoff plans to be aware of that. "
+        "Carfully analyse my image(s) and create an estimate according your knowledge. some users may include floor plans and existing takeoff plans to be aware of that."
         "Return ONLY raw JSON matching the role schema."
     )
     parts = [base]
@@ -457,7 +610,8 @@ def _collect_upload_data_uris(job: EstimateJob) -> Tuple[List[str], List[str]]:
     data_uris: List[str] = []
     sent_from: List[str] = []
     for up in job.uploads.all():
-        if isinstance(up.mime, str) and up.mime.startswith("image/"):
+        mime = (up.mime or "").lower() if isinstance(up.mime, str) else ""
+        if mime.startswith("image/"):
             try:
                 with up.file.open("rb") as f:
                     raw = f.read()
@@ -466,6 +620,41 @@ def _collect_upload_data_uris(job: EstimateJob) -> Tuple[List[str], List[str]]:
                 sent_from.append(f"{up.id}:{up.file.name} ({len(raw)} bytes)")
             except Exception:
                 log.exception("Failed reading upload %s for job %s", up.pk, job.pk)
+        elif mime.startswith("video/"):
+            path = getattr(getattr(up, "file", None), "path", None)
+            temp_path = None
+            if not path:
+                suffix = Path(up.file.name or "video").suffix or ".mp4"
+                try:
+                    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                        temp_path = tmp.name
+                        up.file.open("rb")
+                        try:
+                            for chunk in up.file.chunks():
+                                tmp.write(chunk)
+                        finally:
+                            up.file.close()
+                    path = temp_path
+                except Exception:
+                    log.exception("Failed preparing temp file for video upload %s", up.pk)
+                    if temp_path and os.path.exists(temp_path):
+                        os.unlink(temp_path)
+                    continue
+            try:
+                frames_b64 = _video_to_base64_frames(path)
+                for idx, b64 in enumerate(frames_b64):
+                    data_uris.append(f"data:image/jpeg;base64,{b64}")
+                    sent_from.append(f"{up.id}:{up.file.name} frame {idx}")
+                if frames_b64:
+                    log.info(
+                        "Sampled %d frame(s) from video %s for job %s",
+                        len(frames_b64), up.pk, job.pk
+                    )
+            except Exception:
+                log.exception("Failed extracting frames from video upload %s for job %s", up.pk, job.pk)
+            finally:
+                if temp_path and os.path.exists(temp_path):
+                    os.unlink(temp_path)
     if data_uris:
         head = data_uris[0][:80] + "…"
         log.info("Prepared %d image block(s) for job %s. Sample head: %s", len(data_uris), job.pk, head)
@@ -473,23 +662,58 @@ def _collect_upload_data_uris(job: EstimateJob) -> Tuple[List[str], List[str]]:
     return data_uris, sent_from
 
 
-def _normalize_for_premium(payload: Any) -> int:
+def _to_decimal(value: Any) -> decimal.Decimal:
+    try:
+        if isinstance(value, decimal.Decimal):
+            return value
+        if value in (None, ""):
+            return decimal.Decimal("0")
+        return decimal.Decimal(str(value))
+    except Exception:
+        return decimal.Decimal("0")
+
+
+def _compute_total_cost(payload: Any) -> decimal.Decimal:
+    """Best-effort total extraction from agent payload."""
     try:
         if isinstance(payload, str):
             payload = json.loads(payload)
     except Exception:
-        return 1
+        return decimal.Decimal("0")
+
     if not isinstance(payload, dict):
-        return 1
-    if isinstance(payload.get("items"), list):
-        return max(1, len(payload["items"]))
-    if isinstance(payload.get("sections"), list):
-        total = 0
-        for s in payload["sections"]:
-            if isinstance(s, dict) and isinstance(s.get("items"), list):
-                total += len(s["items"])
-        return max(1, total)
-    return 1
+        return decimal.Decimal("0")
+
+    summary = payload.get("summary")
+    if isinstance(summary, dict):
+        total_val = _to_decimal(summary.get("total_project_cost"))
+        if total_val > 0:
+            return total_val
+
+    total = decimal.Decimal("0")
+    items = payload.get("items")
+    if isinstance(items, list):
+        for item in items:
+            if isinstance(item, dict):
+                total += _to_decimal(
+                    item.get("TOTAL_PRICE")
+                    or item.get("total_price")
+                    or item.get("total")
+                    or item.get("total_rcv")
+                )
+    elif isinstance(payload.get("sections"), list):
+        for section in payload["sections"]:
+            if isinstance(section, dict) and isinstance(section.get("items"), list):
+                for item in section["items"]:
+                    if isinstance(item, dict):
+                        total += _to_decimal(
+                            item.get("TOTAL_PRICE")
+                            or item.get("total_price")
+                            or item.get("total")
+                            or item.get("total_rcv")
+                        )
+
+    return total
 
 
 # --------------- the task ------------------
@@ -592,9 +816,8 @@ def run_estimate(self, job_id: int) -> None:
 
     log.info("RAW agent payload for job %s:\n%s", job_id, json.dumps(payload, indent=2, default=str))
 
-    # 6) Premium heuristic
-    count = _normalize_for_premium(payload)
-    premium = decimal.Decimal("0.8") * decimal.Decimal(count)
+    # 6) Total cost extraction
+    total_cost = _compute_total_cost(safe_payload)
 
     # 8) Persist result — carry owner & guest_key (idempotent on job)
     try:
@@ -604,17 +827,28 @@ def run_estimate(self, job_id: int) -> None:
                 "owner": job.owner,
                 "guest_key": job.guest_key,
                 "raw_json": safe_payload,
-                "premium": premium,
+                "total_cost": total_cost,
                 "pdf_file": None,
             },
         )
         if not created:
             res.raw_json = safe_payload
-            res.premium = premium
-            res.save(update_fields=["raw_json", "premium"])
+            res.total_cost = total_cost
+            res.save(update_fields=["raw_json", "total_cost"])
         job.status = "DONE"
         job.save(update_fields=["status"])
-        log.info("✅ Saved EstimateResult for job %s (premium=%s)", job.id, str(premium))
+        # Compose a concise, greppable line for FE/ops
+        try:
+            claim = getattr(job, "claim_number", "") or ""
+            summary = (safe_payload.get("summary") or {}) if isinstance(safe_payload, dict) else {}
+            total  = summary.get("total_project_cost")
+            items_n = len(safe_payload.get("items") or []) if isinstance(safe_payload, dict) else None
+            log.info(
+                "RESULT_READY job=%s claim=%s items=%s total=%s persisted_total=%s",
+                job.id, claim, items_n, total, str(total_cost)
+            )
+        except Exception:
+            pass
     except Exception:
         log.exception("Failed to save EstimateResult for job %s", job_id)
         job.status = "FAILED"

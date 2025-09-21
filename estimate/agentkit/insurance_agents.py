@@ -89,11 +89,11 @@ BASE_SCHEMA: Dict[str, Any] = {
             "properties": {
                 "id":           {"type": ["integer","string"]},
                 "line_items":   {"type": "string", "minLength": 1},
+                "Details":      {"type": "string", "default": ""},
                 "QUANTITY":     {"type": "number", "minimum": 0},
                 "UNIT_PRICE":   {"type": "number", "minimum": 0},
                 "TAX":          {"type": "number", "minimum": 0, "default": 0},
                 "TOTAL_PRICE":  {"type": "number", "minimum": 0},
-                "Details":      {"type": "string", "default": ""},
                 "unit_code":    {"$ref": "#/definitions/UnitCode"},
                 "category":     {"type": "string"},
                 "tags":         {"type": "array", "items": {"type": "string"}, "uniqueItems": True},
@@ -164,9 +164,9 @@ def make_role_instructions(
     }
 
     return (
-        f"You are the {role.replace('_',' ').title()}.\n"
-        "You will receive the user's description and images in the conversation input.\n"
-        "Use the shared knowledge base for pricing vernacular and structure.\n"
+        f"You are the {role.replace('_',' ').title()} estimate expert.\n"
+        "You will receive the user's images and description in the conversation input.\n"
+        "Use the knowledge base for pricing vernacular and line items for each task.\n"
         f"{STRICT_JSON}\n\n"
         "Before you start, populate these header fields exactly (use values shown and pay attention to the Grade and Type of Property to construct pricing):\n"
         f"{json.dumps(header_template, indent=2)}\n\n"
@@ -174,6 +174,7 @@ def make_role_instructions(
         f"{kb}\n\n"
         "SCHEMA (copy exactly):\n"
         f"{json.dumps(schema, indent=2)}"
+        "if the user try to get a full house estimate advise him on the reasoning that he better off use the estimate agent room by room. if he upload images of a new house/room/kitchen assume that this is a new room need full instalation and inventory.\n"
     )
 
 
@@ -197,7 +198,7 @@ def build_insurance_agents(*, kb: str | None = None, settings: Dict[str, Any] | 
 
     home_project_agent = Agent(
         name="Home Project Agent",
-        handoff_description="Specialist for homeowner project planning. This include home renovation, flipping houses, or remodeling for rental. Few expert guidlines: 1. if a block (roof slop, floor, wall etc.) is damage more then 40% you replace the entire block. 2. in case there are more then 3 contractors involved in the project you add 10% to the estimate total pricing.  Outputs ONLY raw JSON conforming to the embedded schema.",
+        handoff_description="Specialist for homeowner project planning. This include home renovation, flipping houses, or remodeling for rental. You provide fair and reasonable project pricing that can help home onwers and investors make smart investments. For images that seems to look new and good assume that it's a design requerment and not a remodel. calcualte labor for 2 workers. in case there are more then 3 contractors involved in the project yo add 10% to the project pricing. Outputs ONLY raw JSON conforming to the embedded schema.",
         instructions=make_role_instructions("home_project", kb_text, home_schema, settings),
     )
     adjuster_agent = Agent(

@@ -2,12 +2,18 @@
 Knowledge base for property estimating:
 
 The following is the constant results output sequence you need to follow:
-LINE-ITEM | QUANTITY | UNIT | TAX | O&P | RCV | AGE/LIFE | COND. | DEP % | DEPREC. | ACV  
+LINE-ITEM | QUANTITY | UNIT | TAX | O&P | RCV | AGE/LIFE | COND. | DEP % | DEPREC. | ACV  /n | note
 
-1. Single axle dump truck - per load - including dump fees 1.00 EA 203.13 0.00 40.62 243.75 
+appendix:
+TAX - tax by states
+O&P - overhead and profit
+RCV - Replacement Cost Value
+ACV - Actual Cash Value
+
+1. Single axle dump truck - per load - including dump fees |  1.00 | EA | 203.13 | 0.00 | 40.62 243.75 
 debris left from remaining tear out, carpet, repairs and cabinets 
-2. Job-site moving/storage container - 20 long - per month* 1.00 MO 185.01 13.32 37.00 235.33 allowance to store contents while repairs are being done to main level 
-3. Job-site cargo container - pick up/del. (each way) 16'-40' 1.00 EA 112.00 0.00 22.40 134.40 
+2. Job-site moving/storage container - 20 long - per month* 1.00 | MO | 185.01 | 13.32 | 37.00 | 235.33 | allowance to store contents while repairs are being done to main level 
+3. Job-site cargo container - pick up/del. (each way) 16'-40' | 1.00 | EA | 112.00 | 0.00 | 22.40 | 134.40 
 4. General Laborer - per hour 2.00 HR 28.10 0.00 11.24 67.44 Additional contents allowance to carefully pack contents into storage container  0/NA 0/NA 0/NA 0/NA  Avg. Avg. Avg. Avg.  NA 0% 0% 0%  (0.00) (0.00) (0.00) (0.00)  243.75 235.33 134.40 67.44  
 5. Water heater - Detach 
 1.00 EA 91.10 6.56 18.22 115.88 0/NA Avg. 0% (0.00) 115.88 Includes: On site storage and labor. Excludes: Any additional materials or hardware. Note: Labor cost to disconnect, drain, and detach a water heater, then move to an adjacent room or area for storage. The labor type used in this item 
@@ -248,10 +254,6 @@ QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV
 160. Wood floor border inlay - 0.00 LF 16.54 0.00 0.00 0.00 0/150 yrs Avg. 0% (0.00) 0.00 
 
 ______________________________________________________________________________________________________________________________________
-
-
-                
-
 # Kitchen  
 
 328.00 SF Walls 102.00 SF Ceiling 
@@ -372,10 +374,7 @@ The following line items were calculated by these measures:
 6.90 SY Flooring 34.83 LF Floor Perimeter 
 34.83 LF Ceil. Perimeter
 
-
 LINE-ITEM QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV  
-
-
 
 215. R&R Vanity - Standard grade 4.17 LF 132.81 22.77 115.32 691.91 4/50 yrs damaged by water 
 216. Vanity top - Detach & reset 4.17 LF 44.35 0.00 36.98 221.92 4/NA 
@@ -412,7 +411,7 @@ LINE-ITEM QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV
 247. Detach & Reset Shower faucet - High grade 1.00 EA 64.01 0.00 12.80 76.81 0/20 yrs 248. Plumber - per hour 3.00 HR 100.03 0.00 60.02 360.11 14/NA Additional labor hours added due the small nature of the repair 249. R&R Wall - soap dish - cultured marble 1.00 EA 64.88 1.86 13.36 80.10 14/150 yrs 250. R&R Custom shower door & partition - 1/4" glass w/frame 48.53 SF 21.95 45.86 222.22 1,333.32 14/25 yrs cannot be detached and reset based on the condition FLOORS 251. R&R Tile floor covering - Standard grade 62.08 SF 11.97 9.16 150.46 902.72 14/100 yrs 252. Add-on for diagonal tile installation 62.08 SF 1.60 0.00 19.86 119.19 14/100 yrs 253. R&R 1/4" Cement board 62.08 SF 5.30 4.77 66.78 400.58 14/100 yrs 254. R&R Threshold - natural marble 0.00 LF 68.65 0.00 0.00 0.00 14/150 yrs 255. Interior door - Detach & reset - slab only 2.00 EA 18.80 0.00 7.52 45.12 14/NA FRAMING 256. R&R Sheathing - OSB - 3/4"- T&G - High grade eng. wtr resist. 64.00 SF 3.73 4.19 48.60 291.51 14/150 yrs 257. 2" x 4" x 12' #2 treated pine (material only) 1.00 EA 7.21 0.43 1.52 9.16 14/150 yrs bottom plate next to shower that will be damaged 258. R&R 2" x 10" lumber (1.67 BF per LF) 20.00 LF 4.23 1.52 17.22 103.34 14/150 yrs 2, 10' joists that were damaged by water 259. Carpenter - General Framer - per hour 3.00 HR 76.03 0.00 45.62 273.71 14/NA Additional labor hours added due the small nature of the repair 260. Toilet - Reset 0.00 EA 133.97 0.00 0.00 0.00 0/NA 261. 1/4" Cement board 62.08 SF 5.84 5.96 73.72 442.23 0/150 yrs SHOWER 262. Remove Tile tub surround - 60 to 75 SF 1.00 EA 149.68 0.00 29.94 179.62 0/150 yrs remove remaining tile in shower 2025-08-28-1618  COND. DEP % DEPREC. Avg. 0% (0.00) Avg. 0% (0.00) Avg. 9.33% (5.64) Avg. 56% (571.12) Avg. 14% (83.59) Avg. 14% (13.91) Avg. 14% (39.43) Avg. 9.33% (0.00) Avg. 0% (0.00) Avg. 9.33% (14.67) Avg. 9.33% (0.71) Avg. 9.33% (6.28) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. NA (0.00) 8/31/2025  ACV 76.81 360.1174.46 762.20 819.13 105.28 361.15 0.00 45.12 276.84 8.45 97.06 273.710.00 442.23 179.62 Page: 20  
     
 263. Tile shower - 61 to 100 SF 1.00 EA 1,741.37 30.68 354.42 264. Detach & Reset Tub/shower faucet - Standard grade 1.00 EA 73.81 0.00 14.76 265. R&R Shower drain - for use with waterproof membrane 1.00 EA 207.76 8.74 43.30 266. R&R Soap holder - recessed 1.00 EA 35.18 1.02 7.24 267. R&R Mosaic - ceramic/porcelain tile - Standard grade 8.00 SF 15.13 2.41 24.70 CABINET 268. Backsplash - solid surface - Unattached - Reset 4.50 LF 2.16 0.02 1.94 CABINET 269. R&R Vanity - Standard grade 4.17 LF 132.81 22.77 115.32 damaged by water 270. Vanity top - Detach & reset 4.17 LF 44.35 0.00 36.98 271. R&R Angle stop valve 2.00 EA 34.41 0.86 13.94 272. R&R P-trap assembly - ABS (plastic) 1.00 EA 58.07 0.36 11.70 273. Mirror - plate glass - Detach & reset 15.00 SF 5.03 0.00 15.10 to assist with cabinet replace WALLS 274. Mask per square foot for drywall work 62.08 SF 0.21 0.19 2.64 275. Drywall patch / small repair, ready for paint 1.00 EA 90.52 0.16 18.14 276. Seal the surface area w/PVA primer - one coat 4.00 SF 0.50 0.01 0.40 277. Paint the walls - one coat 278.67 SF 0.44 1.84 24.88 278. R&R Wallpaper border 34.83 LF 3.22 2.53 22.92 279. Final cleaning - construction - Residential 62.08 SF 0.23 1.03 2.86 FLOORS 2025-08-28-1618  RCV AGE/LIFE 2,126.47 0/150 yrs 88.57 0/20 yrs 259.80 0/100 yrs 43.44 0/50 yrs 148.15 0/150 yrs 11.68 0/NA 691.91 4/50 yrs 221.92 4/NA 83.62 4/100 yrs 70.13 4/25 yrs 90.55 0/NA 15.87 0/150 yrs 108.82 0/150 yrs 2.41 10/15 yrs 149.33 10/15 yrs 137.60 0/7 yrs 18.17 10/NA  COND. DEP % DEPREC. Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 8% (43.60) Avg. 0% (0.00) Avg. 4% (2.38) Avg. 16% (8.14) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 66.67% (1.34) Avg. 66.67% (82.97) Avg. 0% (0.00) Avg. 0% (0.00) 8/31/2025  ACV 2,126.47 88.57 259.80 43.44 148.15 11.68 648.31 221.92 81.24 61.99 90.55 15.87 108.82 1.07 66.36 137.60 18.17 Page: 21  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
 280. Remove Tear out vinyl & underlayment 62.08 SF 1.20 0.00 14.90 
 281. Floor preparation for resilient flooring 62.08 SF 0.43 0.37 5.42 
 282. Install Toilet - Detach & reset 1.00 EA 194.94 0.00 38.98 *********drop FCV AV- into sketch 
@@ -1075,7 +1074,7 @@ Totals: water - house  7.34  0.00  129.74  0.00  129.74
                                 
                                 
                                 
-Windows 
+# Windows 
  
 
 16.00 SY Flooring 48.00 LF Floor Perimeter 
@@ -1213,7 +1212,7 @@ Right gable metal
 2.00 EA  69.57  0.00  27.82  166.96  0/20 yrs  Avg.  0%  (0.00)  166.96  
 remove and reset to assist with siding install  
 
-MAILBOX  
+# MAILBOX  
 615. R&R Rural mailbox  
 1.00 EA  53.70  1.77  11.10  66.57  20/20 yrs  Avg.  100%  [M]  <47.97>  18.60  
 damaged by hail  
@@ -1223,7 +1222,7 @@ damaged by hail
 147.00 SF  11.14  22.93  332.10  1,992.61  0/50 yrs  Avg.  0%  (0.00)  1,992.61  
 Includes: Concrete, forms, and installation labor.  
 
-FENCE  
+# FENCE  
 618. R&R Wood fence slat 3' - 4' high - treated  
 10.00 EA  4.42  1.06  9.06  54.32  0/12 yrs  Avg.  0%  (0.00)  54.32  
 10 pieces damaged  
@@ -1310,7 +1309,9 @@ Totals: garden 91.65 1,377.52 8,264.75 100.47 8,164.28
 
 ___________________________________________________________________________________________________________________________________
                       
-Deck1 Height: 3' 
+# Deck 
+
+Height: 3' 
 40.00 LF Floor Perimeter 
 
 QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
@@ -1336,14 +1337,9 @@ QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV
 660. R&R Deck hand rail/guard rail - Labor only 
 8.00 LF 26.59 0.15 42.60 255.47 0/20 yrs Avg. 0% (0.00) 255.47 
 
-
-
 Totals: Deck1 8.79 99.56 597.22 0.00 597.22 
 
-
-
-general jobs 
-
+# General Jobs 
 
 384.00 SF Walls 144.00 SF Ceiling 
 528.00 SF Walls & Ceiling 144.00 SF Floor 
@@ -1497,7 +1493,8 @@ QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV
 710. Clean floor or roof joist system  
 86.00 SF  0.96  6.05  16.54  105.15  0/NA  Avg.  0%  (0.00)  105.15  
 
-INSULATION  
+# INSULATION  
+
 711. R&R Blown-in insulation - 10" depth - R26  
 86.00 SF  1.60  2.63  28.04  168.27  16/150 yrs  Avg. 10.67%  (6.98)  161.29  
 712. R&R Ductwork - flexible - insulated - 12" round  
@@ -1507,251 +1504,165 @@ INSULATION
 714. R&R Ductwork - Mechanical room - Plenum & Return air  
 1.00 EA  945.05  10.25  191.06  1,146.36  16/30 yrs  Avg. 53.33%  (489.49)  656.87  
 715. Furnace - check, heavy clean, replace filters and service*  
-1.00 EA  209.44  0.75  42.04  252.23  16/NA  Avg.  0%  (0.00)  252.23  
+1.00 EA  209.44  0.75  42.04  252.23  16/NA  Avg.  0%  (0.00)  252.23 
 
 
 ________________________________________________________________________________________________________________________
            
-SKETCH2 
-           
-# Roof 
-50'  30' F1 (A)  
-Roof1 F2 (B)  
+|   # | DESCRIPTION                                               |    QTY | UNIT |    TAX |  O\&P |      RCV | AGE/LIFE | COND. | DEP% | DEPREC. |      ACV | NOTES                        |
+| --: | --------------------------------------------------------- | -----: | :--: | -----: | ----: | -------: | :------: | :---: | ---: | ------: | -------: | ---------------------------- |
+| 716 | Remove tear off, haul & dispose of comp. shingles – 3-tab |  16.77 |  SQ  |  42.57 |  0.00 |   856.68 | 0/25 yrs |  Avg. |   NA |  (0.00) |   856.68 | —                            |
+| 717 | 3-tab 25-yr comp. shingle roofing – w/out felt            |  20.00 |  SQ  | 189.04 | 89.72 | 4,644.62 | 0/25 yrs |  Avg. |   0% |  (0.00) | 4,644.62 | Starter & ridge in 10% waste |
+| 718 | Roofing felt – 30 lb                                      |  16.77 |  SQ  |  38.68 | 14.28 |   795.54 | 0/20 yrs |  Avg. |   0% |  (0.00) |   795.54 | —                            |
+| 719 | Drip edge                                                 | 171.80 |  LF  |   2.21 |  6.91 |   463.91 | 0/35 yrs |  Avg. |   0% |  (0.00) |   463.91 | —                            |
+| 720 | Flashing – pipe jack                                      |   0.00 |  EA  |  40.16 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 721 | Flashing – pipe jack – 6"                                 |   0.00 |  EA  |  44.18 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 722 | Flashing – pipe jack – 8"                                 |   0.00 |  EA  |  53.82 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 723 | Flashing – pipe jack – split boot                         |   0.00 |  EA  |  59.02 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 724 | R\&R Flat roof exhaust vent/cap – gooseneck 8"            |   0.00 |  EA  |  83.24 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 725 | R\&R Roof vent – turbine – Std grade                      |   0.00 |  EA  |  83.33 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 726 | R\&R Continuous ridge vent – shingle-over                 |  30.00 |  LF  |   7.12 |  5.42 |   262.82 | 0/35 yrs |  Avg. |   0% |  (0.00) |   262.82 | —                            |
+| 727 | R\&R Roof vent – turtle – metal                           |   0.00 |  EA  |  50.37 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 728 | Apply mastic around vent pipes                            |   0.00 |  EA  |  16.40 |  0.00 |     0.00 | 0/17 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 729 | R\&R Power attic vent cover – metal                       |   0.00 |  EA  |  79.14 |  0.00 |     0.00 |  0/7 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 730 | Flashing – L flashing – galvanized                        |   0.00 |  LF  |   2.88 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 731 | Step flashing                                             |   0.00 |  LF  |   6.93 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 732 | R\&R Flashing – rain diverter                             |   0.00 |  EA  |  36.49 |  0.00 |     0.00 | 0/35 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 733 | Digital satellite system – Detach & reset                 |   0.00 |  EA  |  25.95 |  0.00 |     0.00 |   0/NA   |  Avg. |   0% |  (0.00) |     0.00 | —                            |
+| 734 | **Remove** steep roof add – 7/12 to 9/12                  |  16.77 |  SQ  |  13.40 |  0.00 |   269.66 |   0/NA   |  Avg. |   NA |  (0.00) |   269.66 | —                            |
+| 735 | Steep roof add – 7/12 to 9/12                             |  16.77 |  SQ  |  27.75 |  0.00 |   558.45 |   0/NA   |  Avg. |   0% |  (0.00) |   558.45 | —                            |
+| 736 | **Remove** steep roof add – 10/12–12/12                   |  16.77 |  SQ  |  21.06 |  0.00 |   423.82 |   0/NA   |  Avg. |   NA |  (0.00) |   423.82 | —                            |
+| 737 | Steep roof add – 10/12–12/12                              |  16.77 |  SQ  |  43.61 |  0.00 |   877.60 |   0/NA   |  Avg. |   0% |  (0.00) |   877.60 | —                            |
+| 738 | **Remove** high roof add (2-story+)                       |  16.77 |  SQ  |   5.06 |  0.00 |   101.84 |   0/NA   |  Avg. |   NA |  (0.00) |   101.84 | —                            |
 
-1677.05 Surface Area 16.77 Number of Squares 
-171.80 Total Perimeter Length 30.00 Total Ridge Length 
-
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-27' 11" 
-27' 11" 
-           
-ROOF  
-716. Remove Tear off, haul and dispose of comp. shingles - 3 tab  
-16.77 SQ  42.57  0.00  142.78  856.68  0/25 yrs  Avg.  NA  (0.00)  856.68  
-717. 3 tab - 25 yr. - comp. shingle roofing - w/out felt  
-20.00 SQ  189.04  89.72  774.10  4,644.62  0/25 yrs  Avg.  0%  (0.00)  4,644.62  
-starter course and ridge shingles are included in the 10% waste factor  
-The roof waste % is not available. The calculation contains values that may result in an inaccurate waste %.  
-718. Roofing felt - 30 lb.  
-16.77 SQ  38.68  14.28  132.60  795.54  0/20 yrs  Avg.  0%  (0.00)  795.54  
-
-QUANTITY UNIT TAX O&P 719. Drip edge 171.80 LF 2.21 6.91 77.32 720. Flashing - pipe jack 0.00 EA 40.16 0.00 0.00 721. Flashing - pipe jack - 6" 0.00 EA 44.18 0.00 0.00 722. Flashing - pipe jack - 8" 0.00 EA 53.82 0.00 0.00 723. Flashing - pipe jack - split boot 0.00 EA 59.02 0.00 0.00 724. R&R Flat roof exhaust vent / cap - gooseneck 8" 0.00 EA 83.24 0.00 0.00 725. R&R Roof vent - turbine type - Standard grade 0.00 EA 83.33 0.00 0.00 726. R&R Continuous ridge vent - shingle-over style 30.00 LF 7.12 5.42 43.80 727. R&R Roof vent - turtle type - Metal 0.00 EA 50.37 0.00 0.00 728. Apply mastic around vent pipes to repair leakage 0.00 EA 16.40 0.00 0.00 729. R&R Power attic vent cover only - metal 0.00 EA 79.14 0.00 0.00 730. Flashing - L flashing - galvanized 0.00 LF 2.88 0.00 0.00 731. Step flashing 0.00 LF 6.93 0.00 0.00 732. R&R Flashing - rain diverter 0.00 EA 36.49 0.00 0.00 733. Digital satellite system - Detach & reset 0.00 EA 25.95 0.00 0.00 734. Remove Additional charge for steep roof - 7/12 to 9/12 slope 16.77 SQ 13.40 0.00 44.94 735. Additional charge for steep roof - 7/12 to 9/12 slope 16.77 SQ 27.75 0.00 93.08 736. Remove Additional charge for steep roof - 10/12 - 12/12 slope 16.77 SQ 21.06 0.00 70.64 737. Additional charge for steep roof - 10/12 - 12/12 slope 16.77 SQ 43.61 0.00 146.26 738. Remove Additional charge for high roof (2 stories or greater) 16.77 SQ 5.06 0.00 16.98  RCV AGE/LIFE 463.91 0/35 yrs 0.00 0/35 yrs 0.00 0/35 yrs 0.00 0/35 yrs 0.00 0/35 yrs 0.00 0/35 yrs 0.00 0/35 yrs 262.82 0/35 yrs 0.00 0/35 yrs 0.00 0/17 yrs 0.00 0/7 yrs 0.00 0/35 yrs 0.00 0/35 yrs 0.00 0/35 yrs 0.00 0/NA 269.66 0/NA 558.45 0/NA 423.82 0/NA 877.60 0/NA 101.84 0/NA  COND. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) NA (0.00) 0% (0.00) NA (0.00) 0% (0.00) NA (0.00)  ACV 463.91 0.00 0.00 0.00 0.00 0.00 0.00 262.82 0.00 0.00 0.00 0.00 0.00 0.00 0.00 269.66 558.45 423.82 877.60 101.84  
-2025-08-28-1618  8/31/2025  Page: 55  
-
-QUANTITY UNIT TAX O&P RCV AGE/LIFE 
-    
-739. Additional charge for high roof (2 stories or greater) 16.77 SQ 12.25 0.00 41.08 246.51 0/NA GUTTERS 
-740. R&R Gutter / downspout - aluminum - up to 5" 60.00 LF 5.49 8.93 67.66 405.99 5/25 yrs gutters damaged by hail 
-741. R&R Gable cornice return - laminated 2.00 EA 70.03 0.67 28.14 168.87 18/30 yrs 
-742. R&R Gable cornice return - laminated - 2 stories or greater 2.00 EA 84.14 0.67 33.80 202.75 18/30 yrs 
-743. R&R Gable cornice strip - laminated - 2 stories or greater 8.00 LF 12.05 1.47 19.58 117.45 18/30 yrs 
-744. Roofer - per hour 3.00 HR 85.00 0.00 51.00 306.00 15/NA Labor hours added for trip charge and mobilization to make the needed repair. 
-745. Furnace vent - rain cap and storm collar, 6" 0.00 EA 64.57 0.00 0.00 0.00 15/25 yrs 
-746. Furnace vent - rain cap and storm collar, 8" 0.00 EA 71.56 0.00 0.00 0.00 15/25 yrs 
-747. Flashing - pipe jack - split boot 0.00 EA 59.02 0.00 0.00 0.00 15/35 yrs 
-748. Flat roof exhaust vent / cap - gooseneck 8" 0.00 EA 76.28 0.00 0.00 0.00 15/35 yrs 
-749. Roof vent - turbine type - Standard grade 0.00 EA 74.71 0.00 0.00 0.00 15/35 yrs 
-750. Continuous ridge vent - shingle-over style 0.00 LF 6.31 0.00 0.00 0.00 15/35 yrs 
-751. Roof vent - turtle type - Metal 0.00 EA 41.75 0.00 0.00 0.00 15/35 yrs 
-752. Power attic vent cover only - metal 0.00 EA 67.14 0.00 0.00 0.00 15/7 yrs 
-753. Flashing - L flashing - color finish 0.00 LF 3.83 0.00 0.00 0.00 15/35 yrs 
-754. Step flashing 0.00 LF 6.93 0.00 0.00 0.00 15/35 yrs 
-755. Flashing - rain diverter 0.00 EA 28.03 0.00 0.00 0.00 15/35 yrs 
-756. Digital satellite system - Detach & reset 0.00 EA 25.95 0.00 0.00 0.00 15/NA 
-757. Skylight flashing kit - dome 0.00 EA 100.78 0.00 0.00 0.00 15/15 yrs 
-758. R&R Gable cornice return - 3 tab - 0.00 EA 77.34 0.00 0.00 0.00 0/25 yrs Avg. 0% (0.00) 0.00 
-759. R&R Gable cornice return - 3 tab - 2 stories or greater - 0.00 EA 93.39 0.00 0.00 0.00 0/25 yrs Avg. 0% (0.00) 0.00 
-760. R&R Gable cornice strip - 3 tab - 0.00 LF 10.67 0.00 0.00 0.00 0/25 yrs Avg. 0% (0.00) 0.00 
-761. R&R Gable cornice strip - 3 tab - 2 stories of greater* 0.00 LF 12.52 0.00 0.00 0.00 0/25 yrs Avg. 0% (0.00) 0.00 
-762. Apply mastic around vent pipes to repair leakage - 0.00 EA 16.40 0.00 0.00 0.00 15/17 yrs Avg. 88.24% (0.00) 0.00 
-763. Remove Tear off, haul and dispose of comp. shingles - 3 tab - 16.77 SQ 50.56 0.00 169.58 1,017.47 20/25 yrs Below Avg. NA [M] (0.00) 1,017.47 
-764. Roofing felt - 30 lb. - 16.77 SQ 25.55 9.39 87.58 525.44 20/20 yrs Below Avg. 100% [M] (437.86) 87.58 
-765. Laminated - comp. shingle rfg. - w/out felt - 18.67 SQ 167.65 96.98 645.40 3,872.41 20/30 yrs Below Avg. 93.33% (3,011.87) 860.54 Starter course and ridge shingles are included in the waste factor in the estimate. 10% waste applied to the roof shingles 
-766. R&R Continuous ridge vent - shingle-over style - 18.00 LF 7.21 3.25 26.62 159.65 20/35 yrs Below Avg . 80% (94.33) 65.32 
-767. R&R Flashing - pipe jack - 3.00 EA 34.96 1.40 21.26 127.54 20/35 yrs Below Avg. 80% (68.13) 59.41 
-768. R&R Furnace vent - rain cap and storm collar, 5" - 2.00 EA 61.40 2.40 25.04 150.24 10/25 yrs Avg. 40% (41.50) 108.74 
-769. R&R Roof vent - turtle type - Metal - 3.00 EA 50.36 2.76 30.78 184.62 20/35 yrs Avg. 57.14% (73.13) 111.49 
-770. Step flashing - 6.17 LF 6.93 0.61 8.68 52.05 20/35 yrs Below Avg. 80% (34.70) 17.35 for front shed roof 
-771. R&R Flashing - L flashing - color finish - 28.00 LF 3.83 2.82 22.02 132.08 20/35 yrs Below Avg. 80% (75.51) 56.57 for top of front elevation shed roof 
-
-- WOOD SHAKE ROOF -
-    
-772. Tear off, haul and dispose of wood shakes/shingles 
-16.77 SQ 60.18 0.00 201.84 1,211.06 23/40 yrs Avg. NA (0.00) 1,211.06 
-773. Roofing felt - 15 lb. 
-16.77 SQ 26.61 5.32 90.32 541.89 23/20 yrs Avg. 100% [M] (451.57) 90.32 
-774. Wood shakes - medium (1/2") hand split 
-18.45 SQ 606.14 395.69 2,315.80 13,894.77 23/40 yrs Avg. 57.5% (6,657.91) 7,236.86 
-10% waste added 
-775. R&R Copper ridge or hip 
-30.00 LF 15.76 19.60 98.48 590.88 23/150 yrs Avg. 15.33% (72.75) 518.13 
-2025-08-28-1618 8/31/2025 Page: 57 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE  COND. DEP % DEPREC.  ACV  
-776. R&R Drip edge - copper  
-171.80 LF 8.90 74.53 320.70 1,924.25 23/150 yrs  Avg. 15.33% (237.19)  1,687.06  
-777. Re-nailing of roof sheathing - complete re-nail  
-1,677.05 SF 0.23 1.01 77.34 464.07 0/150 yrs  Avg. 0% (0.00)  464.07  
-Re-nailing Code 708.7  
-When a roof covering on an existing sitebuilt single family residential  
-structure is removed and replaced, the following procedures shall be permitted to  
-be performed by the roofing contractor:  
-(a) Roofdecking attachment shall be as required by Section 708.7.1.  
-(b) A secondary water barrier shall be provided as required by Section 708.7.2.  
-Exception: Single family residential structures permitted subject to the Florida  
-Building Code are not required to comply with this section.  
-778. Roof vent - off ridge type - 6'  
-3.00 EA 154.14 8.56 94.20 565.18 0/35 yrs  Avg. 0% (0.00)  565.18  
-779. Remove Tear off, haul and dispose of comp. shingles - Laminated  
-16.77 SQ 43.97 0.00 147.48 884.86 0/30 yrs  Avg. NA (0.00)  884.86  
-780. Ridge cap - composition shingles*  
-30.00 LF 3.85 1.62 23.42 140.54 0/25 yrs  Avg. 0% (0.00)  140.54  
-781. Exhaust cap - through roof - 6" to 8"  
-1.00 EA 80.27 1.86 16.44 98.57 0/35 yrs  Avg. 0% (0.00)  98.57  
-782. R&R Roof vent - off ridge type - 8'  
-3.00 EA 223.34 13.40 136.68 820.10 0/35 yrs  Avg. 0% (0.00)  820.10  
-783. R&R Gutter / downspout - aluminum - 6"  
-0.00 LF 7.69 0.00 0.00 0.00 0/25 yrs  Avg. 0% (0.00)  0.00  
-784. Detach & Reset Gutters only - aluminum - up to 5"*  
-0.00 LF 3.01 0.00 0.00 0.00 0/25 yrs  Avg. 0% (0.00)  0.00  
-gutters attached through drip edge  
-785. Asphalt starter - universal starter course  
-171.80 LF 1.98 6.80 69.40 416.36 0/20 yrs  Avg. 0% (0.00)  416.36  
-786. Prime & paint roof jack  
-0.00 EA 33.82 0.00 0.00 0.00 0/15 yrs  Avg. 0% (0.00)  0.00  
-787. Exhaust cap - through roof - up to 4"  
-0.00 EA 68.04 0.00 0.00 0.00 0/35 yrs  Avg. 0% (0.00)  0.00  
-788. Power attic vent cover only - metal  
-0.00 EA 86.38 0.00 0.00 0.00 0/7 yrs  Avg. 0% (0.00)  0.00  
-789. Prime & paint roof vent  
-0.00 EA 33.82 0.00 0.00 0.00 0/15 yrs  Avg. 0% (0.00)  0.00  
-790. Roof window step flashing kit  
-0.00 EA 120.02 0.00 0.00 0.00 0/18 yrs  Avg. 0% (0.00)  0.00  
-791. Roof window step flashing kit - Large  
-0.00 EA 141.48 0.00 0.00 0.00 0/18 yrs  Avg. 0% (0.00)  0.00  
-792. R&R Flashing - kick-out diverter  
-1.00 EA 28.80 0.72 5.90 35.42 0/35 yrs  Avg. 0% (0.00)  35.42  
-2025-08-28-1618  8/31/2025  Page: 58  
-
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-793. Remove 3 tab - 25 yr. - composition shingle roofing (per SHINGLE) 
-24.00 EA 5.30 0.00 25.44 152.64 0/25 yrs Avg. NA (0.00) 152.64 
-794. 3 tab - 25 yr. - composition shingle roofing (per SHINGLE) 
-24.00 EA 12.29 2.55 59.52 357.03 0/25 yrs Avg. 0% (0.00) 357.03
-A repair factor of two was applied. The following line items are an allowance for repair for damage on the roof. Additional shingles and labor have been provided to account for waste, small project and incidentals. 
-
-- SOLAR PANELS -
-
-795. Solar electric panel - Detach & reset - 25.00 EA 125.00 0.00 625.00 3,750.00 0/NA Avg. 0% (0.00) 3,750.00 
-796. Solar electric panel - mounting hardware - Detach & reset* - 25.00 EA 20.37 0.00 101.86 611.11 0/NA Avg. 0% (0.00) 611.11 
-797. R&R Skylight - reflective tube - flash/dome - Detach & reset - 1.00 EA 32.96 0.00 6.60 39.56 15/NA Avg. 0% (0.00) 39.56 
-798. Tear off composition shingles (no haul off)*
+|       # | DESCRIPTION                                      |   QTY | UNIT |    TAX |  O\&P |      RCV |  AGE/LIFE |    COND.   |      DEP% |    DEPREC. |      ACV | NOTES                            |
+| ------: | ------------------------------------------------ | ----: | :--: | -----: | ----: | -------: | :-------: | :--------: | --------: | ---------: | -------: | -------------------------------- |
+|     739 | High roof add (2-story+)                         | 16.77 |  SQ  |  12.25 |  0.00 |   246.51 |    0/NA   |    Avg.    |        0% |     (0.00) |   246.51 | —                                |
+|     740 | R\&R Gutter/downspout – alum. – up to 5"         | 60.00 |  LF  |   5.49 |  8.93 |   405.99 |  5/25 yrs |    Avg.    |        0% |     (0.00) |   405.99 | Hail damage                      |
+|     741 | R\&R Gable cornice return – laminated            |  2.00 |  EA  |  70.03 |  0.67 |   168.87 | 18/30 yrs |    Avg.    |        0% |     (0.00) |   168.87 | —                                |
+|     742 | R\&R Gable cornice return – laminated – 2-story+ |  2.00 |  EA  |  84.14 |  0.67 |   202.75 | 18/30 yrs |    Avg.    |        0% |     (0.00) |   202.75 | —                                |
+|     743 | R\&R Gable cornice strip – laminated – 2-story+  |  8.00 |  LF  |  12.05 |  1.47 |   117.45 | 18/30 yrs |    Avg.    |        0% |     (0.00) |   117.45 | —                                |
+|     744 | Roofer – per hour                                |  3.00 |  HR  |  85.00 |  0.00 |   306.00 |   15/NA   |    Avg.    |        0% |     (0.00) |   306.00 | Trip/mobilization                |
+| 745–757 | Vents/flashings (0 qty)                          |     — |   —  |      — |     — |     0.00 |     —     |    Avg.    |         — |     (0.00) |     0.00 | Listed items have 0.00 qty       |
+|     758 | R\&R Gable cornice return – 3-tab                |  0.00 |  EA  |  77.34 |  0.00 |     0.00 |  0/25 yrs |    Avg.    |        0% |     (0.00) |     0.00 | —                                |
+|     759 | R\&R Gable cornice return – 3-tab – 2-story+     |  0.00 |  EA  |  93.39 |  0.00 |     0.00 |  0/25 yrs |    Avg.    |        0% |     (0.00) |     0.00 | —                                |
+|     760 | R\&R Gable cornice strip – 3-tab                 |  0.00 |  LF  |  10.67 |  0.00 |     0.00 |  0/25 yrs |    Avg.    |        0% |     (0.00) |     0.00 | —                                |
+|     761 | R\&R Gable cornice strip – 3-tab – 2-story+\*    |  0.00 |  LF  |  12.52 |  0.00 |     0.00 |  0/25 yrs |    Avg.    |        0% |     (0.00) |     0.00 | —                                |
+|     762 | Apply mastic around vent pipes (dep note)        |  0.00 |  EA  |  16.40 |  0.00 |     0.00 | 15/17 yrs |    Avg.    |    88.24% |     (0.00) |     0.00 | —                                |
+|     763 | **Remove** tear off comp. shingles – 3-tab       | 16.77 |  SQ  |  50.56 |  0.00 | 1,017.47 | 20/25 yrs | Below Avg. |   NA \[M] |     (0.00) | 1,017.47 | —                                |
+|     764 | Roofing felt – 30 lb.                            | 16.77 |  SQ  |  25.55 |  9.39 |   525.44 | 20/20 yrs | Below Avg. | 100% \[M] |   (437.86) |    87.58 | —                                |
+|     765 | Laminated comp. shingles – w/out felt            | 18.67 |  SQ  | 167.65 | 96.98 | 3,872.41 | 20/30 yrs | Below Avg. |    93.33% | (3,011.87) |   860.54 | 10% waste                        |
+|     766 | R\&R Continuous ridge vent – shingle-over        | 18.00 |  LF  |   7.21 |  3.25 |   159.65 | 20/35 yrs | Below Avg. |       80% |    (94.33) |    65.32 | —                                |
+|     767 | R\&R Flashing – pipe jack                        |  3.00 |  EA  |  34.96 |  1.40 |   127.54 | 20/35 yrs | Below Avg. |       80% |    (68.13) |    59.41 | —                                |
+|     768 | R\&R Furnace vent rain cap & storm collar – 5"   |  2.00 |  EA  |  61.40 |  2.40 |   150.24 | 10/25 yrs |    Avg.    |       40% |    (41.50) |   108.74 | —                                |
+|     769 | R\&R Roof vent – turtle – metal                  |  3.00 |  EA  |  50.36 |  2.76 |   184.62 | 20/35 yrs |    Avg.    |    57.14% |    (73.13) |   111.49 | —                                |
+|     770 | Step flashing                                    |  6.17 |  LF  |   6.93 |  0.61 |    52.05 | 20/35 yrs | Below Avg. |       80% |    (34.70) |    17.35 | Front shed roof                  |
+|     771 | R\&R Flashing – L flashing – color finish        | 28.00 |  LF  |   3.83 |  2.82 |   132.08 | 20/35 yrs | Below Avg. |       80% |    (75.51) |    56.57 | Top of front elevation shed roof |
 
 
-16.77 SQ 37.50 0.00 125.78 754.66 3/NA Avg. NA (0.00) 754.66 
+Roof (WOOD SHAKE ROOF 772–792)
 
-GUTTERS 
-799. R&R Gutter guard/screen 0.00 LF 3.13 0.00 0.00 0.00 0/20 yrs Avg. 0% (0.00) 0.00 
+|       # | DESCRIPTION                                      |      QTY | UNIT |    TAX |   O\&P |       RCV |  AGE/LIFE  | COND. |      DEP% |    DEPREC. |      ACV | NOTES                                    |
+| ------: | ------------------------------------------------ | -------: | :--: | -----: | -----: | --------: | :--------: | :---: | --------: | ---------: | -------: | ---------------------------------------- |
+|     772 | Tear off, haul & dispose of wood shakes/shingles |    16.77 |  SQ  |  60.18 |   0.00 |  1,211.06 |  23/40 yrs |  Avg. |        NA |     (0.00) | 1,211.06 | —                                        |
+|     773 | Roofing felt – 15 lb.                            |    16.77 |  SQ  |  26.61 |   5.32 |    541.89 |  23/20 yrs |  Avg. | 100% \[M] |   (451.57) |    90.32 | —                                        |
+|     774 | Wood shakes – medium (1/2") hand split           |    18.45 |  SQ  | 606.14 | 395.69 | 13,894.77 |  23/40 yrs |  Avg. |     57.5% | (6,657.91) | 7,236.86 | 10% waste added                          |
+|     775 | R\&R Copper ridge or hip                         |    30.00 |  LF  |  15.76 |  19.60 |    590.88 | 23/150 yrs |  Avg. |    15.33% |    (72.75) |   518.13 | —                                        |
+|     776 | R\&R Drip edge – copper                          |   171.80 |  LF  |   8.90 |  74.53 |  1,924.25 | 23/150 yrs |  Avg. |    15.33% |   (237.19) | 1,687.06 | —                                        |
+|     777 | Re-nailing of roof sheathing – complete re-nail  | 1,677.05 |  SF  |   0.23 |   1.01 |    464.07 |  0/150 yrs |  Avg. |        0% |     (0.00) |   464.07 | Code 708.7 note                          |
+|     778 | Roof vent – off ridge type – 6'                  |     3.00 |  EA  | 154.14 |   8.56 |    565.18 |  0/35 yrs  |  Avg. |        0% |     (0.00) |   565.18 | —                                        |
+|     779 | **Remove** tear off comp. shingles – laminated   |    16.77 |  SQ  |  43.97 |   0.00 |    884.86 |  0/30 yrs  |  Avg. |        NA |     (0.00) |   884.86 | —                                        |
+|     780 | Ridge cap – composition shingles\*               |    30.00 |  LF  |   3.85 |   1.62 |    140.54 |  0/25 yrs  |  Avg. |        0% |     (0.00) |   140.54 | —                                        |
+|     781 | Exhaust cap – through roof – 6" to 8"            |     1.00 |  EA  |  80.27 |   1.86 |     98.57 |  0/35 yrs  |  Avg. |        0% |     (0.00) |    98.57 | —                                        |
+|     782 | R\&R Roof vent – off ridge type – 8'             |     3.00 |  EA  | 223.34 |  13.40 |    820.10 |  0/35 yrs  |  Avg. |        0% |     (0.00) |   820.10 | —                                        |
+| 783–791 | Gutters/vents/priming (0 qty)                    |        — |   —  |      — |      — |      0.00 |      —     |  Avg. |         — |     (0.00) |     0.00 | Gutters attached through drip edge (784) |
+|     785 | Asphalt starter – universal starter course       |   171.80 |  LF  |   1.98 |   6.80 |    416.36 |  0/20 yrs  |  Avg. |        0% |     (0.00) |   416.36 | —                                        |
+|     792 | R\&R Flashing – kick-out diverter                |     1.00 |  EA  |  28.80 |   0.72 |     35.42 |  0/35 yrs  |  Avg. |        0% |     (0.00) |    35.42 | —                                        |
 
-ROOF 
-800. Material Only 3 tab - 25 yr. - comp. shingle roofing - w/out felt 
-0.33 SQ 78.51 1.55 5.50 32.96 0/25 yrs Avg. 0% (0.00) 32.96 Front: 0 wind damaged shingles Back: 0 wind damaged shingles 
-Right: 0 wind damaged shingles Left: 0 wind damaged shingles 
-801. Roofing - Labor Minimum 
-1.00 EA 448.40 0.00 89.68 538.08 10/NA Avg. 0% (0.00) 538.08 
-Labor allowance for roofing repair includes time for trip charge and mobilization to make the needed repair. 
-******edit---shingles damaged in note 
-802. Add. layer of comp. shingles, remove & disp. - 3 tab 
-16.77 SQ 44.27 0.00 148.48 890.89 0/25 yrs Avg. NA (0.00) 890.89 
-803. R&R Valley metal 
-0.00 LF 7.75 0.00 0.00 0.00 0/35 yrs Avg. 0% (0.00) 0.00 
-804. R&R Roof vent - turbine type 
-0.00 EA 178.54 0.00 0.00 0.00 0/35 yrs Avg. 0% (0.00) 0.00 
-805. R&R Continuous ridge vent - aluminum 
-0.00 LF 12.65 0.00 0.00 0.00 0/35 yrs Avg. 0% (0.00) 0.00 
-806. R&R Sheathing - plywood - 1/2" CDX 
+Roof (Repairs, Solar, Labor Min 793–801)
+|   # | DESCRIPTION                                      |   QTY | UNIT |    TAX | O\&P |      RCV | AGE/LIFE | COND. | DEP% | DEPREC. |      ACV | NOTES                               |
+| --: | ------------------------------------------------ | ----: | :--: | -----: | ---: | -------: | :------: | :---: | ---: | ------: | -------: | ----------------------------------- |
+| 793 | Remove 3-tab comp shingles (per shingle)         | 24.00 |  EA  |   5.30 | 0.00 |   152.64 | 0/25 yrs |  Avg. |   NA |  (0.00) |   152.64 | —                                   |
+| 794 | 3-tab comp shingles (per shingle)                | 24.00 |  EA  |  12.29 | 2.55 |   357.03 | 0/25 yrs |  Avg. |   0% |  (0.00) |   357.03 | Repair factor ×2 applied            |
+| 795 | Solar electric panel – Detach & reset            | 25.00 |  EA  | 125.00 | 0.00 | 3,750.00 |   0/NA   |  Avg. |   0% |  (0.00) | 3,750.00 | —                                   |
+| 796 | Solar panel mounting hardware – Detach & reset\* | 25.00 |  EA  |  20.37 | 0.00 |   611.11 |   0/NA   |  Avg. |   0% |  (0.00) |   611.11 | —                                   |
+| 797 | Skylight – reflective tube – flash/dome – D\&R   |  1.00 |  EA  |  32.96 | 0.00 |    39.56 |   15/NA  |  Avg. |   0% |  (0.00) |    39.56 | —                                   |
+| 798 | Tear off comp shingles (no haul off)\*           | 16.77 |  SQ  |  37.50 | 0.00 |   754.66 |   3/NA   |  Avg. |   NA |  (0.00) |   754.66 | —                                   |
+| 799 | R\&R Gutter guard/screen                         |  0.00 |  LF  |   3.13 | 0.00 |     0.00 | 0/20 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                                   |
+| 800 | **Material Only** 3-tab 25-yr – w/out felt       |  0.33 |  SQ  |  78.51 | 1.55 |    32.96 | 0/25 yrs |  Avg. |   0% |  (0.00) |    32.96 | All slopes: 0 wind-damaged shingles |
+| 801 | Roofing – Labor Minimum                          |  1.00 |  EA  | 448.40 | 0.00 |   538.08 |   10/NA  |  Avg. |   0% |  (0.00) |   538.08 | Allowance; trip/mobilization        |
 
+Roof (Additional systems 802–819) -
+|       # | DESCRIPTION                                                |    QTY | UNIT |    TAX |   O\&P |       RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |       ACV | NOTES           |
+| ------: | ---------------------------------------------------------- | -----: | :--: | -----: | -----: | --------: | :-------: | :---: | ---: | ------: | --------: | --------------- |
+|     802 | Add’l layer comp shingles, remove & dispose – 3-tab        |  16.77 |  SQ  |  44.27 |   0.00 |    890.89 |  0/25 yrs |  Avg. |   NA |  (0.00) |    890.89 | —               |
+| 803–807 | Valley metal / vents / sheathing / copper jack (0 qty)     |      — |   —  |      — |      — |      0.00 |     —     |  Avg. |    — |  (0.00) |      0.00 | —               |
+|     808 | R\&R Flashing – pipe jack – lead                           |   0.00 |  EA  | 100.70 |   0.00 |      0.00 |  0/35 yrs |  Avg. |   0% |  (0.00) |      0.00 | —               |
+|     809 | Tear off, haul & dispose – 4-ply built-up roofing          |  16.77 |  SQ  |  93.25 |   0.00 |  1,876.56 |  0/30 yrs |  Avg. |   NA |  (0.00) |  1,876.56 | —               |
+|     810 | R\&R Fiberboard – 1"                                       |  16.77 |  SF  |   2.14 |   0.58 |     43.77 |  0/20 yrs |  Avg. |   0% |  (0.00) |     43.77 | —               |
+|     811 | R\&R Insulation – perlite board – 1-1/2"                   |  16.77 |  SQ  | 352.32 | 126.13 |  7,241.44 | 0/150 yrs |  Avg. |   0% |  (0.00) |  7,241.44 | —               |
+|     812 | R\&R Membrane roofing – cant strips – perlite              | 171.80 |  LF  |   3.50 |   4.74 |    727.24 |  0/35 yrs |  Avg. |   0% |  (0.00) |    727.24 | —               |
+|     813 | R\&R Built-up 4-ply roofing – in place                     |  16.77 |  SQ  | 595.58 | 150.93 | 12,166.56 |  0/30 yrs |  Avg. |   0% |  (0.00) | 12,166.56 | —               |
+|     814 | R\&R Built-up roofing – gravel ballast                     |  16.77 |  SQ  | 123.23 |  21.89 |  2,506.15 | 0/150 yrs |  Avg. |   0% |  (0.00) |  2,506.15 | —               |
+|     815 | R\&R Roof scupper – aluminum                               |   0.00 |  EA  | 295.98 |   0.00 |      0.00 |  0/35 yrs |  Avg. |   0% |  (0.00) |      0.00 | —               |
+|     816 | Tear off, haul & dispose of comp. shingles – high profile  |  16.77 |  SQ  |  74.63 |   0.00 |  1,501.87 |  0/50 yrs |  Avg. |   NA |  (0.00) |  1,501.87 | —               |
+|     817 | Add’l layer comp shingles, remove & dispose – high profile |  16.77 |  SQ  |  49.95 |   0.00 |  1,005.20 |  0/50 yrs |  Avg. |   NA |  (0.00) |  1,005.20 | —               |
+|     818 | Laminated – deluxe grade – w/out felt                      |  19.50 |  SQ  | 386.04 | 238.91 |  9,320.03 |  0/50 yrs |  Avg. |   0% |  (0.00) |  9,320.03 | Waste % warning |
+|     819 | Hip/Ridge cap – high profile – comp shingles               |  30.00 |  LF  |   7.74 |   7.24 |    287.32 |  0/30 yrs |  Avg. |   0% |  (0.00) |    287.32 | —               |
 
-0.00 SF 2.71 0.00 0.00 0.00 0/150 yrs Avg. 0% (0.00) 0.00 
-807. R&R Flashing - pipe jack - copper 
-0.00 EA 109.84 0.00 0.00 0.00 0/150 yrs Avg. 0% (0.00) 0.00 2025-08-28-1618 8/31/2025 Page: 59 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 808. R&R Flashing - pipe jack - lead 0.00 EA 100.70 0.00 0.00 0.00 0/35 yrs Avg. 0% (0.00) 0.00 809. Tear off, haul and dispose of 4 ply built-up roofing 16.77 SQ 93.25 0.00 312.76 1,876.56 0/30 yrs Avg. NA (0.00) 1,876.56 810. R&R Fiberboard - 1" 16.77 SF 2.14 0.58 7.30 43.77 0/20 yrs Avg. 0% (0.00) 43.77 811. R&R Insulation - perlite board, 1-1/2" 16.77 SQ 352.32 126.13 1,206.90 7,241.44 0/150 yrs Avg. 0% (0.00) 7,241.44 812. R&R Membrane roofing - cant strips - perlite 171.80 LF 3.50 4.74 121.20 727.24 0/35 yrs Avg. 0% (0.00) 727.24 813. R&R Built-up 4 ply roofing - in place 16.77 SQ 595.58 150.93 2,027.76 12,166.56 0/30 yrs Avg. 0% (0.00) 12,166.56 814. R&R Built-up roofing - gravel ballast 16.77 SQ 123.23 21.89 417.70 2,506.15 0/150 yrs Avg. 0% (0.00) 2,506.15 815. R&R Roof scupper - aluminum 0.00 EA 295.98 0.00 0.00 0.00 0/35 yrs Avg. 0% (0.00) 0.00 816. Tear off, haul and dispose of comp. shingles - High pro. 16.77 SQ 74.63 0.00 250.32 1,501.87 0/50 yrs Avg. NA (0.00) 1,501.87 817. Add. layer of comp. shingles, remove & disp. - High pro. 16.77 SQ 49.95 0.00 167.54 1,005.20 0/50 yrs Avg. NA (0.00) 1,005.20 818. Laminated - Deluxe grd - comp. shingle rfg. - w/out felt 19.50 SQ 386.04 238.91 1,553.34 9,320.03 0/50 yrs Avg. 0% (0.00) 9,320.03 The roof waste % is not available. The calculation contains values that may result in an inaccurate waste %. 819. Hip / Ridge cap - High profile - composition shingles 30.00 LF 7.74 7.24 47.88 287.32 0/30 yrs Avg. 0% (0.00) 287.32 820. Remove Wood shakes - heavy (3/4") hand split 16.77 SQ 79.30 0.00 265.98 1,595.84 0/40 yrs Avg. NA (0.00) 1,595.84 821. Wood shakes - heavy (3/4") hand split 17.44 SQ 1,584.60 1,244.48 5,775.98 34,655.88 0/40 yrs Avg. 0% (0.00) 34,655.88 Auto Calculated Waste: 4.0%, 0.67SQ Options: Include eave starter course: No, Exposure - Hip/Valley/Starter: 7 1/2", 822. Hip / Ridge cap - wood shake shingles 30.00 LF 17.63 20.09 109.80 658.79 0/40 yrs Avg. 0% (0.00) 658.79 823. Remove Wood shakes - heavy (3/4") hand split (per SHAKE) 0.00 EA 8.75 0.00 0.00 0.00 0/40 yrs Avg. NA (0.00) 0.00 824. Wood shakes - heavy (3/4") hand split (per SHAKE) 0.00 EA 22.08 0.00 0.00 0.00 0/40 yrs Avg. 0% (0.00) 0.00 The roof waste % is not available. The calculation contains values that may result in an inaccurate waste %. 825. Tile roofing - Detach & reset 16.77 SQ 1,086.31 78.16 3,659.12 21,954.70 0/NA Avg. 0% (0.00) 21,954.70  
-2025-08-28-1618 8/31/2025 Page: 60  
-
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-826. R&R Tile roofing - Clay - "S" or flat (per TILE) 
-
-0.00 EA 51.47 0.00 0.00 0.00 0/75 yrs Avg. 0% (0.00) 0.00 
-827. R&R Tile roofing - Concrete - "S" or flat (per TILE) 
-
-0.00 EA 46.68 0.00 0.00 0.00 0/75 yrs Avg. 0% (0.00) 0.00 
-828. R&R Tile roofing - Clay - Barrel (mission) (per TILE) 
-
-0.00 EA 51.05 0.00 0.00 0.00 0/75 yrs Avg. 0% (0.00) 0.00 
-829. R&R Tile roofing - Glazed - Barrel or "S" (per TILE) 
-
-0.00 EA 56.63 0.00 0.00 0.00 0/75 yrs Avg. 0% (0.00) 0.00 
-830. Tear off, haul and dispose of tile roofing 
-16.77 SQ 236.63 0.00 793.66 4,761.95 0/75 yrs Avg. NA (0.00) 4,761.95 
-831. Tear off tile roofing (no haul off) 
-
-16.77 SQ 169.90 0.00 569.84 3,419.06 0/75 yrs Avg. NA (0.00) 3,419.06 
-832. Remove Tile roofing - Clay - "S" or flat tile 
-
-16.77 SQ 236.63 0.00 793.66 4,761.95 0/75 yrs Avg. NA (0.00) 4,761.95 
-833. Remove Tile roofing - Concrete - "S" or flat tile 
-
-16.77 SQ 236.63 0.00 793.66 4,761.95 0/75 yrs Avg. NA (0.00) 4,761.95 
-834. Remove Tile roofing - Clay - Barrel (mission) tile 
-
-16.77 SQ 236.63 0.00 793.66 4,761.95 0/75 yrs Avg. NA (0.00) 4,761.95 
-835. Remove Tile roofing - Glazed - (Barrel or "S" tile) 
-
-16.77 SQ 236.63 0.00 793.66 4,761.95 0/75 yrs Avg. NA (0.00) 4,761.95 
-836. Ice & water barrier 
-
-16.77 SF 1.94 0.51 6.60 39.64 0/30 yrs Avg. 0% (0.00) 39.64 
-837. Tile roofing - Clay - "S" or flat tile 
-19.29 SQ 1,045.90 625.52 4,160.18 24,961.11 0/75 yrs Avg. 0% (0.00) 24,961.11 
-838. Tile roofing - Concrete - "S" or flat tile 
-
-19.29 SQ 760.71 295.44 2,993.90 17,963.44 0/75 yrs Avg. 0% (0.00) 17,963.44 
-839. Tile roofing - Clay - Barrel (mission) tile 
-
-19.29 SQ 1,308.37 929.30 5,233.56 31,401.32 0/75 yrs Avg. 0% (0.00) 31,401.32 
-840. Tile roofing - Glazed - (Barrel or "S" tile) 
-19.29 SQ 1,413.70 1,051.21 5,664.30 33,985.78 0/75 yrs Avg. 0% (0.00) 33,985.78 
-841. Tile roofing - Hurricane clip & wind lock add-on 
-0.00 LF 4.33 0.00 0.00 0.00 0/75 yrs Avg. 0% (0.00) 0.00 
-Note: To be installed at the same time tile roofing is installed; priced per lineal foot of each tile course reinforced with hurricane clips and nose clips. 
-842. Hip & ridge nailer board for tile roofing - channel metal 
-0.00 LF 3.43 0.00 0.00 0.00 0/75 yrs Avg. 0% (0.00) 0.00 
-843. Hip & ridge nailer board for tile roofing - wood 
-0.00 LF 3.33 0.00 0.00 0.00 0/75 yrs Avg. 0% (0.00) 0.00 
-844. Hip / Ridge / Rake cap - tile roofing 
-30.00 LF 13.54 12.73 83.78 502.71 0/75 yrs Avg. 0% (0.00) 502.71 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE 845. Bird stop - Eave closure strip for tile roofing - clay 0.00 LF 10.69 0.00 0.00 0.00 0/75 yrs 846. Bird stop - Eave closure strip for tile roofing - metal 0.00 LF 4.63 0.00 0.00 0.00 0/75 yrs 847. Remove Additional charge for steep roof greater than 12/12 slope 16.77 SQ 33.13 0.00 111.12 666.71 0/NA 848. Additional charge for steep roof greater than 12/12 slope 16.77 SQ 112.47 0.00 377.22 2,263.34 0/NA 849. Remove Flashing - pipe jack 1.00 EA 7.04 0.00 1.40 8.44 0/35 yrs 850. Remove Exhaust cap - through roof - 6" to 8" 0.00 EA 8.99 0.00 0.00 0.00 0/35 yrs 851. Remove Roof vent - off ridge type - 4' 0.00 EA 15.72 0.00 0.00 0.00 0/35 yrs 852. Roof vent - off ridge type - 4' 0.00 EA 106.68 0.00 0.00 0.00 0/35 yrs 853. R&R Soffit - metal 0.00 SF 8.27 0.00 0.00 0.00 0/50 yrs 854. R&R Fascia - metal - 8" 0.00 LF 8.08 0.00 0.00 0.00 0/50 yrs 855. R&R Soffit - vinyl 0.00 SF 6.72 0.00 0.00 0.00 0/50 yrs 856. R&R Fascia - vinyl coated aluminum - 4" to 6" 0.00 LF 6.41 0.00 0.00 0.00 0/50 yrs 857. R&R Soffit - wood 0.00 SF 7.37 0.00 0.00 0.00 0/150 yrs 858. R&R Cove molding - 3/4" 0.00 LF 2.04 0.00 0.00 0.00 0/150 yrs 859. R&R Soffit vent 0.00 EA 66.07 0.00 0.00 0.00 0/150 yrs 860. Prime & paint exterior soffit - wood 0.00 SF 3.01 0.00 0.00 0.00 0/15 yrs 861. R&R Fascia - 1" x 8" - #2 pine 0.00 LF 8.93 0.00 0.00 0.00 0/75 yrs 862. Prime & paint exterior fascia - wood, 6"- 8" wide 0.00 LF 2.89 0.00 0.00 0.00 0/15 yrs  COND. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. ACV 0% (0.00) 0.00 0% (0.00) 0.00 NA (0.00) 666.71 0% (0.00) 2,263.34 NA (0.00) 8.44 NA (0.00) 0.00 NA (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00 0% (0.00) 0.00  
-Totals: Roof1 5,588.75 46,700.36 280,201.54  11,519.51 268,682.03  
-Total: Main Level 5,588.75 46,700.36 280,201.54  11,519.51 268,682.03  
-Total: SKETCH2 5,588.75 46,700.36 280,201.54 2025-08-28-1618  11,519.51 268,682.03 8/31/2025 Page: 62  
-
-# SKETCH3 Basement
-QUANTITY UNIT TAX 863. R&R Block - 4" x 8" x 16" - in place 834.00 SF 12.26 147.12 864. R&R Concrete slab on grade - finished in place 6.17 CY 887.23 77.05 865. R&R Batt insulation - 4" - R13 - unfaced batt 394.67 SF 1.51 16.58  O&P 2,074.38 1,110.26 122.52  RCV 12,446.34 6,661.52 735.05  AGE/LIFE 0/100 yrs 0/50 yrs 0/150 yrs  COND. Avg. Avg. Avg.  DEP % 0% 0% 0%  DEPREC. (0.00) (0.00) (0.00)  ACV 12,446.34 6,661.52 735.05  
-Total: Main Level  240.75  3,307.16  19,842.91  0.00  19,842.91  
-25' 8" 25'  Basement  Height: 8'  
+Roof (Wood shakes heavy & notes 820–824) -
+|       # | DESCRIPTION                                      |   QTY | UNIT |          TAX |     O\&P |       RCV | AGE/LIFE | COND. | DEP% | DEPREC. |       ACV | NOTES                     |
+| ------: | ------------------------------------------------ | ----: | :--: | -----------: | -------: | --------: | :------: | :---: | ---: | ------: | --------: | ------------------------- |
+|     820 | **Remove** wood shakes – heavy (3/4") hand split | 16.77 |  SQ  |        79.30 |     0.00 |  1,595.84 | 0/40 yrs |  Avg. |   NA |  (0.00) |  1,595.84 | —                         |
+|     821 | Wood shakes – heavy (3/4") hand split            | 17.44 |  SQ  |     1,584.60 | 1,244.48 | 34,655.88 | 0/40 yrs |  Avg. |   0% |  (0.00) | 34,655.88 | Auto waste 4.0% (0.67 SQ) |
+|     822 | Hip/Ridge cap – wood shake shingles              | 30.00 |  LF  |        17.63 |    20.09 |    658.79 | 0/40 yrs |  Avg. |   0% |  (0.00) |    658.79 | —                         |
+| 823–824 | Remove/install wood shakes (per shake)           |  0.00 |  EA  | 8.75 / 22.08 |     0.00 |      0.00 | 0/40 yrs |  Avg. |    — |  (0.00) |      0.00 | —                         |
 
 
-720.00 SF Walls 500.00 SF Ceiling 
+Roof (Tile roofing 825–844) - 
+|       # | DESCRIPTION                                       |   QTY | UNIT |                     TAX |     O\&P |       RCV | AGE/LIFE | COND. | DEP% | DEPREC. |       ACV | NOTES         |
+| ------: | ------------------------------------------------- | ----: | :--: | ----------------------: | -------: | --------: | :------: | :---: | ---: | ------: | --------: | ------------- |
+|     825 | Tile roofing – Detach & reset                     | 16.77 |  SQ  |                1,086.31 |    78.16 | 21,954.70 |   0/NA   |  Avg. |   0% |  (0.00) | 21,954.70 | —             |
+| 826–829 | R\&R Tile roofing (Clay/Concrete/Glazed per TILE) |  0.00 |  EA  | 51.47/46.68/51.05/56.63 |     0.00 |      0.00 | 0/75 yrs |  Avg. |   0% |  (0.00) |      0.00 | —             |
+|     830 | Tear off, haul & dispose of tile roofing          | 16.77 |  SQ  |                  236.63 |     0.00 |  4,761.95 | 0/75 yrs |  Avg. |   NA |  (0.00) |  4,761.95 | —             |
+|     831 | Tear off tile roofing (no haul off)               | 16.77 |  SQ  |                  169.90 |     0.00 |  3,419.06 | 0/75 yrs |  Avg. |   NA |  (0.00) |  3,419.06 | —             |
+| 832–835 | Remove tile roofing (Clay/Concrete/Barrel/Glazed) | 16.77 |  SQ  |                  236.63 |     0.00 |  4,761.95 | 0/75 yrs |  Avg. |   NA |  (0.00) |  4,761.95 | Each category |
+|     836 | Ice & water barrier                               | 16.77 |  SF  |                    1.94 |     0.51 |     39.64 | 0/30 yrs |  Avg. |   0% |  (0.00) |     39.64 | —             |
+|     837 | Tile roofing – Clay – “S” or flat                 | 19.29 |  SQ  |                1,045.90 |   625.52 | 24,961.11 | 0/75 yrs |  Avg. |   0% |  (0.00) | 24,961.11 | —             |
+|     838 | Tile roofing – Concrete – “S” or flat             | 19.29 |  SQ  |                  760.71 |   295.44 | 17,963.44 | 0/75 yrs |  Avg. |   0% |  (0.00) | 17,963.44 | —             |
+|     839 | Tile roofing – Clay – Barrel (mission)            | 19.29 |  SQ  |                1,308.37 |   929.30 | 31,401.32 | 0/75 yrs |  Avg. |   0% |  (0.00) | 31,401.32 | —             |
+|     840 | Tile roofing – Glazed – Barrel or “S”             | 19.29 |  SQ  |                1,413.70 | 1,051.21 | 33,985.78 | 0/75 yrs |  Avg. |   0% |  (0.00) | 33,985.78 | —             |
+| 841–843 | Tile clips & nailer boards (0 qty)                |  0.00 |  LF  |      4.33 / 3.43 / 3.33 |     0.00 |      0.00 | 0/75 yrs |  Avg. |   0% |  (0.00) |      0.00 | —             |
+|     844 | Hip/Ridge/Rake cap – tile roofing                 | 30.00 |  LF  |                   13.54 |    12.73 |    502.71 | 0/75 yrs |  Avg. |   0% |  (0.00) |    502.71 | —             |
 
-20'
-20' 8"
-1220.00 SF Walls & Ceiling 500.00 SF Floor 
-55.56 SY Flooring 90.00 LF Floor Perimeter 
-90.00 LF Ceil. Perimeter 
-QUANTITY UNIT FOUNDATION REPAIR 866. Plaster (parget) foundation 16.00 SF 1.24 for damaged foundation styrofoam  TAX 0.32  O&P 4.02  RCV 24.18  AGE/LIFE 1/100 yrs  COND. Avg.  DEP % 1%  DEPREC. (0.20)  ACV 23.98  
+
+Roof (Tile accessories & soffit/fascia 845–862) - 
+|       # | DESCRIPTION                            |   QTY | UNIT |                   TAX | O\&P |      RCV |     AGE/LIFE    | COND. | DEP% | DEPREC. |      ACV | NOTES |
+| ------: | -------------------------------------- | ----: | :--: | --------------------: | ---: | -------: | :-------------: | :---: | ---: | ------: | -------: | ----- |
+| 845–846 | Bird stop – eave closure (clay/metal)  |  0.00 |  LF  |          10.69 / 4.63 | 0.00 |     0.00 |     0/75 yrs    |  Avg. |   0% |  (0.00) |     0.00 | —     |
+|     847 | **Remove** steep roof add >12/12       | 16.77 |  SQ  |                 33.13 | 0.00 |   666.71 |       0/NA      |  Avg. |   NA |  (0.00) |   666.71 | —     |
+|     848 | Steep roof add >12/12                  | 16.77 |  SQ  |                112.47 | 0.00 | 2,263.34 |       0/NA      |  Avg. |   0% |  (0.00) | 2,263.34 | —     |
+|     849 | **Remove** Flashing – pipe jack        |  1.00 |  EA  |                  7.04 | 0.00 |     8.44 |     0/35 yrs    |  Avg. |   NA |  (0.00) |     8.44 | —     |
+| 850–852 | Remove/Install off-ridge vents (0 qty) |  0.00 |  EA  | 8.99 / 15.72 / 106.68 | 0.00 |     0.00 |     0/35 yrs    |  Avg. |    — |  (0.00) |     0.00 | —     |
+| 853–862 | Soffit/fascia/vents/paint (0 qty)      |  0.00 |   —  |                     — | 0.00 |     0.00 | 0/50–150/15 yrs |  Avg. |    — |  (0.00) |     0.00 | —     |
+
+
+Basement (863–866) - 
+|   # | DESCRIPTION                               |    QTY | UNIT |    TAX |     O\&P |       RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |       ACV | NOTES                          |
+| --: | ----------------------------------------- | -----: | :--: | -----: | -------: | --------: | :-------: | :---: | ---: | ------: | --------: | ------------------------------ |
+| 863 | R\&R Block – 4"×8"×16" – in place         | 834.00 |  SF  |  12.26 | 2,074.38 | 12,446.34 | 0/100 yrs |  Avg. |   0% |  (0.00) | 12,446.34 | —                              |
+| 864 | R\&R Concrete slab on grade – finished    |   6.17 |  CY  | 887.23 | 1,110.26 |  6,661.52 |  0/50 yrs |  Avg. |   0% |  (0.00) |  6,661.52 | —                              |
+| 865 | R\&R Batt insulation – 4" – R13 – unfaced | 394.67 |  SF  |   1.51 |   122.52 |    735.05 | 0/150 yrs |  Avg. |   0% |  (0.00) |    735.05 | —                              |
+| 866 | Plaster (parget) foundation               |  16.00 |  SF  |   1.24 |     4.02 |     24.18 | 1/100 yrs |  Avg. |   1% |  (0.20) |     23.98 | Damage to foundation styrofoam |
+
+
+
+
 Totals: Basement  0.32  4.02  24.18  0.20  23.98  
 
 12' 8" 
    ___________________________________________________________________________________________________________________
+
 # HVAC                                                                                                                                                                                            
 12' 
 384.00 SF Walls 144.00 SF Ceiling 
@@ -1759,538 +1670,1044 @@ Totals: Basement  0.32  4.02  24.18  0.20  23.98
 12' 8"12'
 
 16.00 SY Flooring 48.00 LF Floor Perimeter 
-48.00 LF Ceil. Perimeter                                                                                                                                                                                                                                                                                                     
+48.00 LF Ceil. Perimeter
+
 QUANTITY UNIT HVAC 867. R&R Clothes dryer vent cover 2.00 EA 35.70 damaged by hail  TAX 0.76  O&P 14.44  RCV 86.60  AGE/LIFE 0/30 yrs  COND. Avg.  DEP % 0%  DEPREC. (0.00)  ACV 86.60  
 
-QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV  
-HVAC  
-868. R&R Condenser pad - 24" x 24"  
-1.00 EA  58.55  2.21  12.16  72.92  0/15 yrs  Avg.  0%  (0.00)  72.92  
-869. R&R Condenser pad - 36" x 36"  
-1.00 EA  76.64  3.30  15.98  95.92  0/15 yrs  Avg.  0%  (0.00)  95.92  
-HVAC  
-870. R&R Air conditioning cover  
-1.00 EA  153.75  5.13  31.78  190.66  0/15 yrs  Avg.  0%  (0.00)  190.66  
-damaged by hail  
-HVAC  
-871. HVAC Technician - per hour  
-2.00 HR  100.01  0.00  40.00  240.02  0/NA  Avg.  0%  (0.00)  240.02  
-labor to detach and reset HVAC connections when installing new vinyl  
-872. Comb and straighten a/c condenser fins - with trip charge  
-1.00 EA  183.88  0.00  36.78  220.66  0/NA  Avg.  0%  (0.00)  220.66  
-873. Comb and straighten a/c condenser fins - w/out trip charge  
-1.00 EA  78.78  0.00  15.76  94.54  0/NA  Avg.  0%  (0.00)  94.54  
-trip charge charged on the first A/C unit  
-874. Condensate drain line  
-1.00 EA  60.71  0.55  12.26  73.52  0/150 yrs  Avg.  0%  (0.00)  73.52  
-875. R&R Ductwork system - hot and cold air (per run)  
-1.00 EA  470.24  10.81  96.22  577.27  0/30 yrs  Avg.  0%  (0.00)  577.27  
-876. R&R Blown-in insulation - 14" depth - R38  
-144.00 SF  3.36  12.36  99.24  595.44  0/150 yrs  Avg.  0%  (0.00)  595.44  
-877. Central air - condenser unit - 4 ton - 14-15 SEER  
-1.00 EA  2,398.18  111.62  501.96  3,011.76  0/15 yrs  Avg.  0%  (0.00)  3,011.76  
-Quality: 3 ton, 14 to 15 SEER. Factory charged unit or dry unit with refrigerant added onsite.  
-Reference: A 3 ton unit will approximately service 1500 to 2100 SF.  
-878. Condenser pad - 36" x 36"  
-1.00 EA  69.99  3.30  14.66  87.95  0/15 yrs  Avg.  0%  (0.00)  87.95  
-879. Refrigerant lineset - 3/8" x 3/4" tubing - 31' to 50'  
-1.00 EA  422.65  14.53  87.44  524.62  0/15 yrs  Avg.  0%  (0.00)  524.62  
-880. Disconnect box - 60 amp - non fused  
-1.00 EA  140.59  1.01  28.32  169.92  0/30 yrs  Avg.  0%  (0.00)  169.92  
-881. #6 gauge copper wire - stranded or solid  
-1.00 LF  1.30  0.03  0.26  1.59  0/150 yrs  Avg.  0%  (0.00)  1.59  
-882. Liquid tight flexible conduit, 3/4"  
-1.00 LF  9.89  0.09  2.00  11.98  0/150 yrs  Avg.  0%  (0.00)  11.98  
-883. Central air cond. system - refrigerant only  
-1.00 LB  16.50  0.99  3.50  20.99  0/15 yrs  Avg.  0%  (0.00)  20.99  
-
-QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV  
-884. Central air - condenser unit - 2 ton - up to 13 SEER  
-1.00 EA  1,233.10  55.96  257.82  1,546.88  0/15 yrs  Avg.  0%  (0.00)  1,546.88  
-Quality: 3 ton, 14 to 15 SEER. Factory charged unit or dry unit with refrigerant added onsite.  
-Reference: A 3 ton unit will approximately service 1500 to 2100 SF.  
-885. Condenser pad - 36" x 36"  
-1.00 EA  69.99  3.30  14.66  87.95  0/15 yrs  Avg.  0%  (0.00)  87.95  
-886. Refrigerant lineset - 3/8" x 3/4" tubing - 31' to 50'  
-1.00 EA  422.65  14.53  87.44  524.62  0/15 yrs  Avg.  0%  (0.00)  524.62  
-887. Disconnect box - 60 amp - non fused  
-1.00 EA  140.59  1.01  28.32  169.92  0/30 yrs  Avg.  0%  (0.00)  169.92  
-888. #8 gauge copper wire - stranded or solid  
-1.00 LF  0.94  0.02  0.18  1.14  0/150 yrs  Avg.  0%  (0.00)  1.14  
-889. Liquid tight flexible conduit, 1/2"  
-1.00 LF  7.71  0.07  1.56  9.34  0/150 yrs  Avg.  0%  (0.00)  9.34  
-890. Central air cond. system - refrigerant only  
-1.00 LB  16.50  0.99  3.50  20.99  0/15 yrs  Avg.  0%  (0.00)  20.99  
-
-Totals: HVAC 242.57 1,406.24 8,437.20 0.00 8,437.20 
-
-# Electrical
-
-384.00 SF Walls 144.00 SF Ceiling 
-528.00 SF Walls & Ceiling 144.00 SF Floor 
-16.00 SY Flooring 48.00 LF Floor Perimeter 
-
-48.00 LF Ceil. Perimeter 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-ELECTRICAL 
-891. Electrician - per hour 
-2.00 HR 95.15 0.00 38.06 228.36 0/NA Avg. 0% (0.00) 228.36 
-labor to detach and reset electrical connections when installing new vinyl 
-892. Detach & Reset Exterior light fixture - Standard grade 
-
-2.00 EA 69.57 0.00 27.82 166.96 0/20 yrs Avg. 0% (0.00) 166.96 
-to assist in siding install 
-ELECTRICAL 
-893. Detach & Reset Exterior light fixture - Standard grade 
-
-2.00 EA 69.57 0.00 27.82 166.96 0/20 yrs Avg. 0% (0.00) 166.96 
-light damaged by hail 
-QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV  
-894. R&R Clothes dryer vent cover  
-1.00 EA  35.70  0.38  7.24  43.32  2/30 yrs  Avg.  6.67%  (2.16)  41.16  
-damaged  
-ELECTRICAL  
-895. Megohmmeter check electrical circuits - average residence  
-1.00 EA  988.03  0.00  197.60  1,185.63  0/NA  Avg.  0%  (0.00)  1,185.63  
-ELECTRICAL  
-896. Megohmmeter check electrical circuits - single circuit  
-1.00 EA  123.50  0.00  24.70  148.20  0/NA  Avg.  0%  (0.00)  148.20  
-897. R&R Light fixture  
-1.00 EA  85.94  2.16  17.62  105.72  0/20 yrs  Avg.  0%  (0.00)  105.72  
-898. R&R 110 volt copper wiring run and box - rough-in only  
-1.00 EA  72.47  1.14  14.72  88.33  0/100 yrs  Avg.  0%  (0.00)  88.33  
-899. R&R 110 volt copper wiring run, box and switch  
-1.00 EA  90.81  1.33  18.42  110.56  0/100 yrs  Avg.  0%  (0.00)  110.56  
-900. R&R 110 volt copper wiring run, box and outlet  
-4.00 EA  90.11  5.14  73.10  438.68  0/100 yrs  Avg.  0%  (0.00)  438.68  
-901. R&R Light bar - 4 lights - High grade  
-1.00 EA  233.65  9.30  48.60  291.55  0/20 yrs  Avg.  0%  (0.00)  291.55  
-902. R&R Exhaust fan  
-1.00 EA  291.79  6.68  59.70  358.17  0/14 yrs  Avg.  0%  (0.00)  358.17  
-903. R&R Ground fault interrupter (GFI) outlet  
-1.00 EA  42.22  1.19  8.68  52.09  0/10 yrs  Avg.  0%  (0.00)  52.09  
-ELECTRICAL  
-904. R&R 110 volt copper wiring run, box and switch  
-1.00 EA  76.80  0.66  15.52  92.98  0/100 yrs  Avg.  0%  (0.00)  92.98  
-attic light and switch damaged  
-905. Porcelain light fixture  
-1.00 EA  30.79  0.33  6.22  37.34  0/20 yrs  Avg.  0%  (0.00)  37.34  
-Totals: Electrical  28.31  585.82  3,514.85  2.16  3,512.69  
+|   # | DESCRIPTION                                       |    QTY | UNIT |      TAX |   O&P |      RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |      ACV | NOTES                                           |
+| --: | ------------------------------------------------- | -----: | :--: | -------: | -----: | -------: | :-------: | :---: | ---: | ------: | -------: | ----------------------------------------------- |
+| 868 | R\&R Condenser pad – 24" × 24"                    |   1.00 |  EA  |    58.55 |   2.21 |    72.92 |  0/15 yrs |  Avg. |   0% |  (0.00) |    72.92 | —                                               |
+| 869 | R\&R Condenser pad – 36" × 36"                    |   1.00 |  EA  |    76.64 |   3.30 |    95.92 |  0/15 yrs |  Avg. |   0% |  (0.00) |    95.92 | —                                               |
+| 870 | R\&R Air conditioning cover                       |   1.00 |  EA  |   153.75 |   5.13 |   190.66 |  0/15 yrs |  Avg. |   0% |  (0.00) |   190.66 | Damaged by hail                                 |
+| 871 | HVAC Technician – per hour                        |   2.00 |  HR  |   100.01 |   0.00 |   240.02 |    0/NA   |  Avg. |   0% |  (0.00) |   240.02 | Detach/reset HVAC connections for vinyl install |
+| 872 | Comb/straighten A/C condenser fins – w/ trip      |   1.00 |  EA  |   183.88 |   0.00 |   220.66 |    0/NA   |  Avg. |   0% |  (0.00) |   220.66 | —                                               |
+| 873 | Comb/straighten A/C condenser fins – no trip      |   1.00 |  EA  |    78.78 |   0.00 |    94.54 |    0/NA   |  Avg. |   0% |  (0.00) |    94.54 | Trip charged on first unit                      |
+| 874 | Condensate drain line                             |   1.00 |  EA  |    60.71 |   0.55 |    73.52 | 0/150 yrs |  Avg. |   0% |  (0.00) |    73.52 | —                                               |
+| 875 | R\&R Ductwork system – hot & cold air (per run)   |   1.00 |  EA  |   470.24 |  10.81 |   577.27 |  0/30 yrs |  Avg. |   0% |  (0.00) |   577.27 | —                                               |
+| 876 | R\&R Blown-in insulation – 14" depth – R38        | 144.00 |  SF  |     3.36 |  12.36 |   595.44 | 0/150 yrs |  Avg. |   0% |  (0.00) |   595.44 | —                                               |
+| 877 | Central air – condenser unit – 4 ton – 14–15 SEER |   1.00 |  EA  | 2,398.18 | 111.62 | 3,011.76 |  0/15 yrs |  Avg. |   0% |  (0.00) | 3,011.76 | Spec text references 3-ton in notes             |
+| 878 | Condenser pad – 36" × 36"                         |   1.00 |  EA  |    69.99 |   3.30 |    87.95 |  0/15 yrs |  Avg. |   0% |  (0.00) |    87.95 | —                                               |
+| 879 | Refrigerant lineset – 3/8" × 3/4" – 31'–50'       |   1.00 |  EA  |   422.65 |  14.53 |   524.62 |  0/15 yrs |  Avg. |   0% |  (0.00) |   524.62 | —                                               |
+| 880 | Disconnect box – 60A – non-fused                  |   1.00 |  EA  |   140.59 |   1.01 |   169.92 |  0/30 yrs |  Avg. |   0% |  (0.00) |   169.92 | —                                               |
+| 881 | #6 gauge copper wire – stranded/solid             |   1.00 |  LF  |     1.30 |   0.03 |     1.59 | 0/150 yrs |  Avg. |   0% |  (0.00) |     1.59 | —                                               |
+| 882 | Liquid-tight flexible conduit – 3/4"              |   1.00 |  LF  |     9.89 |   0.09 |    11.98 | 0/150 yrs |  Avg. |   0% |  (0.00) |    11.98 | —                                               |
+| 883 | Central air cond. system – refrigerant only       |   1.00 |  LB  |    16.50 |   0.99 |    20.99 |  0/15 yrs |  Avg. |   0% |  (0.00) |    20.99 | —                                               |
+| 884 | Central air – condenser unit – 2 ton – ≤13 SEER   |   1.00 |  EA  | 1,233.10 |  55.96 | 1,546.88 |  0/15 yrs |  Avg. |   0% |  (0.00) | 1,546.88 | —                                               |
+| 885 | Condenser pad – 36" × 36"                         |   1.00 |  EA  |    69.99 |   3.30 |    87.95 |  0/15 yrs |  Avg. |   0% |  (0.00) |    87.95 | —                                               |
+| 886 | Refrigerant lineset – 3/8" × 3/4" – 31'–50'       |   1.00 |  EA  |   422.65 |  14.53 |   524.62 |  0/15 yrs |  Avg. |   0% |  (0.00) |   524.62 | —                                               |
+| 887 | Disconnect box – 60A – non-fused                  |   1.00 |  EA  |   140.59 |   1.01 |   169.92 |  0/30 yrs |  Avg. |   0% |  (0.00) |   169.92 | —                                               |
+| 888 | #8 gauge copper wire – stranded/solid             |   1.00 |  LF  |     0.94 |   0.02 |     1.14 | 0/150 yrs |  Avg. |   0% |  (0.00) |     1.14 | —                                               |
+| 889 | Liquid-tight flexible conduit – 1/2"              |   1.00 |  LF  |     7.71 |   0.07 |     9.34 | 0/150 yrs |  Avg. |   0% |  (0.00) |     9.34 | —                                               |
+| 890 | Central air cond. system – refrigerant only       |   1.00 |  LB  |    16.50 |   0.99 |    20.99 |  0/15 yrs |  Avg. |   0% |  (0.00) |    20.99 | —                                               |
 
 
-384.00 SF Walls 144.00 SF Ceiling 
-528.00 SF Walls & Ceiling 144.00 SF Floor 
-temp op 
-16.00 SY Flooring 48.00 LF Floor Perimeter 
-48.00 LF Ceil. Perimeter 
-12'12' 8" 
+# Electrical - 
 
-QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV  
-                                                                                                                                                                            
-906. Dumpster load - Approx. 40 yards, 7-8 tons of debris  
-3.00 EA  725.10  0.00  435.06  2,610.36  0/NA  Avg.  NA  (0.00)  2,610.36  
-907. R&R Temporary power - overhead hookup  
-1.00 EA  663.84  0.00  132.78  796.62  0/NA  Avg.  0%  (0.00)  796.62  
-908. Temporary toilet - Minimum rental charge  
-1.00 EA  125.00  0.00  25.00  150.00  0/NA  Avg.  0%  (0.00)  150.00  
-909. Temporary toilet (per month)  
-6.00 MO  134.99  0.00  161.98  971.92  0/NA  Avg.  0%  (0.00)  971.92  
-910. Temporary power usage (per month)  
-6.00 MO  127.41  45.87  162.08  972.41  0/NA  Avg.  0%  (0.00)  972.41  
-911. Taxes, insurance, permits & fees (Bid Item)  
-1.00 EA  650.00  0.00  130.00  780.00  0/NA  Avg.  0%  (0.00)  780.00  
+|   # | DESCRIPTION                                  |  QTY | UNIT |    TAX | O&P |      RCV |  AGE/LIFE | COND. |  DEP% | DEPREC. |      ACV | NOTES                        |
+| --: | -------------------------------------------- | ---: | :--: | -----: | ---: | -------: | :-------: | :---: | ----: | ------: | -------: | ---------------------------- |
+| 891 | Electrician – per hour                       | 2.00 |  HR  |  95.15 | 0.00 |   228.36 |    0/NA   |  Avg. |    0% |  (0.00) |   228.36 | Detach/reset for siding      |
+| 892 | Detach & Reset Exterior light fixture – Std  | 2.00 |  EA  |  69.57 | 0.00 |   166.96 |  0/20 yrs |  Avg. |    0% |  (0.00) |   166.96 | Assist siding install        |
+| 893 | Detach & Reset Exterior light fixture – Std  | 2.00 |  EA  |  69.57 | 0.00 |   166.96 |  0/20 yrs |  Avg. |    0% |  (0.00) |   166.96 | Light damaged by hail        |
+| 894 | R\&R Clothes dryer vent cover                | 1.00 |  EA  |  35.70 | 0.38 |    43.32 |  2/30 yrs |  Avg. | 6.67% |  (2.16) |    41.16 | Damaged                      |
+| 895 | Megohmmeter check – average residence        | 1.00 |  EA  | 988.03 | 0.00 | 1,185.63 |    0/NA   |  Avg. |    0% |  (0.00) | 1,185.63 | —                            |
+| 896 | Megohmmeter check – single circuit           | 1.00 |  EA  | 123.50 | 0.00 |   148.20 |    0/NA   |  Avg. |    0% |  (0.00) |   148.20 | —                            |
+| 897 | R\&R Light fixture                           | 1.00 |  EA  |  85.94 | 2.16 |   105.72 |  0/20 yrs |  Avg. |    0% |  (0.00) |   105.72 | —                            |
+| 898 | R\&R 110V copper wiring run & box – rough-in | 1.00 |  EA  |  72.47 | 1.14 |    88.33 | 0/100 yrs |  Avg. |    0% |  (0.00) |    88.33 | —                            |
+| 899 | R\&R 110V copper wiring run, box & switch    | 1.00 |  EA  |  90.81 | 1.33 |   110.56 | 0/100 yrs |  Avg. |    0% |  (0.00) |   110.56 | —                            |
+| 900 | R\&R 110V copper wiring run, box & outlet    | 4.00 |  EA  |  90.11 | 5.14 |   438.68 | 0/100 yrs |  Avg. |    0% |  (0.00) |   438.68 | —                            |
+| 901 | R\&R Light bar – 4 lights – High grade       | 1.00 |  EA  | 233.65 | 9.30 |   291.55 |  0/20 yrs |  Avg. |    0% |  (0.00) |   291.55 | —                            |
+| 902 | R\&R Exhaust fan                             | 1.00 |  EA  | 291.79 | 6.68 |   358.17 |  0/14 yrs |  Avg. |    0% |  (0.00) |   358.17 | —                            |
+| 903 | R\&R GFCI outlet                             | 1.00 |  EA  |  42.22 | 1.19 |    52.09 |  0/10 yrs |  Avg. |    0% |  (0.00) |    52.09 | —                            |
+| 904 | R\&R 110V copper wiring run, box & switch    | 1.00 |  EA  |  76.80 | 0.66 |    92.98 | 0/100 yrs |  Avg. |    0% |  (0.00) |    92.98 | Attic light & switch damaged |
+| 905 | Porcelain light fixture                      | 1.00 |  EA  |  30.79 | 0.33 |    37.34 |  0/20 yrs |  Avg. |    0% |  (0.00) |    37.34 | —                            |
 
-Totals: temp op 45.87 1,046.90 6,281.31 0.00 6,281.31 
 
-12' 8" 
+Temporary Operations - 
+|   # | DESCRIPTION                                 |  QTY | UNIT |    TAX |  O&P |      RCV | AGE/LIFE | COND. | DEP% | DEPREC. |      ACV | NOTES |
+| --: | ------------------------------------------- | ---: | :--: | -----: | ----: | -------: | :------: | :---: | ---: | ------: | -------: | ----- |
+| 906 | Dumpster load – \~40 yd, 7–8 tons           | 3.00 |  EA  | 725.10 |  0.00 | 2,610.36 |   0/NA   |  Avg. |   NA |  (0.00) | 2,610.36 | —     |
+| 907 | R\&R Temporary power – overhead hookup      | 1.00 |  EA  | 663.84 |  0.00 |   796.62 |   0/NA   |  Avg. |   0% |  (0.00) |   796.62 | —     |
+| 908 | Temporary toilet – Minimum rental charge    | 1.00 |  EA  | 125.00 |  0.00 |   150.00 |   0/NA   |  Avg. |   0% |  (0.00) |   150.00 | —     |
+| 909 | Temporary toilet (per month)                | 6.00 |  MO  | 134.99 |  0.00 |   971.92 |   0/NA   |  Avg. |   0% |  (0.00) |   971.92 | —     |
+| 910 | Temporary power usage (per month)           | 6.00 |  MO  | 127.41 | 45.87 |   972.41 |   0/NA   |  Avg. |   0% |  (0.00) |   972.41 | —     |
+| 911 | Taxes, insurance, permits & fees (Bid Item) | 1.00 |  EA  | 650.00 |  0.00 |   780.00 |   0/NA   |  Avg. |   0% |  (0.00) |   780.00 | —     |
+
 
 # Plumbing 
-                                                                                                                                                                            
+
+Fixtures & Rough-In (912–921)
+
+|   # | DESCRIPTION                              |  QTY | UNIT |      TAX |  O\&P |          RCV |  AGE/LIFE |
+| --: | ---------------------------------------- | ---: | :--: | -------: | ----: | -----------: | :-------: |
+| 912 | R\&R Toilet                              | 1.00 |  EA  |   541.53 | 19.65 |   **673.44** | 0/150 yrs |
+| 913 | R\&R Toilet seat                         | 1.00 |  EA  |    60.94 |  1.89 |    **75.41** |  0/9 yrs  |
+| 914 | R\&R Fiberglass tub & shower combination | 1.00 |  EA  | 1,381.56 | 49.91 | **1,717.77** |  0/50 yrs |
+| 915 | Rough-in plumbing – per fixture          | 3.00 |  EA  |   626.16 | 29.63 | **2,289.73** |  0/80 yrs |
+| 916 | R\&R Tub/shower faucet                   | 1.00 |  EA  |   321.90 |  8.79 |   **396.83** |  0/20 yrs |
+| 917 | R\&R Sink – single                       | 1.00 |  EA  |   283.20 |  9.87 |   **351.69** |  0/50 yrs |
+| 918 | R\&R Sink faucet – Bathroom              | 1.00 |  EA  |   255.97 |  8.91 |   **317.86** |  0/20 yrs |
+| 919 | Dishwasher connection                    | 1.00 |  EA  |   131.83 |  2.01 |   **160.60** | 0/100 yrs |
+| 920 | R\&R Sink – double basin                 | 1.00 |  EA  |   425.35 | 17.89 |   **531.90** |  0/50 yrs |
+| 921 | R\&R Sink faucet – Kitchen               | 1.00 |  EA  |   301.97 | 11.67 |   **376.38** |  0/15 yrs |
 
 
-384.00 SF Walls 144.00 SF Ceiling 
-12'12' 8"
-528.00 SF Walls & Ceiling 144.00 SF Floor 
-Plumbing 
-16.00 SY Flooring 48.00 LF Floor Perimeter 
-48.00 LF Ceil. Perimeter 
+Appliances, Water Heaters & Accessories - 
 
-QUANTITY UNIT TA
-912. R&R Toilet 1.00 EA 541.53 19.65 
-913. R&R Toilet seat 1.00 EA 60.94 1.89 
-914. R&R Fiberglass tub & shower combination 1.00 EA 1,381.56 49.91 
-915. Rough-in plumbing - per fixture 3.00 EA 626.16 29.63 
-916. R&R Tub/shower faucet 1.00 EA 321.90 8.79 
-917. R&R Sink - single 1.00 EA 283.20 9.87 
-918. R&R Sink faucet - Bathroom 1.00 EA 255.97 8.91 
-919. Dishwasher connection 1.00 EA 131.83 2.01 
-920. R&R Sink - double basin 1.00 EA 425.35 17.89 
-921. R&R Sink faucet - Kitchen 1.00 EA 301.97 11.67  O&P 112.26 12.58 286.30 381.62 66.14 58.62 52.98 26.76 88.66 62.74  RCV AGE/LIFE 673.44 0/150 yrs 75.41 0/9 yrs 1,717.77 0/50 yrs 2,289.73 0/80 yrs 396.83 0/20 yrs 351.69 0/50 yrs 317.86 0/20 yrs 160.60 0/100 yrs 531.90 0/50 yrs 376.38 0/15 yrs  
-2025-08-28-1618  8/31/2025  Page: 67  
-
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-                    
-922. R&R Garbage disposal / disposer 
-1.00 EA 279.30 9.00 57.66 345.96 0/12 yrs Avg. 0% (0.00) 345.96 
-923. R&R Appliance water line - 1/4" 
-1.00 EA 93.78 2.35 19.24 115.37 0/50 yrs Avg. 0% (0.00) 115.37 
-924. Patio/pool Enclosure - Rescreen 
-0.00 SF 1.99 0.00 0.00 0.00 0/40 yrs Avg. 0% (0.00) 0.00 
-925. R&R Patio/pool Enclosure - Full Screen - High grade 
-0.00 SF 9.59 0.00 0.00 0.00 0/40 yrs Avg. 0% (0.00) 0.00 
-Note: Full screen patio or pool enclosure kit is priced per square foot of wall and/or ceiling surface areas. Includes: 1 screen door, wall/ceiling panels with full height screen, and installation labor. 
-926. Washer/Washing machine - Remove & reset 
-1.00 EA 53.78 0.00 10.76 64.54 0/NA Avg. 0% (0.00) 64.54
-927. Dryer - Remove & reset 
-1.00 EA 41.47 0.00 8.30 49.77 0/NA Avg. 0% (0.00) 49.77 
-928. Water heater - Detach 
-1.00 EA 91.10 6.56 18.22 115.88 0/NA Avg. 0% (0.00) 115.88 Includes: On site storage and labor. Excludes: Any additional materials or hardware. Note: Labor cost to disconnect, drain, and detach a water heater, then move to an adjacent room or area for storage. The labor type used in this item 
-is the Cleaning Remediation Technician. To reinstall see item PLM WHR. No life expectancy data 
-929. R&R Water heater - 40 gallon - Electric - 6 yr 
-1.00 EA 958.93 31.18 198.04 1,188.15 0/6 yrs Avg. 0% (0.00) 1,188.15 Includes: Electric water heater, in-line ball valve for 3/4" tubing, pressure relief valve, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Quality: 40 gallon capacity. Six year warranty. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Average life expectancy 6 years 
-Average depreciation 16.67% per year Maximum depreciation 100% 
-930. R&R Solar water heater system 
-
-1.00 EA 3,977.13 118.80 819.18 4,915.11 0/30 yrs Avg. 0% (0.00) 4,915.11 
-Includes: Water heater solar panel, supply and return lines, and labor to install. Labor cost to remove a solar water heater system, including a single collector panel, and to discard in a job-site waste receptacle. Quality: Progressive tube open system with single solar collector panel, mounting brackets, and 50 feet of 3/4" coiled copper tubing. Green: LEED considers solar systems to be green if they meet one or more of the following standards: Residential: Renewable Energy, Active Solar-Ready Design. Commercial: Renewable Energy Production, Minimum Energy Performance, Optimize Energy Performance. Note: For additional solar collector panels, see items PLM WHSOP*. For removal of additional panels, see items PLM WHSOP*. Average life expectancy 30 years Average depreciation 3.33% per year Maximum depreciation 100% 
-
-931. Solar water heater panel - Detach & reset 
-1.00 EA 701.83 0.00 140.36 842.19 0/NA Avg. 0% (0.00) 842.19 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-Includes: Water heater solar panel, supply and return lines, and labor to install. Labor cost to remove a solar water heater system, including a single collector panel, and to discard in a job-site waste receptacle. Quality: Progressive tube open system with single solar collector panel, mounting brackets, and 50 feet of 3/4" coiled copper tubing. Green: LEED considers solar systems to be green if they meet one or more of the following standards: Residential: Renewable Energy, Active Solar-Ready Design. Commercial: Renewable Energy Production, Minimum Energy Performance, Optimize Energy Performance. Note: For additional solar collector panels, see items PLM WHSOP*. For removal of additional panels, see items PLM WHSOP*. 
-Average life expectancy 30 years Average depreciation 3.33% per year Maximum depreciation 100%  
-
-932. Temporary water heater - (Bid Item)  
-1.00 EA  0.00  0.00  0.00  0.00  0/NA  Avg.  0%  (0.00)  0.00  
-933. Water heater - tankless - Detach & res et  
-1.00 EA  423.98  0.00  84.80  508.78  0/NA  Avg.  0%  (0.00)  508.78  
-Includes: On site storage, disconnect and drain, and labor. Excludes: Any additional materials or hardware. Note: Labor cost to detach a tankless water heater, move to an adjacent room or area for storage, and reinstall at a later time. No life expectancy data 
-
-934. R&R Water heater - tankless - 20.1kw to 36kw - Electric 
-1.00 EA 1,479.91 48.48 305.70 1,834.09 0/20 yrs Avg. 0% (0.00) 1,834.09 Includes: Electric - tankless water heater, in-line ball valve for 3/4" tubing, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Quality: 20.1 to 36 KW. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Note: Includes plumbing and electrical connections to existing piping, and wiring. Average life expectancy 20 years 
-Average depreciation 5% per year Maximum depreciation 100% 
-
-935. R&R Water heater - tankless - 5-5.9 gallon - Gas - Power vent 
-1.00 EA 1,974.50 73.58 409.62 2,457.70 0/20 yrs Avg. 0% (0.00) 2,457.70 
-Includes: Gas - tankless water heater, in-line ball valve for 3/4" tubing, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Excludes: Gas flex connection, please see item PLM FT*. Quality: Power and/or direct vent 5 to 5.9 gpm 55 degree rise. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Note: Additional line items may be needed to run venting and/or plumbing pipes. Average life expectancy 20 years Average depreciation 5% per year Maximum depreciation 100% 
-
-936. R&R Water heater connector line - 3/4" flexible tubing 
-1.00 EA 61.81 0.92 12.54 75.27 0/50 yrs Avg. 0% (0.00) 75.27 Includes: Single supply line and installation labor. Labor cost to remove a water heater connector line and to discard in a job-site waste receptacle. Quality: Flexible copper supply line up to 2' long. Average life expectancy 50 years 
-Average depreciation 2% per year Maximum depreciation 100% 
-
-937. R&R Water heater seismic strap kit - 56 to 80 gallon 
-1.00 EA 77.34 1.49 15.78 94.61 0/100 yrs Avg. 0% (0.00) 94.61 
-2025-08-28-1618 8/31/2025 Page: 69 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-Includes: Two strap kit and labor to install. Labor cost to remove strap, and to discard in a job-site waste receptacle. Quality: Galvanized steel. Average life expectancy 100 years Average depreciation 1% per year Maximum depreciation 100% 
-
-938. R&R Water heater - 50 gallon - Gas - Power vent 
-1.00 EA 2,224.42 105.43 465.98 2,795.83 0/11 yrs Avg. 0% (0.00) 2,795.83 Includes: Gas water heater, in-line ball valve for 3/4" tubing, pressure relief valve, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Excludes: Gas flex connection, please see item PLM FT*. Quality: Power vent 50 gallon capacity. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Note: If PVC venting is needed see item "HVC VENTPVC". Average life expectancy 11 years 
-Average depreciation 9.09% per year Maximum depreciation 100% 
-
-939. R&R Water heater - flood sensor/shutoff - 3/4" 
-1.00 EA 233.43 11.10 48.90 293.43 0/70 yrs Avg. 0% (0.00) 293.43 Includes: Water leak sensor system and installation labor. Labor cost to remove a water heater flood sensor and to discard in a job-site waste receptacle. Excludes: Electrical wiring and/or batteries. Quality: 3/4" motorized water shut off valve with sensor and power control unit. Average life expectancy 70 years 
-Average depreciation 1.43% per year Maximum depreciation 100% 
-
-940. R&R Water heater - 80 gallon - Electric - Standard grade 
-1.00 EA 1,452.94 59.14 302.42 1,814.50 0/11 yrs Avg. 0% (0.00) 1,814.50 Includes: Electric water heater, in-line ball valve for 3/4" tubing, pressure relief valve, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Quality: 80 gallon capacity. Standard grade. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Average life expectancy 11 years 
-Average depreciation 9.09% per year Maximum depreciation 100% 
-
-941. R&R Solar water heater panel - over 33 SF 
-1.00 EA 1,953.83 69.57 404.70 2,428.10 0/30 yrs Avg. 0% (0.00) 2,428.10 Includes: Solar collector panel and labor to install. Labor cost to remove a water solar panel and to discard in a job-site waste receptacle. Green: LEED considers solar systems to be green if they meet one or more of the following standards: Residential: Renewable Energy, Active Solar-Ready Design. Commercial: Renewable Energy Production, Minimum Energy Performance, Optimize Energy Performance. Average life expectancy 30 years 
-Average depreciation 3.33% per year Maximum depreciation 100% 
-
-942. R&R Water heater - enclosure - 30" x 30" 
-1.00 EA 407.83 7.02 82.98 497.83 0/20 yrs Avg. 0% (0.00) 497.83 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-Includes: Water heater enclosure and labor to install. Labor cost to remove a water heater enclosure and to discard in a job-site waste receptacle. Quality: Galvanized steel, 30" x 30" x 72-1/2". Fits up to 80 gallon water heater. Average life expectancy 20 years Average depreciation 5% per year Maximum depreciation 100% 
-
-943. R&R Water heater - 140 gal - Gas 
-1.00 EA 4,338.35 227.88 913.24 5,479.47 0/10 yrs Avg. 0% (0.00) 5,479.47 Includes: Gas water heater, in-line ball valve for 3/4" tubing, pressure relief valve, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Excludes: Gas flex connection, please see item PLM FT*. Quality: 140 gallon capacity. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Average life expectancy 10 years 
-Average depreciation 10% per year Maximum depreciation 100% 
-
-944. R&R Water heater - 100 gal - Residential grade - Gas 
-1.00 EA 3,576.71 183.05 751.96 4,511.72 0/10 yrs Avg. 0% (0.00) 4,511.72 Includes: Water heater, in-line ball valve for 3/4" tubing, pressure relief valve, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Excludes: Gas flex connection, please see item PLM FT*. Quality: 100 gallon capacity. Average life expectancy 10 years 
-Average depreciation 10% per year Maximum depreciation 100%
-                              
-945. Water heater - Reset
-1.00 EA 374.85 0.00 74.98 449.83 0/NA Avg. 0% (0.00) 449.83 Includes: On site storage and labor. Excludes: Any additional materials or hardware. 
-Note: This item is intended for use as a reset only; detaching of the water heater has previously been performed by another company. No life expectancy data 
-
-946. R&R Water heater - 30 gallon - Gas - 9 yr 
-1.00 EA 1,180.41 42.79 244.66 1,467.86 0/9 yrs Avg. 0% (0.00) 1,467.86 Includes: Gas water heater, in-line ball valve for 3/4" tubing, pressure relief valve, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Excludes: Gas flex connection, please see item PLM FT*. Quality: 30 gallon capacity. Nine year warranty. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Average life expectancy 9 years 
-Average depreciation 11.11% per year Maximum depreciation 100% 
-
-947. R&R Water heater platform - wood frame 
-1.00 EA 453.21 8.91 92.42 554.54 0/50 yrs Avg. 0% (0.00) 554.54 
-Includes: 2" x 4" treated and non-treated lumber, 3/4" CDX plywood, nails, construction adhesive, and labor to install. Labor cost to remove water heater platform and to discard in a job-site waste receptacle. Quality: 18" tall, 3' x 3' platform. Average life expectancy 50 years Average depreciation 2% per year Maximum depreciation 100% 
-2025-08-28-1618 8/31/2025 Page: 71 
+|   # | DESCRIPTION                                                 |  QTY | UNIT |      TAX |   O\&P |      RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |      ACV | NOTES                                    |
+| --: | ----------------------------------------------------------- | ---: | :--: | -------: | -----: | -------: | :-------: | :---: | ---: | ------: | -------: | ---------------------------------------- |
+| 922 | R\&R Garbage disposal / disposer                            | 1.00 |  EA  |   279.30 |   9.00 |   345.96 |  0/12 yrs |  Avg. |   0% |  (0.00) |   345.96 | —                                        |
+| 923 | R\&R Appliance water line – 1/4"                            | 1.00 |  EA  |    93.78 |   2.35 |   115.37 |  0/50 yrs |  Avg. |   0% |  (0.00) |   115.37 | —                                        |
+| 924 | Patio/pool Enclosure – Rescreen                             | 0.00 |  SF  |     1.99 |   0.00 |     0.00 |  0/40 yrs |  Avg. |   0% |  (0.00) |     0.00 | —                                        |
+| 925 | Patio/pool Enclosure – Full Screen – High grade             | 0.00 |  SF  |     9.59 |   0.00 |     0.00 |  0/40 yrs |  Avg. |   0% |  (0.00) |     0.00 | See note in source                       |
+| 926 | Washer – Remove & reset                                     | 1.00 |  EA  |    53.78 |   0.00 |    64.54 |    0/NA   |  Avg. |   0% |  (0.00) |    64.54 | —                                        |
+| 927 | Dryer – Remove & reset                                      | 1.00 |  EA  |    41.47 |   0.00 |    49.77 |    0/NA   |  Avg. |   0% |  (0.00) |    49.77 | —                                        |
+| 928 | Water heater – Detach                                       | 1.00 |  EA  |    91.10 |   6.56 |   115.88 |    0/NA   |  Avg. |   0% |  (0.00) |   115.88 | On-site storage & labor; reset elsewhere |
+| 929 | R\&R Water heater – 40 gal – Electric – 6 yr                | 1.00 |  EA  |   958.93 |  31.18 | 1,188.15 |  0/6 yrs  |  Avg. |   0% |  (0.00) | 1,188.15 | Includes valves, lines, PRV; LEED note   |
+| 930 | R\&R Solar water heater system                              | 1.00 |  EA  | 3,977.13 | 118.80 | 4,915.11 |  0/30 yrs |  Avg. |   0% |  (0.00) | 4,915.11 | Single collector panel; LEED note        |
+| 931 | Solar water heater panel – Detach & reset                   | 1.00 |  EA  |   701.83 |   0.00 |   842.19 |    0/NA   |  Avg. |   0% |  (0.00) |   842.19 | —                                        |
+| 932 | Temporary water heater – (Bid Item)                         | 1.00 |  EA  |     0.00 |   0.00 |     0.00 |    0/NA   |  Avg. |   0% |  (0.00) |     0.00 | —                                        |
+| 933 | Water heater – tankless – Detach & reset                    | 1.00 |  EA  |   423.98 |   0.00 |   508.78 |    0/NA   |  Avg. |   0% |  (0.00) |   508.78 | —                                        |
+| 934 | R\&R Water heater – tankless – 20.1–36 kW – Electric        | 1.00 |  EA  | 1,479.91 |  48.48 | 1,834.09 |  0/20 yrs |  Avg. |   0% |  (0.00) | 1,834.09 | Includes plumbing & electrical hookups   |
+| 935 | R\&R Water heater – tankless – 5–5.9 gpm – Gas – Power vent | 1.00 |  EA  | 1,974.50 |  73.58 | 2,457.70 |  0/20 yrs |  Avg. |   0% |  (0.00) | 2,457.70 | Venting may require adds                 |
+| 936 | R\&R Water heater connector line – 3/4" flexible            | 1.00 |  EA  |    61.81 |   0.92 |    75.27 |  0/50 yrs |  Avg. |   0% |  (0.00) |    75.27 | —                                        |
+| 937 | R\&R Water heater seismic strap kit – 56–80 gal             | 1.00 |  EA  |    77.34 |   1.49 |    94.61 | 0/100 yrs |  Avg. |   0% |  (0.00) |    94.61 | —                                        |
+| 938 | R\&R Water heater – 50 gal – Gas – Power vent               | 1.00 |  EA  | 2,224.42 | 105.43 | 2,795.83 |  0/11 yrs |  Avg. |   0% |  (0.00) | 2,795.83 | PVC venting may be extra                 |
+| 939 | R\&R Water heater – flood sensor/shutoff – 3/4"             | 1.00 |  EA  |   233.43 |  11.10 |   293.43 |  0/70 yrs |  Avg. |   0% |  (0.00) |   293.43 | —                                        |
+| 940 | R\&R Water heater – 80 gal – Electric – Std grade           | 1.00 |  EA  | 1,452.94 |  59.14 | 1,814.50 |  0/11 yrs |  Avg. |   0% |  (0.00) | 1,814.50 | —                                        |
+| 941 | R\&R Solar water heater panel – over 33 SF                  | 1.00 |  EA  | 1,953.83 |  69.57 | 2,428.10 |  0/30 yrs |  Avg. |   0% |  (0.00) | 2,428.10 | —                                        |
+| 942 | R\&R Water heater – enclosure – 30" × 30"                   | 1.00 |  EA  |   407.83 |   7.02 |   497.83 |  0/20 yrs |  Avg. |   0% |  (0.00) |   497.83 | —                                        |
+| 943 | R\&R Water heater – 140 gal – Gas                           | 1.00 |  EA  | 4,338.35 | 227.88 | 5,479.47 |  0/10 yrs |  Avg. |   0% |  (0.00) | 5,479.47 | —                                        |
+| 944 | R\&R Water heater – 100 gal – Residential – Gas             | 1.00 |  EA  | 3,576.71 | 183.05 | 4,511.72 |  0/10 yrs |  Avg. |   0% |  (0.00) | 4,511.72 | —                                        |
+| 945 | Water heater – Reset                                        | 1.00 |  EA  |   374.85 |   0.00 |   449.83 |    0/NA   |  Avg. |   0% |  (0.00) |   449.83 | Reset only; detach by others             |
+| 946 | R\&R Water heater – 30 gal – Gas – 9 yr                     | 1.00 |  EA  | 1,180.41 |  42.79 | 1,467.86 |  0/9 yrs  |  Avg. |   0% |  (0.00) | 1,467.86 | —                                        |
+| 947 | R\&R Water heater platform – wood frame                     | 1.00 |  EA  |   453.21 |   8.91 |   554.54 |  0/50 yrs |  Avg. |   0% |  (0.00) |   554.54 | —                                        |
+| 948 | R\&R Water heater – 40 gal – Gas – 6 yr                     | 1.00 |  EA  | 1,128.64 |  39.69 | 1,402.01 |  0/6 yrs  |  Avg. |   0% |  (0.00) | 1,402.01 | —                                        |
+| 949 | R\&R Water heater blanket                                   | 1.00 |  EA  |    58.21 |   1.45 |    71.60 |  0/15 yrs |  Avg. |   0% |  (0.00) |    71.60 | —                                        |
+| 950 | Clean water heater                                          | 1.00 |  EA  |    24.41 |   1.77 |    31.06 |    0/NA   |  Avg. |   0% |  (0.00) |    31.06 | —                                        |
+| 951 | Water heater – Detach & reset                               | 1.00 |  EA  |   549.78 |   0.00 |   659.74 |    0/NA   |  Avg. |   0% |  (0.00) |   659.74 | —                                        |
 
 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
+Siding (Front) -
+Geometry: Walls 971.84 SF · Ceiling 681.79 SF · Floor 681.79 SF · Ceiling Perimeter 121.48 LF · Floor Perimeter 121.48 LF · Height 8'
+Walls & Ceiling: 1,653.63 SF · Flooring: 75.75 SY
 
-948. R&R Water heater - 40 gallon - Gas - 6 yr 
-1.00 EA 1,128.64 39.69 233.68 1,402.01 0/6 yrs Avg. 0% (0.00) 1,402.01 Includes: Gas water heater, in-line ball valve for 3/4" tubing, pressure relief valve, two 3/4" flexible supply lines, and installation labor. Labor cost to remove a water heater and to discard in a job-site waste receptacle. Excludes: Gas flex connection, please see item PLM FT*. Quality: 40 gallon capacity. Six year warranty. Green: LEED considers water heaters to be green when they contribute to the requirements for residential Efficient Hot Water Distribution System credits. Average life expectancy 6 years 
-Average depreciation 16.67% per year Maximum depreciation 100% 
-
-949. R&R Water heater blanket 
-1.00 EA 58.21 1.45 11.94 71.60 0/15 yrs Avg. 0% (0.00) 71.60 Includes: Blanket, tape, and labor to install. Labor cost to remove a water heater blanket and to discard in a job-site waste receptacle. Green: LEED considers water heater blankets to be green if they are part of the residential Efficient Hot Water Distribution System credits. Average life expectancy 15 years 
-Average depreciation 6.67% per year Maximum depreciation 100% 
-
-950. Clean water heater 
-1.00 EA 24.41 1.77 4.88 31.06 0/NA Avg. 0% (0.00) 31.06 Includes: Cleaning chemical and labor. Quality: In-place cleaning of all exposed surfaces. Green: LEED considers cleaners to be green under the following standards, or a local equivalent for projects outside of the U.S.: Green Seal GS-37, GS-40, GS -52/53; Environmental Choice CCD-110, CCD-112, CCD-113, CCD-115, CCD-146, CCD-147, CCD-148; EPA Design for the Environment Program's Standard for Safer Cleaning Products; California Code of Regulations maximum allowable VOC levels for the specific product category. Paper products and trash bags must meet one or more of the following programs or a local equivalent for projects outside the U.S.: EPA comprehensive procurement guidelines, for janitorial paper; Green Seal GS-01; Environmental Choice CCD-082, CCD-086; Janitorial paper products derived from rapidly renewable resources or manufactured from tree-free fibers; FSC certification, for fiber procurement; EPA comprehensive procurement guidelines, for plastic trash can liners (California Code of Regulations Title 14, Chapter 4, Article 5, or SABRC 42290-42297 Recycled Content Plastic Trash Bag Program). 
-Note: Generally, light soiling is easily removed with the use of a cleaning agent and one or two passes. No life expectancy data 
-
-951. Water heater - Detach & reset 
-1.00 EA 549.78 0.00 109.96 659.74 0/NA Avg. 0% (0.00) 659.74 Includes: On site storage, disconnect and drain, and labor. Excludes: Any additional materials or hardware. 
-Note: Labor cost to detach a water heater, move to an adjacent room or area for storage, and reinstall at a later time. No life expectancy data 
-Totals: Plumbing  1,210.38  6,991.56  41,956.55  0.00  41,956.55  
-Total: Main Level  1,768.20  13,341.70  80,057.00  2.36  80,054.64  
-Total: SKETCH3  1,768.20  13,341.70  80,057.00  2.36  80,054.64  
-
-                                                                                                                                                                                                                                                                                                                   
-# SKETCH4 - SIDING
-
-Front 971.84 SF Walls 1653.63 SF Walls & Ceiling 75.75 SY 
-                                                                                                                                                                                                                                                                                                                   
-Flooring 121.48 LF Ceil. Perimeter  Height: 8' 681.79 SF Ceiling 681.79 SF Floor 121.48 LF Floor Perimeter  
-
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-
-Line items: 
-
-952. R&R Fiber cement lap siding - 8" 
-60.00 SF 4.11 6.48 50.62 303.70 13/150 yrs Avg. 8.67% (19.70) 284.00 
-damaged by hail 
-953. Siding Installer - per hour 
-1.00 HR 67.34 0.00 13.46 80.80 13/NA Avg. 0% (0.00) 80.80 
-Additional labor hours added due the small nature of the repair 
-954. R&R Sheathing - OSB - 1/2" 
-32.00 SF 1.85 0.61 11.96 71.77 13/150 yrs Avg. 8.67% (3.60) 68.17 
-955. R&R House wrap (air/moisture barrier) 
-10.00 SF 0.30 0.08 0.62 3.70 13/150 yrs Avg. 8.67% (0.24) 3.46 
-956. Exterior - seal or prime and prep for paint 
-
-60.00 SF 0.59 0.40 7.16 42.96 13/15 yrs Avg. 86.67% (31.03) 11.93 
-957. Clean with pressure/chemical spray 
-971.84 SF 0.29 20.91 56.48 359.22 0/NA Avg. 0% (0.00) 359.22 
-958. Exterior - paint one coat 
-
-971.84 SF 0.64 9.33 126.26 757.57 13/15 yrs Avg. 86.67% (547.14) 210.43 
-prep for paint 
-SIDING 
-959. R&R Siding - vinyl 
+|   # | DESCRIPTION                                     |    QTY | UNIT |   TAX |  O\&P |    RCV |  AGE/LIFE  | COND. |   DEP% |  DEPREC. |        ACV |
+| --: | ----------------------------------------------- | -----: | :--: | ----: | ----: | -----: | :--------: | :---: | -----: | -------: | ---------: |
+| 952 | R\&R Fiber cement lap siding – 8" (hail damage) |  60.00 |  SF  |  4.11 |  6.48 | 303.70 | 13/150 yrs |  Avg. |  8.67% |  (19.70) | **284.00** |
+| 953 | Siding Installer – per hour                     |   1.00 |  HR  | 67.34 |  0.00 |  80.80 |    13/NA   |  Avg. |     0% |   (0.00) |  **80.80** |
+| 954 | R\&R Sheathing – OSB – 1/2"                     |  32.00 |  SF  |  1.85 |  0.61 |  71.77 | 13/150 yrs |  Avg. |  8.67% |   (3.60) |  **68.17** |
+| 955 | R\&R House wrap (air/moisture barrier)          |  10.00 |  SF  |  0.30 |  0.08 |   3.70 | 13/150 yrs |  Avg. |  8.67% |   (0.24) |   **3.46** |
+| 956 | Exterior – seal/prime & prep for paint          |  60.00 |  SF  |  0.59 |  0.40 |  42.96 |  13/15 yrs |  Avg. | 86.67% |  (31.03) |  **11.93** |
+| 957 | Clean with pressure/chemical spray              | 971.84 |  SF  |  0.29 | 20.91 | 359.22 |    0/NA    |  Avg. |     0% |   (0.00) | **359.22** |
+| 958 | Exterior – paint one coat (prep for paint)      | 971.84 |  SF  |  0.64 |  9.33 | 757.57 |  13/15 yrs |  Avg. | 86.67% | (547.14) | **210.43** |
+| 959 | R\&R Siding – vinyl                             |  60.00 |  SF  |  3.63 |  4.86 | 267.20 |  0/50 yrs  |  Avg. |     0% |   (0.00) | **267.20** |
+| 960 | R\&R House wrap (air/moisture barrier)          | 681.79 |  SF  |  0.30 |  5.73 | 252.33 |  0/150 yrs |  Avg. |     0% |   (0.00) | **252.33** |
 
 
-60.00 SF 3.63 4.86 44.54 267.20 0/50 yrs Avg. 0% (0.00) 267.20 
-960. R&R House wrap (air/moisture barrier) 
-681.79 SF 0.30 5.73 42.06 252.33 0/150 yrs Avg. 0% (0.00) 252.33 Includes: Exterior house wrap, fasteners, house wrap tape, and installation labor. Labor cost to remove house wrap and to discard in a job-site waste 
-receptacle. Excludes: Flashing for openings/penetrations. 
-CLEAN 
-961. Clean with pressure/chemical spray 
-971.84 SF 0.29 20.91 56.48 359.22 0/NA Avg. 0% (0.00) 359.22 
-962. Clean with pressure/chemical spray - Light 
-1.00 SF 0.23 0.01 0.04 0.28 0/NA Avg. 0% (0.00) 0.28 
-963. R&R Metal studding, 3 5/8" wide, 16" OC, 20 gauge 
-971.84 SF 4.70 148.11 943.16 5,658.92 0/150 yrs Avg. 0% (0.00) 5,658.92 
-964. R&R Metal studding, 6" wide, 24" OC, 20 gauge 
+Cleaning & Framing/Sheathing (961–975)
 
-971.84 SF 5.44 198.26 1,097.04 6,582.11 0/150 yrs Avg. 0% (0.00) 6,582.11 
-965. R&R Hat channel, 16" OC 
-
-971.84 SF 2.44 47.23 483.70 2,902.22 0/150 yrs Avg. 0% (0.00) 2,902.22 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE 966. R&R Z channel, 16" OC 971.84 SF 2.70 62.39 537.28 3,223.64 0/150 yrs 967. R&R Stud wall - 2" x 4" - 16" oc 971.84 SF 3.22 63.56 638.60 3,831.49 0/150 yrs 968. R&R Wedge anchor bolt - 1/2" x 5 1/2" 0.00 EA 25.28 0.00 0.00 0.00 0/150 yrs 969. R&R Joist - floor or ceiling - 2x8 - w/blocking - 16" oc 681.79 SF 4.59 57.27 637.34 3,824.02 0/150 yrs 970. R&R Framing hurricane tie 0.00 EA 10.95 0.00 0.00 0.00 0/150 yrs 971. R&R Rafters - 2x8 - 24" OC (3-5/12 Gable, per SF of floor) 681.79 SF 4.65 51.54 644.38 3,866.25 0/150 yrs 972. R&R Framing strap - 24" long 0.00 EA 35.22 0.00 0.00 0.00 0/150 yrs 973. R&R Sheathing - OSB - 5/8" 681.79 SF 2.65 37.64 368.86 2,213.25 0/150 yrs Roof decking. 974. R&R Add on for trayed, dropped or coffered ceiling 681.79 SF 4.35 49.91 603.14 3,618.84 0/150 yrs 975. R&R Block - 8" x 8" x 16" - in place - reinforced 971.84 SF 16.66 295.05 3,297.20 19,783.10 0/100 yrs 976. Block - Add if vertical reinforcement is 24" OC 971.84 SF 5.66 151.61 1,130.44 6,782.66 0/100 yrs 977. Re-point masonry - block 971.84 SF 3.63 3.50 706.26 4,237.54 0/NA 978. Scaffolding Setup & Take down - per hour 0.00 HR 32.25 0.00 0.00 0.00 0/NA 979. Scaffold - per section (per week) 0.00 WK 48.00 0.00 0.00 0.00 0/NA SIDING 980. R&R Siding - vinyl 48.00 SF 3.42 3.89 33.60 201.65 0/50 yrs 4 pieces damaged GUTTERS 981. R&R Gutter / downspout - aluminum - up to 5" 27.00 LF 5.49 4.02 30.46 182.71 0/25 yrs left front down spout 982. R&R Builder board - 1/2" (composition or fiberboard sheathing) 971.84 SF 2.08 50.15 414.32 2,485.90 0/150 yrs 983. R&R House wrap (air/moisture barrier) 971.84 SF 0.45 11.08 89.68 538.09 0/150 yrs 2025-08-28-1618  COND. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 8/31/2025  ACV 3,223.64 3,831.49 0.00 3,824.02 0.00 3,866.25 0.00 2,213.25 3,618.84 19,783.10 6,782.66 4,237.54 0.00 0.00 201.65 182.71 2,485.90 538.09 Page: 74  
-QUANTITY UNIT TAX O&P RCV AGE/LIFE 984. Metal or Vinyl siding - Detach & reset 971.84 SF 2.54 1.75 494.06 2,964.28 0/NA 985. R&R Siding - .014" metal - Standard grade 971.84 SF 8.15 255.40 1,635.18 9,811.08 0/50 yrs 986. R&R Shutters - aluminum - Large 0.00 EA 469.11 0.00 0.00 0.00 0/30 yrs 987. Shutters - Detach & reset 0.00 EA 40.09 0.00 0.00 0.00 0/NA 988. R&R Attic vent - gable end - metal - 30" x 30" 0.00 EA 144.47 0.00 0.00 0.00 0/27 yrs 989. R&R Wrap wood garage door frame & trim with aluminum (PER LF) 0.00 LF 16.97 0.00 0.00 0.00 0/50 yrs 990. R&R Wrap wood door frame & trim with aluminum (PER LF) 0.00 LF 18.73 0.00 0.00 0.00 0/50 yrs 991. R&R Wrap wood window frame & trim with aluminum sheet - Large 0.00 EA 371.51 0.00 0.00 0.00 0/50 yrs 992. Exterior light fixture - Detach & reset 0.00 EA 83.35 0.00 0.00 0.00 0/NA 993. R&R Sheathing - foil faced foam - 1/2" 971.84 SF 2.10 41.40 416.44 2,498.71 0/150 yrs 994. R&R Siding - board & batten - pine or equal 971.84 SF 6.65 182.51 1,329.06 7,974.31 0/100 yrs 995. R&R Siding - board & batten - cedar 971.84 SF 10.65 415.75 2,153.18 12,919.03 0/100 yrs 996. R&R Siding - board & batten - redwood 971.84 SF 11.42 460.65 2,311.84 13,870.91 0/100 yrs 997. Exterior - stain one coat 971.84 SF 1.57 16.91 308.54 1,851.24 0/15 yrs 998. Exterior - stain two coats 971.84 SF 2.57 33.24 506.16 3,037.03 0/15 yrs 999. R&R Shutters - wood - board & batten - Large 0.00 EA 486.28 0.00 0.00 0.00 0/20 yrs 1,000. Seal & paint window shutters - per set 0.00 EA 43.78 0.00 0.00 0.00 0/15 yrs 1,001. R&R Siding - beveled - fiber-cement (clapboard) 971.84 SF 6.56 132.95 1,301.66 7,809.88 0/150 yrs 1,002. R&R Vertical siding - fiber cement board - sheet 971.84 SF 4.81 142.28 963.38 5,780.21 0/150 yrs 1,003. R&R Siding - fiber cement - shingle type panel 971.84 SF 10.20 333.54 2,049.26 12,295.57 0/150 yrs  COND. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00)  ACV 2,964.28 9,811.08 0.00 0.00 0.00 0.00 0.00 0.00 0.00 2,498.71 7,974.31 12,919.03 13,870.91 1,851.24 3,037.03 0.00 0.00 7,809.88 5,780.21 12,295.57  
-2025-08-28-1618  8/31/2025  Page: 75  
-
-QUANTITY UNIT TAX O&P 1,004. R&R Siding trim - 1" x 4" fiber cement trim board 0.00 LF 7.56 0.00 0.00 1,005. R&R Siding trim - 1" x 6" fiber cement trim board 0.00 LF 9.31 0.00 0.00 1,006. R&R Siding trim - 1" x 8" fiber cement trim board 0.00 LF 11.04 0.00 0.00 1,007. R&R Shutters - simulated wood (polystyrene) - Large 0.00 EA 185.58 0.00 0.00 1,008. R&R Attic vent - gable end - vinyl - Large 0.00 EA 182.22 0.00 0.00 1,009. Seal & paint wood siding 971.84 SF 2.45 32.65 482.74 1,010. Exterior - paint two coats 971.84 SF 1.57 25.07 310.18 1,011. R&R Siding - hardboard panel - paint grade 971.84 SF 3.79 89.80 754.62 1,012. R&R Siding - plywood panel - stain grade 971.84 SF 4.88 153.36 979.20 1,013. Paint wood siding - 1 coat 971.84 SF 1.62 20.41 318.96 1,014. R&R Trim board - 1" x 10" - installed (pine) 121.48 LF 9.01 44.32 227.76 1,015. R&R Trim board - 1" x 4" - installed (pine) 121.48 LF 4.73 15.02 117.92 1,016. Seal (1 coat) & paint (1 coat) trim 121.48 LF 1.96 1.09 47.84 1,017. R&R Shutters - wood - louvered or paneled - Large 0.00 EA 434.74 0.00 0.00 1,018. R&R Attic vent - gable end - wood 0.00 EA 178.93 0.00 0.00 1,019. R&R Siding - vinyl - High grade 971.84 SF 6.38 138.20 1,267.72 1,020. R&R Light/outlet J-block - vinyl 0.00 EA 31.33 0.00 0.00 1,021. R&R Vinyl J-vent 0.00 EA 37.33 0.00 0.00 1,022. R&R Metal lath & stucco 971.84 SF 8.95 85.13 1,756.62 1,023. Stucco Plasterer - per hour 0.00 HR 68.01 0.00 0.00  RCV AGE/LIFE 0.00 0/150 yrs 0.00 0/150 yrs 0.00 0/150 yrs 0.00 0/30 yrs 0.00 0/27 yrs 2,896.40 0/15 yrs 1,861.04 0/15 yrs 4,527.69 0/150 yrs 5,875.14 0/100 yrs 1,913.75 0/15 yrs 1,366.61 0/150 yrs 707.54 0/150 yrs 287.03 0/15 yrs 0.00 0/20 yrs 0.00 0/27 yrs 7,606.26 0/50 yrs 0.00 0/50 yrs 0.00 0/50 yrs 10,539.71 0/100 yrs 0.00 0/100 yrs  COND. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00)  ACV 0.00 0.00 0.00 0.00 0.00 2,896.40 1,861.04 4,527.69 5,875.14 1,913.75 1,366.61 707.54 287.03 0.00 0.00 7,606.26 0.00 0.00 10,539.71 0.00  
-2025-08-28-1618  8/31/2025  Page: 76  
-
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-1,024. Synthetic stucco - additional charge for quoins 
-0.00 LF 11.51 0.00 0.00 0.00 0/100 yrs Avg. 0% (0.00) 0.00 1,025. Synthetic stucco - additional charge for raised trim 
-121.48 LF 7.29 11.15 179.36 1,076.10 0/100 yrs Avg. 0% (0.00) 1,076.10 1,026. Scaffold - per section (per day) 
-0.00 DA 27.74 0.00 0.00 0.00 0/NA Avg. 0% (0.00) 0.00 1,027. R&R Synthetic stucco on 2" polystyrene board 
-
-971.84 SF 12.69 205.84 2,507.68 15,046.17 0/100 yrs Avg. 0% (0.00) 15,046.17 
-Totals: Front 4,142.95 34,484.50 206,946.83 601.71 206,345.12 
-Total: Main Level 4,142.95 34,484.50 206,946.83 601.71 206,345.12 
-Total: SKETCH4 4,142.95 34,484.50 206,946.83 601.71 206,345.12 
+|   # | DESCRIPTION                                          |    QTY | UNIT |   TAX |   O\&P |       RCV |  AGE/LIFE |           ACV |
+| --: | ---------------------------------------------------- | -----: | :--: | ----: | -----: | --------: | :-------: | ------------: |
+| 961 | Clean with pressure/chemical spray                   | 971.84 |  SF  |  0.29 |  20.91 |    359.22 |    0/NA   |    **359.22** |
+| 962 | Clean with pressure/chemical spray – Light           |   1.00 |  SF  |  0.23 |   0.01 |      0.28 |    0/NA   |      **0.28** |
+| 963 | R\&R Metal studding, 3 5/8", 16" OC, 20 ga           | 971.84 |  SF  |  4.70 | 148.11 |  5,658.92 | 0/150 yrs |  **5,658.92** |
+| 964 | R\&R Metal studding, 6", 24" OC, 20 ga               | 971.84 |  SF  |  5.44 | 198.26 |  6,582.11 | 0/150 yrs |  **6,582.11** |
+| 965 | R\&R Hat channel, 16" OC                             | 971.84 |  SF  |  2.44 |  47.23 |  2,902.22 | 0/150 yrs |  **2,902.22** |
+| 966 | R\&R Z channel, 16" OC                               | 971.84 |  SF  |  2.70 |  62.39 |  3,223.64 | 0/150 yrs |  **3,223.64** |
+| 967 | R\&R Stud wall – 2"×4" – 16" oc                      | 971.84 |  SF  |  3.22 |  63.56 |  3,831.49 | 0/150 yrs |  **3,831.49** |
+| 968 | R\&R Wedge anchor bolt – 1/2"×5 1/2"                 |   0.00 |  EA  | 25.28 |   0.00 |      0.00 | 0/150 yrs |      **0.00** |
+| 969 | R\&R Joist – 2×8 w/blocking – 16" oc (floor/ceiling) | 681.79 |  SF  |  4.59 |  57.27 |  3,824.02 | 0/150 yrs |  **3,824.02** |
+| 970 | R\&R Framing hurricane tie                           |   0.00 |  EA  | 10.95 |   0.00 |      0.00 | 0/150 yrs |      **0.00** |
+| 971 | R\&R Rafters – 2×8 – 24" OC (per SF floor)           | 681.79 |  SF  |  4.65 |  51.54 |  3,866.25 | 0/150 yrs |  **3,866.25** |
+| 972 | R\&R Framing strap – 24" long                        |   0.00 |  EA  | 35.22 |   0.00 |      0.00 | 0/150 yrs |      **0.00** |
+| 973 | R\&R Sheathing – OSB – 5/8" (roof decking)           | 681.79 |  SF  |  2.65 |  37.64 |  2,213.25 | 0/150 yrs |  **2,213.25** |
+| 974 | R\&R Add-on for trayed/dropped/coffered ceiling      | 681.79 |  SF  |  4.35 |  49.91 |  3,618.84 | 0/150 yrs |  **3,618.84** |
+| 975 | R\&R Block – 8"×8"×16" – in place – reinforced       | 971.84 |  SF  | 16.66 | 295.05 | 19,783.10 | 0/100 yrs | **19,783.10** |
 
 
-# SKETCH5 - Fire
-                                                                                                                                                                                                                                                                                                                   
+Masonry/Block Adds & Misc (976–983)
 
-459.23 SF Walls  159.76 SF Ceiling  
-618.99 SF Walls & Ceiling  159.76 SF Floor  
-17.75 SY Flooring  57.40 LF Floor Perimeter  
-57.40 LF Ceil. Perimeter  
-Subroom: Stairs (2)  Height: 9' 2"  
-
-line items:
-15.77 SF Walls 18.52 SF Walls & Ceiling 0.72 SY Flooring 1.83 LF Ceil. Perimeter  2.75 SF Ceiling 6.48 SF Floor 2.19 LF Floor Perimeter  
-Missing Wall Missing Wall  3' X 9' 2 3/8" 3' X 9' 2 3/8"  Opens into FIRE Opens into STAIRS1  
-
-74.67 SF Walls 9.50 SF Ceiling 
-84.17 SF Walls & Ceiling 9.50 SF Floor
-3' 4"
-1.06 SY Flooring 9.33 LF Floor Perimeter 
-9.33 LF Ceil. Perimeter 
-
-Missing Wall 3' X 8' Opens into STAIRS 
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-
-1,028. R&R Batt insulation - 6" - R19 - paper / foil faced 
-549.66 SF 1.21 20.45 137.12 822.66 0/150 yrs Avg. 0% (0.00) 822.66 
-1,029. R&R Vapor barrier - visqueen - 6mil 
-175.74 SF 0.37 0.63 13.14 78.79 0/150 yrs Avg. 0% (0.00) 78.79 
-1,030. Seal floor or ceiling joist system 
-175.74 SF 1.19 2.43 42.30 253.86 0/15 yrs Avg. 0% (0.00) 253.86 
-1,031. Clean floor or roof joist system 
-175.74 SF 0.96 12.38 33.78 214.87 0/NA Avg. 0% (0.00) 214.87 
-
-# DRYWALL 
-1,032. R&R 5/8" drywall - hung, taped, floated, ready for paint 
-172.01 SF 2.56 5.57 89.18 535.09 16/150 yrs Avg. 10.67% (39.85) 495.24 1,033. R&R 1/2" drywall - hung, taped, floated, ready for paint 
-549.66 SF 2.48 16.49 275.94 1,655.59 16/150 yrs Avg. 10.67% (123.13) 1,532.46 1,034. R&R Batt insulation - 4" - R13 - unfaced batt 
-432.66 SF 0.83 9.86 73.80 442.77 16/150 yrs Avg. 10.67% (28.28) 414.49 
-
-1,035. Seal stud wall for odor control 
-549.66 SF 0.75 5.61 83.58 501.44 16/15 yrs Avg. 100% [M] (417.86) 83.58 
-
-1,036. Seal floor or ceiling joist system 
-172.01 SF 1.07 2.27 37.28 223.60 16/15 yrs Avg. 100% [M] (186.32) 37.28 
-
-1,037. Seal the walls and ceiling w/latex based stain blocker - one coat 
-721.67 SF 0.39 2.60 56.82 340.87 16/15 yrs Avg. 100% [M] (284.05) 56.82 1,038. Paint the walls and ceiling - one coat 
-721.67 SF 0.44 4.76 64.46 386.75 16/15 yrs Avg. 100% [M] (322.29) 64.46 
-
-- TRIM - 
-1,039. R&R Baseboard - 3 1/4" - 61.34 LF 3.29 4.27 41.22 247.30 16/150 yrs Avg. 10.67% (18.98) 228.32 - 
-1,040. R&R Base shoe 61.34 LF 1.36 1.62 17.00 102.04 16/150 yrs Avg. 10.67% (7.96) 94.08 
-1,041. Seal & paint baseboard - two coats* - 61.34 LF 1.27 0.37 15.66 93.93 16/15 yrs Avg. 100% [M] (78.27) 15.66 
-1,042. Seal & paint base shoe or quarter round - 61.34 LF 0.67 0.33 8.28 49.71 16/15 yrs Avg. 100% [M] (41.43) 8.28 
-1,043. R&R Casing - 2 1/4" - 0.00 LF 2.31 0.00 0.00 0.00 16/150 yrs Avg. 10.67% (0.00) 0.00 
-1,044. Seal & paint casing - two coats* - 16.17 LF 1.28 0.11 4.16 24.97 16/15 yrs Avg. 100% [M] (20.81) 4.16 
-1,045. R&R Fireplace mantel - paint grade - custom 1.00 EA 1,106.46 46.32 230.56 1,383.34 16/75 yrs 
-     
-1,046. Seal & paint fireplace mantel 16.00 LF 4.41 0.17 14.16 84.89 16/15 yrs 
-1,047. R&R Window stool & apron 0.00 LF 7.85 0.00 0.00 0.00 16/150 yrs 
-1,048. Seal & paint window stool and apron 7.08 LF 3.40 0.14 4.84 29.05 16/15 yrs 
-1,049. R&R Window blind - PVC - 2" - 14.1 to 20 SF 4.00 EA 112.04 15.86 92.82 556.84 16/5 yrs ELECTRICAL 
-1,050. Megohmmeter check electrical circuits - average residence 1.00 EA 732.72 0.00 146.54 879.26 16/NA check the home for electrical issues. 
-1,051. R&R Ceiling fan & light - Standard grade 1.00 EA 293.41 3.90 59.46 356.77 16/20 yrs 
-1,052. R&R Recessed light fixture 2.00 EA 138.63 4.26 56.32 337.84 16/20 yrs 
-1,053. R&R Rewire - average residence - copper wiring 175.74 SF 3.61 3.59 127.60 765.61 16/100 yrs 
-1,054. R&R Smoke detector - Standard grade 1.00 EA 50.41 0.99 10.28 61.68 16/10 yrs 
-1,055. R&R Thermostat - Standard grade 1.00 EA 85.52 2.03 17.52 105.07 16/35 yrs 
-1,056. R&R Cold air return cover - Large 1.00 EA 36.93 0.95 7.58 45.46 16/25 yrs 
-1,057. R&R Heat/AC register - Mechanically attached 2.00 EA 23.79 1.08 9.74 58.40 16/25 yrs FLOORS 
-1,058. R&R Vapor barrier - visqueen - 6mil 175.74 SF 0.35 0.63 12.42 74.56 16/150 yrs 
-1,059. R&R Laminate - simulated wood flooring - Standard grade* 175.74 SF 5.52 22.04 198.42 1,190.55 16/25 yrs 
-1,060. Final cleaning - construction - Residential 175.74 SF 0.19 2.40 6.68 42.47 16/NA DRYWALL 
-1,061. R&R 5/8" drywall - hung, taped, floated, ready for paint 172.01 SF 2.56 5.57 89.18 535.09 16/150 yrs 
-1,062. R&R 1/2" drywall - hung, taped, floated, ready for paint 549.66 SF 2.48 16.49 275.94 1,655.59 16/150 yrs 2025-08-28-1618  COND. DEP % DEPREC. Avg. 21.33% (234.49) Avg. 100% [M] (70.73) Avg. 10.67% (0.00) Avg. 100% [M] (24.21) Avg. 100% [M] (423.74) Avg. 0% (0.00) Avg. 80% (222.74) Avg. 80% (207.38) Avg. 16% (102.08) Avg. 100% [M] (43.47) Avg. 45.71% (37.48) Avg. 64% (20.22) Avg. 64% (27.94) Avg. 10.67% (4.76) Avg. 64% (503.37) Avg. 0% (0.00) Avg. 10.67% (39.85) Avg. 10.67% (123.13) 8/31/2025  ACV 1,148.85 14.16 0.00 4.84 133.10 879.26 134.03 130.46 663.53 18.21 67.59 25.24 30.46 69.80 687.18 42.47 495.24 1,532.46 Page: 79  
-1,063. R&R Batt insulation - 4" - R13 - unfaced batt 234.00 SF 0.83 5.34 39.92 239.48 16/150 yrs 
-1,064. Seal stud wall for odor control 549.66 SF 0.75 5.61 83.58 501.44 16/15 yrs 
-1,065. Seal floor or ceiling joist system 172.01 SF 1.07 2.27 37.28 223.60 16/15 yrs 
-1,066. Seal the walls and ceiling w/latex based stain blocker - one coat 721.67 SF 0.39 2.60 56.82 340.87 16/15 yrs TRIM 
-1,067. R&R Interior door - Colonist - pre-hung unit 2.00 EA 220.73 18.24 91.92 551.62 16/100 yrs 
-1,068. Paint door/window trim & jamb - 2 coats (per side) 2.00 EA 26.65 0.47 10.76 64.53 16/15 yrs 
-1,069. Detach & Reset Door knob - interior - Standard grade 2.00 EA 18.46 0.00 7.38 44.30 0/20 yrs 
-1,070. R&R Exterior door - metal - insulated - Standard grade 1.00 EA 273.89 10.65 56.92 341.46 16/100 yrs 
-1,071. Exterior - seal or prime then paint with two finish coats 549.66 SF 1.35 13.19 151.04 906.27 16/15 yrs 
-1,072. R&R Window stool & apron 0.00 LF 7.85 0.00 0.00 0.00 16/150 yrs 
-1,073. Seal & paint window stool and apron 2.08 LF 3.40 0.04 1.42 8.53 16/15 yrs 
-1,074. R&R Window blind - PVC - 2" - 14.1 to 20 SF 1.00 EA 112.04 3.96 23.22 139.22 16/5 yrs CABINETS 
-1,075. Cabinetry - lower (base) units - Detach & reset 23.00 LF 57.55 0.00 264.74 1,588.39 16/NA cabinets do not appear to be damaged--need to be cleaned 
-1,076. Clean cabinetry - lower - inside and out 23.00 LF 12.51 20.83 57.56 366.12 16/NA 
-1,077. Cabinetry - upper (wall) units - Detach & reset 13.00 LF 49.23 0.00 128.00 767.99 16/NA cabinets do not appear to be damaged--need to be cleaned removed to replace drywall 
-1,078. Clean cabinetry - upper - inside and out 13.00 LF 12.51 11.77 32.54 206.94 16/NA 
-1,079. Detach & Reset Countertop - flat laid plastic laminate - Standard grade 31.00 LF 16.19 0.00 100.38 602.27 0/15 yrs ELECTRICAL 2025-08-28-1618  COND. DEP % DEPREC. Avg. 10.67% (15.30) Avg. 100% [M] (417.86) Avg. 100% [M] (186.32) Avg. 100% [M] (284.05) Avg. 16% (67.55) Avg. 100% [M] (53.77) Avg. 0% (0.00) Avg. 16% (42.09) Avg. 100% [M] (755.23) Avg. 10.67% (0.00) Avg. 100% [M] (7.11) Avg. 100% [M] (105.93) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) Avg. 0% (0.00) 8/31/2025  ACV 224.18 83.58 37.28 56.82 484.07 10.76 44.30 299.37 151.04 0.00 1.42 33.29 1,588.39 366.12 767.99 206.94 602.27 Page: 80  
-1,080. R&R Rewire - average residence - copper wiring 175.74 SF 3.61 3.59 127.60 1,081. R&R Smoke detector - Standard grade 1.00 EA 50.41 0.99 10.28 1,082. R&R Heat/AC register - Mechanically attached 2.00 EA 23.79 1.08 9.74 1,083. R&R Fluorescent - two tube - 4' - fixture w/lens 1.00 EA 126.37 3.60 25.98 1,084. R&R Light fixture - Standard grade 1.00 EA 63.96 1.03 12.98 1,085. R&R Phone, TV, or speaker outlet 1.00 EA 23.95 0.31 4.86 CLEANING 1,086. Clean floor - Heavy 175.74 SF 0.58 7.45 20.40 1,087. Clean refrigerator - exterior - Heavy clean 1.00 EA 24.37 1.78 4.88 1,088. Clean dishwasher - exterior - Heavy 1.00 EA 15.95 1.15 3.20 1,089. Clean range hood - Heavy 1.00 EA 21.06 1.52 4.22 1,090. Clean range - exterior - Heavy 1.00 EA 38.52 2.81 7.70 1,091. Clean door hardware - Heavy 2.00 EA 7.92 1.16 3.16 1,092. Clean countertop - Heavy 58.00 SF 0.83 3.54 9.64 1,093. Clean ductwork - Interior - Heavy clean (PER REGISTER) 14.00 EA 38.83 39.21 108.74 1,094. Deodorize building - Ozone & hydroxyl treatment 10,550. CF 0.04 30.38 84.40 00 FLOORS 1,095. Seal underlayment for odor control 175.74 SF 0.51 0.74 18.06 1,096. R&R Carpet pad - Standard grade 175.74 SF 0.51 3.48 18.62 CLEANING 1,097. Clean the walls and ceiling - Heavy 721.67 SF 0.39 20.72 56.38 2025-08-28-1618  RCV AGE/LIFE 765.61 16/100 yrs 61.68 16/10 yrs 58.40 16/25 yrs 155.95 16/20 yrs 77.97 16/20 yrs 29.12 16/25 yrs 129.78 16/NA 31.03 16/NA 20.30 16/NA 26.80 16/NA 49.03 16/NA 20.16 16/NA 61.32 16/NA 691.57 16/NA 536.78 16/NA 108.43 16/15 yrs 111.73 16/10 yrs 358.55 16/NA  COND. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. 16% (102.08) 100% [M] (43.47) 64% (27.94) 80% (92.83) 80% (45.32) 64% (12.53) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 100% [M] (90.37) 100% [M] <73.78> 0% (0.00) 8/31/2025  ACV 663.53 18.21 30.46 63.12 32.65 16.59 129.78 31.03 20.30 26.80 49.03 20.16 61.32 691.57 536.78 18.06 37.95 358.55 Page: 81  QUANTITY UNIT TAX O&P RCV AGE/LIFE 1,098. Clean baseboard - Heavy 61.34 LF 0.44 1.98 5.40 34.37 16/NA 1,099. Clean door / window opening (per side) 1.00 EA 11.03 0.79 2.20 14.02 16/NA 1,100. Clean door - with detail (per side) 1.00 EA 9.15 0.67 1.84 11.66 16/NA 1,101. Clean door hardware - Heavy 1.00 EA 7.92 0.59 1.58 10.09 16/NA 1,102. Clean chandelier - Heavy 1.00 EA 51.89 3.74 10.38 66.01 16/NA PAINT 1,103. Mask and prep for paint - plastic, paper, tape (per LF) 68.57 LF 1.21 1.07 16.82 100.86 16/15 yrs 1,104. Seal the walls and ceiling w/latex based stain blocker - one coat 721.67 SF 0.52 3.03 75.66 453.96 16/15 yrs 1,105. Paint the walls and ceiling - two coats 721.67 SF 0.82 8.66 120.10 720.53 16/15 yrs 1,106. Paint casing - two coats 68.00 LF 1.24 0.49 16.96 101.77 16/15 yrs 1,107. Paint door slab only - 2 coats (per side) 1.00 EA 31.79 0.39 6.44 38.62 16/15 yrs ELECTRICAL 1,108. Megohmmeter check electrical circuits - average residence 1.00 EA 732.72 0.00 146.54 879.26 16/NA check the home for electrical issues. 1,109. R&R Smoke detector - Standard grade 3.00 EA 50.41 2.97 30.84 185.04 16/10 yrs 1,110. R&R Cold air return cover - Large 1.00 EA 36.93 0.95 7.58 45.46 16/25 yrs 1,111. R&R Heat/AC register - Mechanically attached 2.00 EA 23.79 1.08 9.74 58.40 16/25 yrs 1,112. R&R Light fixture 1.00 EA 79.82 1.98 16.36 98.16 16/20 yrs FLOORS 1,113. R&R Carpet pad - Standard grade 175.74 SF 0.51 3.48 18.62 111.73 16/10 yrs 1,114. Carpet - Standard grade 59.46 SF 2.34 6.35 29.10 174.59 16/10 yrs 15 % waste added for Carpet - Standard grade. 1,115. Step charge for "waterfall" carpet installation 16.00 EA 6.76 0.43 21.72 130.31 16/10 yrs 2025-08-28-1618  COND. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 0% (0.00) 100% [M] (84.04) 100% [M] (378.30) 100% [M] (600.43) 100% [M] (84.81) 100% [M] (32.18) 0% (0.00) 100% [M] (130.41) 64% (20.22) 64% (27.94) 80% (58.77) 100% [M] <73.78> 100% [M] <145.49> 100% [M] <108.59> 8/31/2025  ACV 34.37 14.02 11.66 10.09 66.01 16.82 75.66 120.10 16.96 6.44 879.26 54.63 25.24 30.46 39.39 37.95 29.10 21.72 Page: 82 
-
-                
-        QUANTITY  UNIT  TAX  O&P  RCV  AGE/LIFE  COND.  DEP %  DEPREC.  ACV  
-
-CLEAN 
-                
-1,116. Clean the walls and ceiling 721.67 SF 0.30 16.05 43.38 
-1,117. Clean trim - wood 60.00 LF 0.28 1.21 3.36 1,118. Clean light fixture 1.00 EA 9.00 0.65 1.80 
-1,119. Clean outlet or switch 1.00 EA 2.95 0.22 0.60 
-1,120. Clean baseboard 68.93 LF 0.30 1.53 4.14 1,
-121. R&R Stairway - stringers, treads & risers (per tread) 1.00 EA 78.14 1.16 15.86 DRYWALL 
-1,122. Mask and prep for paint - plastic, paper, tape (per LF) 68.57 LF 1.21 1.07 16.82 
-1,123. Drywall patch / small repair, ready for paint 3.00 EA 65.18 0.50 39.20 
-1,124. Seal the walls w/latex based stain blocker - one coat 549.66 SF 0.52 2.31 57.62 
-1,125. Paint the walls and ceiling - one coat 721.67 SF 0.56 4.76 81.78 
-1,126. Paint casing - one coat 51.00 LF 0.83 0.24 8.50  275.93 21.37 11.45 3.77 26.35 95.16 100.86 235.24 345.75 490.68 51.07  16/NA 16/NA 16/NA 16/NA 16/NA 16/50 yrs 16/15 yrs 16/150 yrs 16/15 yrs 16/15 yrs 16/15 yrs  Avg. 0% Avg. 0% Avg. 0% Avg. 0% Avg. 0% Avg. 32% Avg. 100% Avg. 10.67% Avg. 100% Avg. 100% Avg. 100%  [M] [M] [M] [M]  (0.00) (0.00) (0.00) (0.00) (0.00) (20.57) (84.04) (20.91) (288.13) (408.90) (42.57)  275.93 21.37 11.45 3.77 26.35 74.59 16.82 214.33 57.62 81.78 8.50  
+|   # | DESCRIPTION                                   |    QTY | UNIT |   TAX |   O\&P |      RCV |  AGE/LIFE |          ACV |
+| --: | --------------------------------------------- | -----: | :--: | ----: | -----: | -------: | :-------: | -----------: |
+| 976 | Block – Add if vertical reinforcement 24" OC  | 971.84 |  SF  |  5.66 | 151.61 | 6,782.66 | 0/100 yrs | **6,782.66** |
+| 977 | Re-point masonry – block                      | 971.84 |  SF  |  3.63 |   3.50 | 4,237.54 |    0/NA   | **4,237.54** |
+| 978 | Scaffolding Setup & Take down – per hour      |   0.00 |  HR  | 32.25 |   0.00 |     0.00 |    0/NA   |     **0.00** |
+| 979 | Scaffold – per section (per week)             |   0.00 |  WK  | 48.00 |   0.00 |     0.00 |    0/NA   |     **0.00** |
+| 980 | R\&R Siding – vinyl                           |  48.00 |  SF  |  3.42 |   3.89 |   201.65 |  0/50 yrs |   **201.65** |
+| 981 | R\&R Gutter / downspout – aluminum – up to 5" |  27.00 |  LF  |  5.49 |   4.02 |   182.71 |  0/25 yrs |   **182.71** |
+| 982 | R\&R Builder board – 1/2"                     | 971.84 |  SF  |  2.08 |  50.15 | 2,485.90 | 0/150 yrs | **2,485.90** |
+| 983 | R\&R House wrap (air/moisture barrier)        | 971.84 |  SF  |  0.45 |  11.08 |   538.09 | 0/150 yrs |   **538.09** |
 
 
-_________________________________________________________________________________________________________________________________
-                
-SKETCH6  
+Siding Options & Finishes (984–1,003)
+|         # | DESCRIPTION                                       |    QTY | UNIT |   TAX |   O\&P |       RCV |  AGE/LIFE |           ACV |
+| --------: | ------------------------------------------------- | -----: | :--: | ----: | -----: | --------: | :-------: | ------------: |
+|       984 | Metal/Vinyl siding – Detach & reset               | 971.84 |  SF  |  2.54 |   1.75 |  2,964.28 |    0/NA   |  **2,964.28** |
+|       985 | R\&R Siding – .014" metal – Std grade             | 971.84 |  SF  |  8.15 | 255.40 |  9,811.08 |  0/50 yrs |  **9,811.08** |
+|   986–992 | Shutters/vents/wraps (various)                    |   0.00 |   —  |     — |      — |      0.00 |     —     |      **0.00** |
+|       993 | R\&R Sheathing – foil faced foam – 1/2"           | 971.84 |  SF  |  2.10 |  41.40 |  2,498.71 | 0/150 yrs |  **2,498.71** |
+|       994 | R\&R Siding – board & batten – pine               | 971.84 |  SF  |  6.65 | 182.51 |  7,974.31 | 0/100 yrs |  **7,974.31** |
+|       995 | R\&R Siding – board & batten – cedar              | 971.84 |  SF  | 10.65 | 415.75 | 12,919.03 | 0/100 yrs | **12,919.03** |
+|       996 | R\&R Siding – board & batten – redwood            | 971.84 |  SF  | 11.42 | 460.65 | 13,870.91 | 0/100 yrs | **13,870.91** |
+|       997 | Exterior – stain one coat                         | 971.84 |  SF  |  1.57 |  16.91 |  1,851.24 |  0/15 yrs |  **1,851.24** |
+|       998 | Exterior – stain two coats                        | 971.84 |  SF  |  2.57 |  33.24 |  3,037.03 |  0/15 yrs |  **3,037.03** |
+| 999–1,000 | Shutters & paint per set                          |   0.00 |   —  |     — |      — |      0.00 |     —     |      **0.00** |
+|     1,001 | R\&R Siding – beveled – fiber-cement (clapboard)  | 971.84 |  SF  |  6.56 | 132.95 |  7,809.88 | 0/150 yrs |  **7,809.88** |
+|     1,002 | R\&R Vertical siding – fiber cement board – sheet | 971.84 |  SF  |  4.81 | 142.28 |  5,780.21 | 0/150 yrs |  **5,780.21** |
+|     1,003 | R\&R Siding – fiber cement – shingle type panel   | 971.84 |  SF  | 10.20 | 333.54 | 12,295.57 | 0/150 yrs | **12,295.57** |
 
-19' 7" 
 
-569.33 SF 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-Walls 315.28 SF Ceiling
+More Finishes & Trim (1,004–1,023)
 
-884.61 SF Walls & Ceiling 315.28 SF Floor 
-35.03 SY Flooring 71.17 LF Floor Perimeter 
-71.17 LF Ceil. Perimeter 
-                
-QUANTITY UNIT TAX O&P RCV AGE/LIFE COND. DEP % DEPREC. ACV 
-              
-1,127. R&R Batt insulation - 6" - R19 - paper / foil faced  - 116.00 SF  2.01  6.96  48.04  288.16  0/150 yrs  Avg.  0%  (0.00)  288.16  
-1,128. Apply anti-microbial agent to the floor  
-315.28 SF  0.36  9.40  22.92  145.82  0/NA  Avg.  0%  (0.00)  145.82  
-1,129. Clean the walls  
-569.33 SF  0.48  20.04  54.72  348.04  0/NA  Avg.  0%  (0.00)  348.04  
-1,130. Paint the walls - two coats  
-569.33 SF  1.30  9.91  150.00  900.04  0/15 yrs  Avg.  0%  (0.00)  900.04  
-1,131. Clean door - bifold set (per side)  
-1.00 EA  18.97  1.40  3.80  24.17  0/NA  Avg.  0%  (0.00)  24.17  
-1,132. Paint bifold door set - slab only - 2 coats (per side)  
-1.00 EA  66.95  1.15  13.64  81.74  0/15 yrs  Avg.  0%  (0.00)  81.74  
-1,133. R&R Bifold door set - Colonist - Double  
-1.00 EA  362.26  13.23  75.10  450.59  0/100 yrs  Avg.  0%  (0.00)  450.59  
-1,134. R&R Casing - 3 1/4"  
-17.00 LF  4.41  2.68  15.54  93.19  0/150 yrs  Avg.  0%  (0.00)  93.19  
-1,197. Remove Carpet  
-315.28 SF  0.33  0.00  20.80  124.84  0/10 yrs  Avg.  NA  (0.00)  124.84  
-1,135. Carpet  
-362.57 SF  3.91  64.61  296.46  1,778.72  0/10 yrs  Avg.  0%  (0.00)  1,778.72  
-15 % waste added for Carpet.  
-1,136. R&R Carpet pad  
-315.28 SF  0.82  10.22  53.74  322.49  0/10 yrs  Avg.  0%  (0.00)  322.49  
-1,137. R&R Tackless strip - per LF  
-71.17 LF  1.40  0.47  20.02  120.12  0/10 yrs  Avg.  0%  (0.00)  120.12  
-1,138. Clean concrete the floor  
-315.28 SF  0.40  9.29  25.26  160.66  0/NA  Avg.  0%  (0.00)  160.66  
-1,139. Clean baseboard  
-71.17 LF  0.49  2.55  6.98  44.40  0/NA  Avg.  0%  (0.00)  44.40  
-1,140. R&R Baseboard - 3 1/4"  
-71.17 LF  4.88  9.10  71.28  427.69  0/150 yrs  Avg.  0%  (0.00)  427.69  
-1,141. Seal (1 coat) & paint (1 coat) baseboard  
-71.17 LF  2.05  0.64  29.30  175.84  0/15 yrs  Avg.  0%  (0.00)  175.84  
-1,142. Clean door / window opening (per side)  
-1.00 EA  20.04  1.44  4.00  25.48  0/NA  Avg.  0%  (0.00)  25.48  
-1,143. Seal & paint door or window opening (per side)  
-1.00 EA  42.94  0.37  8.66  51.97  0/15 yrs  Avg.  0%  (0.00)  51.97  
+|           # | DESCRIPTION                                 |    QTY | UNIT |   TAX |   O\&P |       RCV |  AGE/LIFE |           ACV |
+| ----------: | ------------------------------------------- | -----: | :--: | ----: | -----: | --------: | :-------: | ------------: |
+| 1,004–1,008 | Fiber-cement trims & vinyl gable vent       |   0.00 |   —  |     — |      — |      0.00 |     —     |      **0.00** |
+|       1,009 | Seal & paint wood siding                    | 971.84 |  SF  |  2.45 |  32.65 |  2,896.40 |  0/15 yrs |  **2,896.40** |
+|       1,010 | Exterior – paint two coats                  | 971.84 |  SF  |  1.57 |  25.07 |  1,861.04 |  0/15 yrs |  **1,861.04** |
+|       1,011 | R\&R Siding – hardboard panel – paint grade | 971.84 |  SF  |  3.79 |  89.80 |  4,527.69 | 0/150 yrs |  **4,527.69** |
+|       1,012 | R\&R Siding – plywood panel – stain grade   | 971.84 |  SF  |  4.88 | 153.36 |  5,875.14 | 0/100 yrs |  **5,875.14** |
+|       1,013 | Paint wood siding – 1 coat                  | 971.84 |  SF  |  1.62 |  20.41 |  1,913.75 |  0/15 yrs |  **1,913.75** |
+|       1,014 | R\&R Trim board – 1"×10" (pine)             | 121.48 |  LF  |  9.01 |  44.32 |  1,366.61 | 0/150 yrs |  **1,366.61** |
+|       1,015 | R\&R Trim board – 1"×4" (pine)              | 121.48 |  LF  |  4.73 |  15.02 |    707.54 | 0/150 yrs |    **707.54** |
+|       1,016 | Seal (1) & paint (1) trim                   | 121.48 |  LF  |  1.96 |   1.09 |    287.03 |  0/15 yrs |    **287.03** |
+| 1,017–1,018 | Shutters – wood; Attic vent – wood          |   0.00 |   —  |     — |      — |      0.00 |     —     |      **0.00** |
+|       1,019 | R\&R Siding – vinyl – High grade            | 971.84 |  SF  |  6.38 | 138.20 |  7,606.26 |  0/50 yrs |  **7,606.26** |
+| 1,020–1,021 | Light/outlet J-block; Vinyl J-vent          |   0.00 |   —  |     — |      — |      0.00 |     —     |      **0.00** |
+|       1,022 | R\&R Metal lath & stucco                    | 971.84 |  SF  |  8.95 |  85.13 | 10,539.71 | 0/100 yrs | **10,539.71** |
+|       1,023 | Stucco Plasterer – per hour                 |   0.00 |  HR  | 68.01 |   0.00 |      0.00 |    0/NA   |      **0.00** |
+
+
+Synthetic Stucco -
+|     # | DESCRIPTION                                   |    QTY | UNIT |   TAX |   O\&P |       RCV |  AGE/LIFE |           ACV |
+| ----: | --------------------------------------------- | -----: | :--: | ----: | -----: | --------: | :-------: | ------------: |
+| 1,024 | Synthetic stucco – add for quoins             |   0.00 |  LF  | 11.51 |   0.00 |      0.00 | 0/100 yrs |      **0.00** |
+| 1,025 | Synthetic stucco – add for raised trim        | 121.48 |  LF  |  7.29 |  11.15 |  1,076.10 | 0/100 yrs |  **1,076.10** |
+| 1,026 | Scaffold – per section (per day)              |   0.00 |  DA  | 27.74 |   0.00 |      0.00 |    0/NA   |      **0.00** |
+| 1,027 | R\&R Synthetic stucco on 2" polystyrene board | 971.84 |  SF  | 12.69 | 205.84 | 15,046.17 | 0/100 yrs | **15,046.17** |
 
 
 
-1,144. Contents - move out then reset - Extra large room 1.00 EA 226.88 0.00 45.38 272.26 0/NA 1,145. R&R Refrigerator - top freezer - 18 to 22 cf 1.00 EA 970.35 54.00 204.88 1,229.23 0/14 yrs 1,146. Heat/AC register - Mechanically attached - Detach & reset 2.00 EA 16.16 0.00 6.46 38.78 0/NA 1,147. R&R Wallpaper border 71.17 LF 4.66 6.36 67.60 405.61 0/7 yrs 1,148. Window drapery - hardware - Detach & reset 3.00 EA 42.96 0.00 25.78 154.66 0/NA 1,149. Smoke detector - Detach & reset 1.00 EA 54.36 0.00 10.88 65.24 0/NA 1,150. Tear out tackless strip and bag for disposal 71.17 LF 1.28 0.30 18.28 109.68 0/NA  Avg. Avg. Avg. Avg. Avg. Avg. Avg.  0% (0.00) 272.26 0% (0.00) 1,229.23 0% (0.00) 38.78 0% (0.00) 405.61 0% (0.00) 154.66 0% (0.00) 65.24 NA (0.00) 109.68  
+# SKETCH5 – Fire
+Main area: Walls 459.23 SF · Ceiling 159.76 SF · Walls & Ceiling 618.99 SF · Floor 159.76 SF
+Perimeters: Floor 57.40 LF · Ceiling 57.40 LF · Subroom (Stairs) height 9' 2"
 
-Totals: Flood 224.12 1,299.52 7,839.42  0.00 7,839.42  
-Total: Main Level 224.12 1,299.52 7,839.42  0.00 7,839.42  
-Total: SKETCH6 224.12 1,299.52 7,839.42  0.00 7,839.42  
-Labor Minimums Applied  
-QUANTITY UNIT TAX O&P RCV AGE/LIFE 1,151. Tile / marble labor minimum 1.00 EA 53.09 0.00 10.62 63.71 0/NA 
-1,152. Cabinetry labor minimum 1.00 EA 208.35 0.00 41.68 250.03 0/NA 
-1,153. Stairway labor minimum 1.00 EA 90.19 0.00 18.04 108.23 0/NA 1,154. Window labor minimum 1.00 EA 0.26 0.00 0.06 0.32 0/NA 1,155. Awning labor minimum 1.00 EA 258.41 0.00 51.68 310.09 0/NA  COND. Avg. Avg. Avg. Avg. Avg.  DEP % DEPREC. ACV 0% (0.00) 63.71 0% (0.00) 250.03 0% (0.00) 108.23 0% (0.00) 0.32 0% (0.00) 310.09  
-Totals: Labor Minimums 0.00 122.08 732.38 Applied  0.00 732.38  
-Line Item Totals: 2025-08-28.17,565.14 146,732.52 881,150.98 1618  28,486.46 852,664.52  
+|     # | DESCRIPTION                                        |    QTY | UNIT |  TAX |  O\&P |    RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |        ACV |
+| ----: | -------------------------------------------------- | -----: | :--: | ---: | ----: | -----: | :-------: | :---: | ---: | ------: | ---------: |
+| 1,028 | R\&R Batt insulation – 6" – R19 – paper/foil faced | 549.66 |  SF  | 1.21 | 20.45 | 822.66 | 0/150 yrs |  Avg. |   0% |  (0.00) | **822.66** |
+| 1,029 | R\&R Vapor barrier – visqueen – 6 mil              | 175.74 |  SF  | 0.37 |  0.63 |  78.79 | 0/150 yrs |  Avg. |   0% |  (0.00) |  **78.79** |
+| 1,030 | Seal floor or ceiling joist system                 | 175.74 |  SF  | 1.19 |  2.43 | 253.86 |  0/15 yrs |  Avg. |   0% |  (0.00) | **253.86** |
+| 1,031 | Clean floor or roof joist system                   | 175.74 |  SF  | 0.96 | 12.38 | 214.87 |    0/NA   |  Avg. |   0% |  (0.00) | **214.87** |
+
+
+# DRYWALL
+
+|     # | DESCRIPTION                                               |    QTY | UNIT |  TAX |  O\&P |      RCV |  AGE/LIFE  | COND. |   DEP% |  DEPREC. |          ACV |
+| ----: | --------------------------------------------------------- | -----: | :--: | ---: | ----: | -------: | :--------: | :---: | -----: | -------: | -----------: |
+| 1,032 | R\&R 5/8" drywall – hung, taped, floated, ready for paint | 172.01 |  SF  | 2.56 |  5.57 |   535.09 | 16/150 yrs |  Avg. | 10.67% |  (39.85) |   **495.24** |
+| 1,033 | R\&R 1/2" drywall – hung, taped, floated, ready for paint | 549.66 |  SF  | 2.48 | 16.49 | 1,655.59 | 16/150 yrs |  Avg. | 10.67% | (123.13) | **1,532.46** |
+| 1,034 | R\&R Batt insulation – 4" – R13 – unfaced batt            | 432.66 |  SF  | 0.83 |  9.86 |   442.77 | 16/150 yrs |  Avg. | 10.67% |  (28.28) |   **414.49** |
+
+
+SEAL/PRIME/PAINT (materials depreciated [M]) -
+
+|     # | DESCRIPTION                                          |    QTY | UNIT |  TAX | O\&P |    RCV |  AGE/LIFE | COND. |      DEP% |  DEPREC. |       ACV |
+| ----: | ---------------------------------------------------- | -----: | :--: | ---: | ---: | -----: | :-------: | :---: | --------: | -------: | --------: |
+| 1,035 | Seal stud wall for odor control                      | 549.66 |  SF  | 0.75 | 5.61 | 501.44 | 16/15 yrs |  Avg. | 100% \[M] | (417.86) | **83.58** |
+| 1,036 | Seal floor or ceiling joist system                   | 172.01 |  SF  | 1.07 | 2.27 | 223.60 | 16/15 yrs |  Avg. | 100% \[M] | (186.32) | **37.28** |
+| 1,037 | Seal walls & ceiling w/ latex stain blocker – 1 coat | 721.67 |  SF  | 0.39 | 2.60 | 340.87 | 16/15 yrs |  Avg. | 100% \[M] | (284.05) | **56.82** |
+| 1,038 | Paint walls & ceiling – 1 coat                       | 721.67 |  SF  | 0.44 | 4.76 | 386.75 | 16/15 yrs |  Avg. | 100% \[M] | (322.29) | **64.46** |
+
+
+TRIM -
+|     # | DESCRIPTION                                  |   QTY | UNIT |      TAX |  O\&P |      RCV |  AGE/LIFE  | COND. |      DEP% | DEPREC. |        ACV |
+| ----: | -------------------------------------------- | ----: | :--: | -------: | ----: | -------: | :--------: | :---: | --------: | ------: | ---------: |
+| 1,039 | R\&R Baseboard – 3 1/4"                      | 61.34 |  LF  |     3.29 |  4.27 |   247.30 | 16/150 yrs |  Avg. |    10.67% | (18.98) | **228.32** |
+| 1,040 | R\&R Base shoe                               | 61.34 |  LF  |     1.36 |  1.62 |   102.04 | 16/150 yrs |  Avg. |    10.67% |  (7.96) |  **94.08** |
+| 1,041 | Seal & paint baseboard – 2 coats\*           | 61.34 |  LF  |     1.27 |  0.37 |    93.93 |  16/15 yrs |  Avg. | 100% \[M] | (78.27) |  **15.66** |
+| 1,042 | Seal & paint base shoe / quarter round       | 61.34 |  LF  |     0.67 |  0.33 |    49.71 |  16/15 yrs |  Avg. | 100% \[M] | (41.43) |   **8.28** |
+| 1,043 | R\&R Casing – 2 1/4"                         |  0.00 |  LF  |     2.31 |  0.00 |     0.00 | 16/150 yrs |  Avg. |    10.67% |  (0.00) |   **0.00** |
+| 1,044 | Seal & paint casing – 2 coats\*              | 16.17 |  LF  |     1.28 |  0.11 |    24.97 |  16/15 yrs |  Avg. | 100% \[M] | (20.81) |   **4.16** |
+| 1,045 | R\&R Fireplace mantel – paint grade – custom |  1.00 |  EA  | 1,106.46 | 46.32 | 1,383.34 |  16/75 yrs |   —   |         — |       — |          — |
+| 1,046 | Seal & paint fireplace mantel                | 16.00 |  LF  |     4.41 |  0.17 |    84.89 |  16/15 yrs |   —   |         — |       — |          — |
+| 1,047 | R\&R Window stool & apron                    |  0.00 |  LF  |     7.85 |  0.00 |     0.00 | 16/150 yrs |   —   |         — |       — |          — |
+| 1,048 | Seal & paint window stool & apron            |  7.08 |  LF  |     3.40 |  0.14 |    29.05 |  16/15 yrs |   —   |         — |       — |          — |
+| 1,049 | R\&R Window blind – PVC – 2" – 14.1–20 SF    |  4.00 |  EA  |   112.04 | 15.86 |   556.84 |  16/5 yrs  |   —   |         — |       — |          — |
+
+
+ELECTRICAL (set 1) -
+
+|     # | DESCRIPTION                                           |    QTY | UNIT |    TAX | O\&P |    RCV |  AGE/LIFE  | COND. | DEP% |  DEPREC. |        ACV |
+| ----: | ----------------------------------------------------- | -----: | :--: | -----: | ---: | -----: | :--------: | :---: | ---: | -------: | ---------: |
+| 1,050 | Megohmmeter check electrical circuits – avg residence |   1.00 |  EA  | 732.72 | 0.00 | 879.26 |    16/NA   |  Avg. |   0% |   (0.00) | **879.26** |
+| 1,051 | R\&R Ceiling fan & light – Std grade                  |   1.00 |  EA  | 293.41 | 3.90 | 356.77 |  16/20 yrs |  Avg. |  16% | (102.08) | **134.03** |
+| 1,052 | R\&R Recessed light fixture                           |   2.00 |  EA  | 138.63 | 4.26 | 337.84 |  16/20 yrs |  Avg. |  16% |  (53.77) | **284.07** |
+| 1,053 | R\&R Rewire – avg residence – copper wiring           | 175.74 |  SF  |   3.61 | 3.59 | 765.61 | 16/100 yrs |  Avg. |   0% |   (0.00) | **765.61** |
+| 1,054 | R\&R Smoke detector – Std grade                       |   1.00 |  EA  |  50.41 | 0.99 |  61.68 |  16/10 yrs |  Avg. |  64% |  (39.39) |  **22.29** |
+| 1,055 | R\&R Thermostat – Std grade                           |   1.00 |  EA  |  85.52 | 2.03 | 105.07 |  16/35 yrs |  Avg. |  64% |  (67.59) |  **37.48** |
+| 1,056 | R\&R Cold air return cover – Large                    |   1.00 |  EA  |  36.93 | 0.95 |  45.46 |  16/25 yrs |  Avg. |  64% |  (29.10) |  **16.36** |
+| 1,057 | R\&R Heat/AC register – mechanically attached         |   2.00 |  EA  |  23.79 | 1.08 |  58.40 |  16/25 yrs |  Avg. |  64% |  (37.95) |  **20.45** |
+
+
+FLOORS (set 1) 
+
+|     # | DESCRIPTION                                  |    QTY | UNIT |  TAX |  O\&P |      RCV |  AGE/LIFE  | COND. |   DEP% |  DEPREC. |        ACV |
+| ----: | -------------------------------------------- | -----: | :--: | ---: | ----: | -------: | :--------: | :---: | -----: | -------: | ---------: |
+| 1,058 | R\&R Vapor barrier – visqueen – 6 mil        | 175.74 |  SF  | 0.35 |  0.63 |    74.56 | 16/150 yrs |  Avg. | 10.67% |   (7.11) |  **67.45** |
+| 1,059 | R\&R Laminate – simulated wood – Std grade\* | 175.74 |  SF  | 5.52 | 22.04 | 1,190.55 |  16/25 yrs |  Avg. |    64% | (761.95) | **428.60** |
+| 1,060 | Final cleaning – construction – Residential  | 175.74 |  SF  | 0.19 |  2.40 |    42.47 |    16/NA   |  Avg. |     0% |   (0.00) |  **42.47** |
+
+
+INSULATION & SEALING (set 2)
+
+|     # | DESCRIPTION                                          |    QTY | UNIT |  TAX | O\&P |    RCV |  AGE/LIFE  | COND. |      DEP% |  DEPREC. |        ACV |
+| ----: | ---------------------------------------------------- | -----: | :--: | ---: | ---: | -----: | :--------: | :---: | --------: | -------: | ---------: |
+| 1,063 | R\&R Batt insulation – 4" – R13 – unfaced batt       | 234.00 |  SF  | 0.83 | 5.34 | 239.48 | 16/150 yrs |  Avg. |    10.67% |  (25.62) | **213.86** |
+| 1,064 | Seal stud wall for odor control                      | 549.66 |  SF  | 0.75 | 5.61 | 501.44 |  16/15 yrs |  Avg. | 100% \[M] | (417.86) |  **83.58** |
+| 1,065 | Seal floor or ceiling joist system                   | 172.01 |  SF  | 1.07 | 2.27 | 223.60 |  16/15 yrs |  Avg. | 100% \[M] | (186.32) |  **37.28** |
+| 1,066 | Seal walls & ceiling w/ latex stain blocker – 1 coat | 721.67 |  SF  | 0.39 | 2.60 | 340.87 |  16/15 yrs |  Avg. | 100% \[M] | (284.05) |  **56.82** |
+
+
+DOORS / TRIM (set 2) -
+
+|     # | DESCRIPTION                                         |    QTY | UNIT |    TAX |  O\&P |    RCV |  AGE/LIFE  | COND. |      DEP% |  DEPREC. |        ACV |
+| ----: | --------------------------------------------------- | -----: | :--: | -----: | ----: | -----: | :--------: | :---: | --------: | -------: | ---------: |
+| 1,067 | R\&R Interior door – Colonist – pre-hung unit       |   2.00 |  EA  | 220.73 | 18.24 | 551.62 | 16/100 yrs |  Avg. |       16% |  (67.55) | **484.07** |
+| 1,068 | Paint door/window trim & jamb – 2 coats (per side)  |   2.00 |  EA  |  26.65 |  0.47 |  64.53 |  16/15 yrs |  Avg. | 100% \[M] |  (53.77) |  **10.76** |
+| 1,069 | Detach & reset door knob – interior – Std grade     |   2.00 |  EA  |  18.46 |  0.00 |  44.30 |  0/20 yrs  |  Avg. |        0% |   (0.00) |  **44.30** |
+| 1,070 | R\&R Exterior door – metal – insulated – Std grade  |   1.00 |  EA  | 273.89 | 10.65 | 341.46 | 16/100 yrs |  Avg. |       16% |  (42.09) | **299.37** |
+| 1,071 | Exterior – seal/prime then paint – two finish coats | 549.66 |  SF  |   1.35 | 13.19 | 906.27 |  16/15 yrs |  Avg. | 100% \[M] | (755.23) | **151.04** |
+| 1,072 | R\&R Window stool & apron                           |   0.00 |  LF  |   7.85 |  0.00 |   0.00 | 16/150 yrs |   —   |         — |        — |   **0.00** |
+| 1,073 | Seal & paint window stool & apron                   |   2.08 |  LF  |   3.40 |  0.04 |   8.53 |  16/15 yrs |   —   |         — |        — |   **1.42** |
+| 1,074 | R\&R Window blind – PVC – 2" – 14.1–20 SF           |   1.00 |  EA  | 112.04 |  3.96 | 139.22 |  16/5 yrs  |   —   |         — |        — |  **33.29** |
+
+
+CABINETS -
+|     # | DESCRIPTION                                          |   QTY | UNIT |   TAX |  O&P |      RCV | AGE/LIFE | NOTES                      |          ACV |
+| ----: | ---------------------------------------------------- | ----: | :--: | ----: | ----: | -------: | :------: | :------------------------- | -----------: |
+| 1,075 | Cabinetry – lower (base) – Detach & reset            | 23.00 |  LF  | 57.55 |  0.00 | 1,588.39 |   16/NA  | cabinets need cleaning     | **1,588.39** |
+| 1,076 | Clean cabinetry – lower – inside & out               | 23.00 |  LF  | 12.51 | 20.83 |   366.12 |   16/NA  | —                          |   **366.12** |
+| 1,077 | Cabinetry – upper (wall) – Detach & reset            | 13.00 |  LF  | 49.23 |  0.00 |   767.99 |   16/NA  | removed to replace drywall |   **767.99** |
+| 1,078 | Clean cabinetry – upper – inside & out               | 13.00 |  LF  | 12.51 | 11.77 |   206.94 |   16/NA  | —                          |   **206.94** |
+| 1,079 | Detach & reset countertop – flat-laid PL – Std grade | 31.00 |  LF  | 16.19 |  0.00 |   602.27 | 0/15 yrs | —                          |   **602.27** |
+
+
+ELECTRICAL & CLEANING (set 3 excerpts)
+
+|     # | DESCRIPTION                                      |       QTY | UNIT |    TAX |  O&P |    RCV |  AGE/LIFE  | COND. |      DEP% |  DEPREC. |        ACV |
+| ----: | ------------------------------------------------ | --------: | :--: | -----: | ----: | -----: | :--------: | :---: | --------: | -------: | ---------: |
+| 1,080 | R\&R Rewire – avg residence – copper wiring      |    175.74 |  SF  |   3.61 |  3.59 | 765.61 | 16/100 yrs |  Avg. |        0% |   (0.00) | **663.53** |
+| 1,081 | R\&R Smoke detector – Std grade                  |      1.00 |  EA  |  50.41 |  0.99 |  61.68 |  16/10 yrs |  Avg. | 100% \[M] |  (43.47) |  **18.21** |
+| 1,082 | R\&R Heat/AC register – mechanically attached    |      2.00 |  EA  |  23.79 |  1.08 |  58.40 |  16/25 yrs |  Avg. |       64% |  (30.46) |  **27.94** |
+| 1,083 | R\&R Fluorescent – 2-tube – 4' fixture w/ lens   |      1.00 |  EA  | 126.37 |  3.60 | 155.95 |  16/20 yrs |  Avg. |       80% | (124.76) |  **31.19** |
+| 1,084 | R\&R Light fixture – Std grade                   |      1.00 |  EA  |  63.96 |  1.03 |  77.97 |  16/20 yrs |  Avg. |       80% |  (62.38) |  **15.59** |
+| 1,085 | R\&R Phone/TV/speaker outlet                     |      1.00 |  EA  |  23.95 |  0.31 |  29.12 |  16/25 yrs |  Avg. |       64% |  (18.96) |  **10.16** |
+| 1,086 | Clean floor – Heavy                              |    175.74 |  SF  |   0.58 |  7.45 | 129.78 |    16/NA   |  Avg. |        0% |   (0.00) | **129.78** |
+| 1,087 | Clean refrigerator – exterior – Heavy            |      1.00 |  EA  |  24.37 |  1.78 |  31.03 |    16/NA   |  Avg. |        0% |   (0.00) |  **31.03** |
+| 1,088 | Clean dishwasher – exterior – Heavy              |      1.00 |  EA  |  15.95 |  1.15 |  20.30 |    16/NA   |  Avg. |        0% |   (0.00) |  **20.30** |
+| 1,089 | Clean range hood – Heavy                         |      1.00 |  EA  |  21.06 |  1.52 |  26.80 |    16/NA   |  Avg. |        0% |   (0.00) |  **26.80** |
+| 1,090 | Clean range – exterior – Heavy                   |      1.00 |  EA  |  38.52 |  2.81 |  49.03 |    16/NA   |  Avg. |        0% |   (0.00) |  **49.03** |
+| 1,091 | Clean door hardware – Heavy                      |      2.00 |  EA  |   7.92 |  1.16 |  20.16 |    16/NA   |  Avg. |        0% |   (0.00) |  **20.16** |
+| 1,092 | Clean countertop – Heavy                         |     58.00 |  SF  |   0.83 |  3.54 |  61.32 |    16/NA   |  Avg. |        0% |   (0.00) |  **61.32** |
+| 1,093 | Clean ductwork – interior – Heavy (per register) |     14.00 |  EA  |  38.83 | 39.21 | 691.57 |    16/NA   |  Avg. |        0% |   (0.00) | **691.57** |
+| 1,094 | Deodorize building – Ozone & hydroxyl            | 10,550.00 |  CF  |   0.04 | 30.38 | 536.78 |    16/NA   |  Avg. |        0% |   (0.00) | **536.78** |
+
+
+FLOORS (set 2)
+
+|     # | DESCRIPTION                        |    QTY | UNIT |  TAX |  O\&P |    RCV |  AGE/LIFE | COND. |      DEP% | DEPREC. |        ACV |
+| ----: | ---------------------------------- | -----: | :--: | ---: | ----: | -----: | :-------: | :---: | --------: | ------: | ---------: |
+| 1,095 | Seal underlayment for odor control | 175.74 |  SF  | 0.51 |  0.74 | 108.43 | 16/15 yrs |  Avg. | 100% \[M] | (90.37) |  **18.06** |
+| 1,096 | R\&R Carpet pad – Std grade        | 175.74 |  SF  | 0.51 |  3.48 | 111.73 | 16/10 yrs |  Avg. | 100% \[M] | <73.78> |  **37.95** |
+| 1,097 | Clean walls & ceiling – Heavy      | 721.67 |  SF  | 0.39 | 20.72 | 358.55 |   16/NA   |  Avg. |        0% |  (0.00) | **358.55** |
+
+
+PAINT (set 2)
+|     # | DESCRIPTION                                          |    QTY | UNIT |   TAX | O\&P |    RCV |  AGE/LIFE | COND. |      DEP% |  DEPREC. |        ACV |
+| ----: | ---------------------------------------------------- | -----: | :--: | ----: | ---: | -----: | :-------: | :---: | --------: | -------: | ---------: |
+| 1,103 | Mask & prep for paint – plastic/paper/tape (per LF)  |  68.57 |  LF  |  1.21 | 1.07 | 100.86 | 16/15 yrs |  Avg. |        0% |   (0.00) | **100.86** |
+| 1,104 | Seal walls & ceiling w/ latex stain blocker – 1 coat | 721.67 |  SF  |  0.52 | 3.03 | 453.96 | 16/15 yrs |  Avg. | 100% \[M] | (378.30) |  **75.66** |
+| 1,105 | Paint walls & ceiling – 2 coats                      | 721.67 |  SF  |  0.82 | 8.66 | 720.53 | 16/15 yrs |  Avg. | 100% \[M] | (600.43) | **120.10** |
+| 1,106 | Paint casing – 2 coats                               |  68.00 |  LF  |  1.24 | 0.49 | 101.77 | 16/15 yrs |  Avg. | 100% \[M] |  (84.81) |  **16.96** |
+| 1,107 | Paint door slab only – 2 coats (per side)            |   1.00 |  EA  | 31.79 | 0.39 |  38.62 | 16/15 yrs |  Avg. | 100% \[M] |  (32.18) |   **6.44** |
+
+
+ELECTRICAL (set 4) - 
+|     # | DESCRIPTION                                           |  QTY | UNIT |    TAX | O\&P |    RCV |  AGE/LIFE | COND. | DEP% |  DEPREC. |        ACV |
+| ----: | ----------------------------------------------------- | ---: | :--: | -----: | ---: | -----: | :-------: | :---: | ---: | -------: | ---------: |
+| 1,108 | Megohmmeter check electrical circuits – avg residence | 1.00 |  EA  | 732.72 | 0.00 | 879.26 |   16/NA   |  Avg. |   0% |   (0.00) | **879.26** |
+| 1,109 | R\&R Smoke detector – Std grade                       | 3.00 |  EA  |  50.41 | 2.97 | 185.04 | 16/10 yrs |  Avg. |  64% | (130.41) |  **54.63** |
+| 1,110 | R\&R Cold air return cover – Large                    | 1.00 |  EA  |  36.93 | 0.95 |  45.46 | 16/25 yrs |  Avg. |  64% |  (20.22) |  **25.24** |
+| 1,111 | R\&R Heat/AC register – mechanically attached         | 2.00 |  EA  |  23.79 | 1.08 |  58.40 | 16/25 yrs |  Avg. |  64% |  (30.46) |  **27.94** |
+| 1,112 | R\&R Light fixture                                    | 1.00 |  EA  |  79.82 | 1.98 |  98.16 | 16/20 yrs |  Avg. |  80% |  (78.77) |  **19.39** |
+
+
+FLOORS (set 3) - 
+|     # | DESCRIPTION                                   |    QTY | UNIT |  TAX | O\&P |    RCV |  AGE/LIFE | COND. | DEP% |  DEPREC. |       ACV |
+| ----: | --------------------------------------------- | -----: | :--: | ---: | ---: | -----: | :-------: | :---: | ---: | -------: | --------: |
+| 1,113 | R\&R Carpet pad – Std grade                   | 175.74 |  SF  | 0.51 | 3.48 | 111.73 | 16/10 yrs |  Avg. |  64% |  (71.10) | **40.63** |
+| 1,114 | Carpet – Std grade *(+15% waste)*             |  59.46 |  SF  | 2.34 | 6.35 | 174.59 | 16/10 yrs |  Avg. |  64% | (111.74) | **62.85** |
+| 1,115 | Step charge – “waterfall” carpet installation |  16.00 |  EA  | 6.76 | 0.43 | 130.31 | 16/10 yrs |  Avg. |  80% | (104.59) | **25.72** |
+
+
+CLEAN (set 4) - 
+|     # | DESCRIPTION                                            |    QTY | UNIT |   TAX |  O&P |    RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |        ACV |
+| ----: | ------------------------------------------------------ | -----: | :--: | ----: | ----: | -----: | :-------: | :---: | ---: | ------: | ---------: |
+| 1,116 | Clean walls & ceiling                                  | 721.67 |  SF  |  0.30 | 16.05 | 275.93 |   16/NA   |  Avg. |   0% |  (0.00) | **275.93** |
+| 1,117 | Clean trim – wood                                      |  60.00 |  LF  |  0.28 |  1.21 |  21.37 |   16/NA   |  Avg. |   0% |  (0.00) |  **21.37** |
+| 1,118 | Clean light fixture                                    |   1.00 |  EA  |  9.00 |  0.65 |  11.45 |   16/NA   |  Avg. |   0% |  (0.00) |  **11.45** |
+| 1,119 | Clean outlet or switch                                 |   1.00 |  EA  |  2.95 |  0.22 |   3.77 |   16/NA   |  Avg. |   0% |  (0.00) |   **3.77** |
+| 1,120 | Clean baseboard                                        |  68.93 |  LF  |  0.30 |  1.53 |  26.35 |   16/NA   |  Avg. |   0% |  (0.00) |  **26.35** |
+| 1,121 | R\&R Stairway – stringers, treads & risers (per tread) |   1.00 |  EA  | 78.14 |  1.16 |  95.16 | 16/50 yrs |  Avg. |  32% | (20.57) |  **74.59** |
+
+
+DRYWALL / PAINT (set 5) - 
+|     # | DESCRIPTION                                         |    QTY | UNIT |   TAX | O\&P |    RCV |  AGE/LIFE  | COND. |      DEP% |  DEPREC. |        ACV |
+| ----: | --------------------------------------------------- | -----: | :--: | ----: | ---: | -----: | :--------: | :---: | --------: | -------: | ---------: |
+| 1,122 | Mask & prep for paint – plastic/paper/tape (per LF) |  68.57 |  LF  |  1.21 | 1.07 | 100.86 |  16/15 yrs |  Avg. |        0% |   (0.00) | **100.86** |
+| 1,123 | Drywall patch / small repair – ready for paint      |   3.00 |  EA  | 65.18 | 0.50 | 235.24 | 16/150 yrs |  Avg. |    10.67% |  (20.91) | **214.33** |
+| 1,124 | Seal walls w/ latex stain blocker – 1 coat          | 549.66 |  SF  |  0.52 | 2.31 | 345.75 |  16/15 yrs |  Avg. | 100% \[M] | (288.13) |  **57.62** |
+| 1,125 | Paint walls & ceiling – 1 coat                      | 721.67 |  SF  |  0.56 | 4.76 | 490.68 |  16/15 yrs |  Avg. | 100% \[M] | (408.90) |  **81.78** |
+| 1,126 | Paint casing – 1 coat                               |  51.00 |  LF  |  0.83 | 0.24 |  51.07 |  16/15 yrs |  Avg. | 100% \[M] |  (42.57) |   **8.50** |
+
+
+SKETCH6 (Room Package) - 
+Sketch: 19' 7" · Floor 315.28 SF (35.03 SY) · Walls 569.33 SF · Walls+Ceiling 884.61 SF · Floor Perimeter 71.17 LF · Ceiling Perimeter 71.17 LF
+
+|     # | DESCRIPTION                                            |    QTY | UNIT |    TAX |  O\&P |      RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |          ACV |
+| ----: | ------------------------------------------------------ | -----: | :--: | -----: | ----: | -------: | :-------: | :---: | ---: | ------: | -----------: |
+| 1,127 | R\&R Batt insulation – 6" – R19 – paper/foil faced     | 116.00 |  SF  |   2.01 |  6.96 |   288.16 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **288.16** |
+| 1,128 | Apply anti-microbial agent to the floor                | 315.28 |  SF  |   0.36 |  9.40 |   145.82 |    0/NA   |  Avg. |   0% |  (0.00) |   **145.82** |
+| 1,129 | Clean the walls                                        | 569.33 |  SF  |   0.48 | 20.04 |   348.04 |    0/NA   |  Avg. |   0% |  (0.00) |   **348.04** |
+| 1,130 | Paint the walls – 2 coats                              | 569.33 |  SF  |   1.30 |  9.91 |   900.04 |  0/15 yrs |  Avg. |   0% |  (0.00) |   **900.04** |
+| 1,131 | Clean door – bifold set (per side)                     |   1.00 |  EA  |  18.97 |  1.40 |    24.17 |    0/NA   |  Avg. |   0% |  (0.00) |    **24.17** |
+| 1,132 | Paint bifold door set – slab only – 2 coats (per side) |   1.00 |  EA  |  66.95 |  1.15 |    81.74 |  0/15 yrs |  Avg. |   0% |  (0.00) |    **81.74** |
+| 1,133 | R\&R Bifold door set – Colonist – Double               |   1.00 |  EA  | 362.26 | 13.23 |   450.59 | 0/100 yrs |  Avg. |   0% |  (0.00) |   **450.59** |
+| 1,134 | R\&R Casing – 3 1/4"                                   |  17.00 |  LF  |   4.41 |  2.68 |    93.19 | 0/150 yrs |  Avg. |   0% |  (0.00) |    **93.19** |
+| 1,197 | Remove carpet                                          | 315.28 |  SF  |   0.33 |  0.00 |   124.84 |  0/10 yrs |  Avg. |    — |  (0.00) |   **124.84** |
+| 1,135 | Carpet *(+15% waste)*                                  | 362.57 |  SF  |   3.91 | 64.61 | 1,778.72 |  0/10 yrs |  Avg. |   0% |  (0.00) | **1,778.72** |
+| 1,136 | R\&R Carpet pad                                        | 315.28 |  SF  |   0.82 | 10.22 |   322.49 |  0/10 yrs |  Avg. |   0% |  (0.00) |   **322.49** |
+| 1,137 | R\&R Tackless strip – per LF                           |  71.17 |  LF  |   1.40 |  0.47 |   120.12 |  0/10 yrs |  Avg. |   0% |  (0.00) |   **120.12** |
+| 1,138 | Clean concrete floor                                   | 315.28 |  SF  |   0.40 |  9.29 |   160.66 |    0/NA   |  Avg. |   0% |  (0.00) |   **160.66** |
+| 1,139 | Clean baseboard                                        |  71.17 |  LF  |   0.49 |  2.55 |    44.40 |    0/NA   |  Avg. |   0% |  (0.00) |    **44.40** |
+| 1,140 | R\&R Baseboard – 3 1/4"                                |  71.17 |  LF  |   4.88 |  9.10 |   427.69 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **427.69** |
+| 1,141 | Seal & paint baseboard – 1 coat each                   |  71.17 |  LF  |   2.05 |  0.64 |   175.84 |  0/15 yrs |  Avg. |   0% |  (0.00) |   **175.84** |
+| 1,142 | Clean door/window opening (per side)                   |   1.00 |  EA  |  20.04 |  1.44 |    25.48 |    0/NA   |  Avg. |   0% |  (0.00) |    **25.48** |
+| 1,143 | Seal & paint door/window opening (per side)            |   1.00 |  EA  |  42.94 |  0.37 |    51.97 |  0/15 yrs |  Avg. |   0% |  (0.00) |    **51.97** |
+| 1,144 | Contents – move out then reset – extra large room      |   1.00 |  EA  | 226.88 |  0.00 |   272.26 |    0/NA   |  Avg. |   0% |  (0.00) |   **272.26** |
+| 1,145 | R\&R Refrigerator – top freezer – 18–22 cf             |   1.00 |  EA  | 970.35 | 54.00 | 1,229.23 |  0/14 yrs |  Avg. |   0% |  (0.00) | **1,229.23** |
+| 1,146 | Heat/AC register – mechanically attached – D\&R        |   2.00 |  EA  |  16.16 |  0.00 |    38.78 |    0/NA   |  Avg. |   0% |  (0.00) |    **38.78** |
+| 1,147 | R\&R Wallpaper border                                  |  71.17 |  LF  |   4.66 |  6.36 |   405.61 |  0/7 yrs  |  Avg. |   0% |  (0.00) |   **405.61** |
+| 1,148 | Window drapery – hardware – D\&R                       |   3.00 |  EA  |  42.96 |  0.00 |   154.66 |    0/NA   |  Avg. |   0% |  (0.00) |   **154.66** |
+| 1,149 | Smoke detector – D\&R                                  |   1.00 |  EA  |  54.36 |  0.00 |    65.24 |    0/NA   |  Avg. |   0% |  (0.00) |    **65.24** |
+| 1,150 | Tear out tackless strip & bag for disposal             |  71.17 |  LF  |   1.28 |  0.30 |   109.68 |    0/NA   |  Avg. |    — |  (0.00) |   **109.68** |
+
+
+# Building From Scrach - 
+
+- This is for estimates that calcualtes cost of the constructions cost to build a new house or building. this is mainly for the foundations, frames and preperation jobs.
+
+
+|  # | DESCRIPTION                                             | QTY    | UNIT |    TAX |  O&P |      RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |          ACV |
+| -: | ------------------------------------------------------- | ------ | :--: | -----: | ----: | -------: | :-------: | :---: | ---: | ------: | -----------: |
+|  1 | 2" × 4" × 10' #2 & better Fir/Larch (material only)     | 3.00   |  EA  |   6.48 |  1.17 |    24.73 | 0/150 yrs |  Avg. |   0% |  (0.00) |    **24.73** |
+|  2 | 2" × 4" × 8' #2 & better Fir/Larch (material only)      | 39.00  |  EA  |   5.18 | 12.12 |   256.96 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **256.96** |
+|  3 | 2" × 4" × 92 5/8" pre-cut stud (for 8' wall, mat only)  | 76.00  |  EA  |   5.02 | 22.89 |   485.29 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **485.29** |
+|  4 | R\&R Sheathing – OSB – 1/2"                             | 456.00 |  SF  |   2.30 | 15.60 | 1,277.28 | 0/150 yrs |  Avg. |   0% |  (0.00) | **1,277.28** |
+|  5 | R\&R Labor to frame 2" × 4" non-bearing wall – 16" o.c. | 520.33 |  SF  |   2.07 |  0.94 | 1,293.63 | 0/150 yrs |  Avg. |   0% |  (0.00) | **1,293.63** |
+|  6 | R\&R I-joist – 9 1/2" deep – 1 3/4" flange              | 127.42 |  LF  |   6.39 | 18.20 |   998.92 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **998.92** |
+|  7 | R\&R Rim joist – engineered – 1-1/8" × 9-1/2"           | 50.67  |  LF  |   4.11 |  7.17 |   258.51 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **258.51** |
+|  8 | R\&R Sheathing – OSB – 3/4" – tongue & groove           | 192.00 |  SF  |   4.35 | 13.02 | 1,017.86 | 0/150 yrs |  Avg. |   0% |  (0.00) | **1,017.86** |
+|  9 | R\&R Drilled bottom plate – 2" × 4" treated lumber      | 52.00  |  LF  |  13.46 |  2.84 |   843.30 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **843.30** |
+| 10 | R\&R Footings – labor and materials                     | 3.55   |  CY  | 838.32 | 40.20 | 3,619.47 | 0/200 yrs |  Avg. |   0% |  (0.00) | **3,619.47** |
+| 11 | Steel rebar – J-bar – #4, 2' 6"                         | 67.00  |  EA  |   5.82 |  4.70 |   473.56 | 0/150 yrs |  Avg. |   0% |  (0.00) |   **473.56** |
+| 12 | R\&R Steel rebar – #4 (1/2")                            | —      |   —  |      — |     — |        — |     —     |   —   |    — |       — |            — |
+
+__Roof__
+
+|  # | DESCRIPTION                                             | QTY    | UNIT |   TAX |  O\&P |      RCV |  AGE/LIFE | COND. | DEP% | DEPREC. |        ACV |
+| -: | ------------------------------------------------------- | ------ | :--: | ----: | ----: | -------: | :-------: | :---: | ---: | ------: | ---------: |
+| 13 | R&R Truss – 4/12 slope                                 | 72.33  |  LF  | 10.63 | 23.57 |   950.92 | 0/150 yrs |  Avg. |   0% |  (0.00) | **950.92** |
+| 14 | R&R Sheathing – OSB – 1/2"                             | 178.14 |  SF  |  2.30 |  6.09 | 498.98\* | 0/150 yrs |  Avg. |   0% |  (0.00) | **498.98** |
+| 15 | 2" × 4" × 12' #2 & better Fir/Larch (material only)     | 2.00   |  EA  |  7.81 |  0.94 |    19.86 | 0/150 yrs |  Avg. |   0% |  (0.00) |  **19.86** |
+| 16 | 2" × 4" × 8' #2 & better Fir/Larch (material only)      | 4.00   |  EA  |  5.18 |  1.24 |    26.34 | 0/150 yrs |  Avg. |   0% |  (0.00) |  **26.34** |
+| 17 | R&R Sheathing – OSB – 1/2"                             | 17.80  |  SF  |  2.30 |  0.61 |    49.85 | 0/150 yrs |  Avg. |   0% |  (0.00) |  **49.85** |
+| 18 | R&R Labor to frame 2" × 4" non-bearing wall – 16" o.c. | —      |   —  |     — |     — |        — |     —     |   —   |    — |       — |          — |
+
+
+DESCRIPTION | QTY |  RESET |  REMOVE | REPLACE | TAX | TOTAL
+
+# Chimney
+
+The following line item(s) account for repairing/replacing the masonry chimney on the roof, front, right, back, side.
+    
+|  # | DESCRIPTION                                             |    QTY | UNIT | RESET | REMOVE |  REPLACE |   TAX |        TOTAL |
+| -: | ------------------------------------------------------- | -----: | :--: | ----: | -----: | -------: | ----: | -----------: |
+| 34 | R&R Masonry chimney and flue                           |   1.00 |  LF  |     — |      — |   529.92 |  8.11 |   **621.37** |
+| 36 | R&R Zero-clearance chimney framing (per vertical LF)   |   1.00 |  LF  |     — |      — |    75.73 |  1.68 |   **116.25** |
+| 37 | Add for tall masonry chimney over 15' (per vertical LF) |   1.00 |  LF  |     — |      — |   529.92 |  8.11 |   **621.37** |
+| 38 | Block chimney w/ 8"×8" flue liner (per vertical LF)     |   1.00 |  LF  |     — |      — |    58.58 |  1.08 |    **72.17** |
+| 40 | Block chimney w/ 8"×12" flue liner (per vertical LF)    |   1.00 |  LF  |     — |      — |    67.56 |  1.34 |    **81.41** |
+| 41 | Block chimney w/ 12"×12" flue liner (per vertical LF)   |   1.00 |  LF  |     — |      — |    82.59 |  1.95 |    **97.05** |
+| 42 | Fireplace – chimney cap (concrete)                      |   1.00 |  EA  |     — |      — |   348.70 |  2.75 |   **398.37** |
+| 43 | Chimney flashing – average (32"×36")                    |   1.00 |  EA  |     — |      — |   589.98 |  6.80 |   **620.23** |
+| 45 | Chimney flashing – small (24"×24")                      |   1.00 |  EA  |     — |      — |   468.81 |  3.80 |   **488.25** |
+| 46 | Chimney flashing – large (32"×60")                      |   1.00 |  EA  |     — |      — |   779.95 |  9.75 |   **820.98** |
+| 47 | Fireplace – chimney chase cover (sheet metal)           |   1.00 |  EA  |     — |      — |   523.34 | 12.72 |   **559.51** |
+| 48 | Fireplace – chimney chase cover (stainless steel)       |   1.00 |  EA  |     — |      — |   666.34 | 21.30 |   **711.09** |
+| 49 | Fireplace – chimney chase cover (copper)                |   1.00 |  EA  |     — |      — |   962.34 | 39.06 | **1,024.85** |
+| 50 | Chimney flashing – average (32"×36") – copper           |   1.00 |  EA  |     — |      — |   911.40 | 26.08 |   **960.93** |
+| 51 | Chimney flashing – small (24"×24") – copper             |   1.00 |  EA  | 15.64 |      — |   645.60 | 14.41 |   **675.65** |
+| 52 | Chimney flashing – large (32"×60") – copper             |   1.00 |  EA  | 31.28 |      — | 1,314.35 | 41.81 | **1,387.44** |
+| 53 | Decorative chimney shroud – metal                       |   1.00 |  EA  | 31.28 |      — |   820.32 | 42.68 |   **894.28** |
+| 54 | Decorative chimney shroud – copper                      |   1.00 |  EA  | 31.28 |      — | 1,656.51 | 92.85 | **1,780.64** |
+| 55 | Paint brick                                             | 384.00 |  SF  |     — |      — |   392.52 |  8.52 |   **392.52** |
+| 57 | Seal brick w/ masonry sealer                            | 384.00 |  SF  |     — |      — |   408.81 |  9.45 |   **408.81** |
+  
+____
+
+# Deck
+
+The following line item(s) account for repairs to the wood deck(s) on the front, right, back, and left side(s)"
+
+|  # | DESCRIPTION                                              |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| -: | -------------------------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 58 | R&R 2" × 8" lumber – treated (1.33 BF per LF)            | 1.00 |  LF  |  1.03 |      — |    4.66 | 0.11 |   **5.80** |
+| 60 | R&R 2" × 10" lumber – treated (1.67 BF per LF)           | 1.00 |  LF  |  1.18 |      — |    5.23 | 0.14 |   **6.55** |
+| 61 | R&R 2" × 12" lumber – treated (2 BF per LF)              | 1.00 |  LF  |  1.36 |      — |    6.39 | 0.19 |   **7.94** |
+| 62 | R&R Deck planking – 5/4" cedar (per BF)                  | 1.00 |  BF  |  2.00 |      — |   11.50 | 0.41 |  **13.91** |
+| 63 | R&R Deck planking – redwood (per BF)                     | 1.00 |  BF  |  1.25 |      — |   11.55 | 0.52 |  **13.32** |
+| 64 | R&R Deck planking – 2×6 wood polymer lumber (per SF)     |    — |  SF  |  2.50 |      — |   24.27 | 0.00 |   **0.00** |
+| 65 | R&R 1/2" × 12" wood polymer lumber                       |    — |  LF  |  1.41 |      — |   13.60 | 0.00 |   **0.00** |
+| 66 | R&R 1/2" × 8" wood polymer lumber                        |    — |  LF  |  1.25 |      — |    9.96 | 0.00 |   **0.00** |
+| 67 | R&R Deck guard rail – cedar                              | 1.00 |  LF  |  1.41 |      — |   71.32 | 2.43 |  **75.16** |
+| 68 | R&R Deck guard rail – redwood                            | 1.00 |  LF  |  1.41 |      — |   76.55 | 2.74 |  **80.70** |
+| 69 | R&R Deck guard rail – wood polymer lumber                | 1.00 |  LF  |  5.61 |      — |   77.18 | 2.78 |  **85.57** |
+| 70 | R&R Post – wood – 4" × 4" fence grade cedar or equal     | 1.00 |  EA  | 18.77 |      — |   86.58 | 3.12 | **108.47** |
+| 72 | R&R 4" × 4" wood post – redwood (1.33 BF per LF)         | 1.00 |  LF  |  1.96 |      — |   14.83 | 0.62 |  **17.41** |
+| 73 | R&R 4" × 4" post – wood polymer lumber (1.33 BF per LF)  | 1.00 |  LF  |  2.67 |      — |   19.28 | 0.78 |  **22.73** |
+
+- Deck Staining -
+
+|  # | DESCRIPTION                        |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| -: | ---------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 74 | Contents – move out then reset     |   1.00 |  EA  |  0.00 |      — |   89.09 | 0.00 |  **89.09** |
+| 76 | Clean with pressure/chemical spray |   1.00 |  SF  |  0.00 |      — |    0.51 | 0.00 |   **0.51** |
+| 78 | Stain/finish deck                  | 384.00 |  SF  |  0.00 |      — |    1.14 | 7.14 | **444.90** |
+| 79 | Stain/finish deck handrail         |   1.00 |  LF  |  0.00 |      — |    8.41 | 0.11 |   **8.52** |
+
+# exterior doors
+
+The following line item(s) account for replacing the exterior door(s) listed below."
+
+|  # | DESCRIPTION                                          |  QTY | UNIT | RESET | REMOVE |  REPLACE |   TAX |        TOTAL |
+| -: | ---------------------------------------------------- | ---: | :--: | ----: | -----: | -------: | ----: | -----------: |
+| 80 | Exterior door slab – metal – insulated – flush/panel | 1.00 |  EA  | 23.40 |      — |   351.92 | 11.95 |   **377.27** |
+| 82 | Exterior door – solid alder – paneled                | 1.00 |  EA  | 26.81 |      — | 1,593.40 | 88.27 | **1,708.48** |
+| 83 | Exterior door – solid alder – paneled – slab only    | 1.00 |  EA  | 23.40 |      — | 1,014.53 | 51.71 | **1,079.64** |
+| 84 | Exterior door – solid mahogany – paneled             | 1.00 |  EA  | 26.81 |      — | 1,716.97 | 95.69 | **1,839.47** |
+| 85 | Exterior door – solid mahogany – paneled – slab only | 1.00 |  EA  | 23.40 |      — | 1,107.19 | 57.27 | **1,177.86** |
+| 86 | Door lockset & deadbolt – exterior – Detach & reset  | 1.00 |  EA  |  0.00 |      — |    38.55 |  0.00 |    **38.55** |
+| 88 | Door knob/lockset – Detach & reset                   | 1.00 |  EA  |  0.00 |      — |    27.54 |  0.00 |    **27.54** |
+
+
+|  # | DESCRIPTION                            |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| -: | -------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 89 | Seal & paint door slab only            | 2.00 |  EA  |  0.00 |      — |   44.91 | 1.21 |  **91.03** |
+| 90 | Seal & paint door/window trim & jamb   | 2.00 |  EA  |  0.00 |      — |   37.49 | 0.73 |  **75.71** |
+| 91 | Stain & finish door slab only          | 2.00 |  EA  |  0.00 |      — |   69.98 | 1.40 | **141.36** |
+| 92 | Stain & finish door/window trim & jamb | 2.00 |  EA  |  0.00 |      — |   49.02 | 0.99 |  **99.03** |
+
+|  # | DESCRIPTION              |  QTY | UNIT | RESET | REMOVE | REPLACE |   TAX |      TOTAL |
+| -: | ------------------------ | ---: | :--: | ----: | -----: | ------: | ----: | ---------: |
+| 93 | R\&R Storm door assembly | 1.00 |  EA  | 22.07 |      — |  347.24 | 12.59 | **381.90** |
+
+
+# Carport
+
+The following line item(s) account for repairs to the metal carport on the front, right, back, and left side. The following line item(s) account for replacing the metal carport on the front, right, back, and left side."
+
+|  # | DESCRIPTION                     |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |     TOTAL |
+| -: | ------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | --------: |
+| 94 | R\&R Patio post – steel tube    | 1.00 |  LF  |  1.96 |      — |   14.97 | 0.64 | **17.57** |
+| 96 | R\&R Patio post – aluminum tube | 1.00 |  LF  |  1.96 |      — |    8.31 | 0.24 | **10.51** |
+| 97 | R\&R Patio post – scrolled      | 1.00 |  LF  |  1.96 |      — |   13.69 | 0.56 | **16.21** |
+
+|   # | DESCRIPTION                                       |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |     TOTAL |
+| --: | ------------------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | --------: |
+|  98 | R\&R Wall/roof panel – ribbed – 26 ga – up to 1"  | 1.00 |  SF  |  0.63 |      — |    4.93 | 0.14 |  **5.70** |
+| 100 | R\&R Carport – freestanding metal – light load    | 1.00 |  SF  |  2.55 |      — |   13.74 | 0.35 | **16.64** |
+| 101 | R\&R Carport – freestanding metal – moderate load | 1.00 |  SF  |  2.55 |      — |   16.26 | 0.50 | **19.31** |
+| 102 | R\&R Carport – freestanding metal – heavy load    | 1.00 |  SF  |  2.55 |      — |   18.70 | 0.65 | **21.90** |
+
+__
+
+# awning
+
+The following line item(s) account for replacing the metal awning(s) listed below:"
+
+|   # | DESCRIPTION                                            |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |     TOTAL |
+| --: | ------------------------------------------------------ | ---: | :--: | ----: | -----: | ------: | ---: | --------: |
+| 103 | R\&R Awning – window/door – aluminum or steel          | 1.00 |  LF  |  1.15 |      — |   93.48 | 3.61 | **98.24** |
+| 104 | R\&R Awning side panels – aluminum/steel (per set)     | 1.00 |  EA  |  9.08 |      — |   74.56 | 2.12 | **85.76** |
+| 105 | Awning – aluminum or steel – add for each color stripe | 1.00 |  EA  |  0.00 |      — |    5.50 | 0.33 |  **5.83** |
+| 106 | Paint aluminum awning                                  | 1.00 |  SF  |  0.00 |      — |    1.13 | 0.02 |  **1.15** |
+
+__
+
+# AC / HVAC
+
+The following line item(s) accounts for repairs to the A/C condenser fins on the front, right, back, left side(s)."
+
+|   # | DESCRIPTION                                                        |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ------------------------------------------------------------------ | ---: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 107 | Comb & straighten A/C condenser fins — with trip charge            | 1.00 |  EA  |  0.00 |      — |  274.33 | 0.00 | **274.33** |
+| 108 | Comb & straighten A/C condenser fins — without trip charge         | 1.00 |  EA  |  0.00 |      — |  117.52 | 0.00 | **117.52** |
+| 109 | Comb & straighten A/C condenser fins — with trip charge — Large    | 1.00 |  EA  |  0.00 |      — |  326.34 | 0.00 | **326.34** |
+| 110 | Comb & straighten A/C condenser fins — without trip charge — Large | 1.00 |  EA  |  0.00 |      — |  156.64 | 0.00 | **156.64** |
+
+
+|   # | DESCRIPTION                                   |  QTY | UNIT | RESET | REMOVE |  REPLACE |    TAX |        TOTAL |
+| --: | --------------------------------------------- | ---: | :--: | ----: | -----: | -------: | -----: | -----------: |
+| 111 | R\&R Air conditioning security cage           | 1.00 |  EA  | 15.64 |      — |   353.92 |  14.40 |   **383.96** |
+| 113 | Central air — condenser repair — fan guard    | 1.00 |  EA  |  0.00 |      — |   205.75 |   9.61 |   **215.36** |
+| 114 | Central air — condenser unit — Detach & reset | 1.00 |  EA  |  0.00 |      — |   953.31 |   0.00 |   **953.31** |
+| 115 | R\&R Condenser unit — 2 ton — up to 13 SEER   | 1.00 |  EA  | 52.27 |      — | 2,229.60 |  99.60 | **2,381.47** |
+| 116 | R\&R Condenser unit — 2 ton — 14–15 SEER      | 1.00 |  EA  | 52.27 |      — | 2,473.00 | 114.20 | **2,639.47** |
+| 117 | R\&R Condenser unit — 2 ton — 16–21 SEER      | 1.00 |  EA  | 52.27 |      — | 3,287.60 | 163.08 | **3,502.95** |
+| 118 | R\&R Condenser unit — 2.5 ton — 14–15 SEER    | 1.00 |  EA  | 52.27 |      — | 2,511.06 | 116.49 | **2,679.82** |
+| 119 | R\&R Condenser unit — 3 ton — up to 13 SEER   | 1.00 |  EA  | 52.27 |      — | 2,598.42 | 108.77 | **2,759.46** |
+| 120 | R\&R Condenser unit — 3 ton — 14–15 SEER      | 1.00 |  EA  | 52.27 |      — | 3,229.61 | 146.64 | **3,428.52** |
+| 121 | R\&R Condenser unit — 3 ton — 16–21 SEER      | 1.00 |  EA  | 52.27 |      — | 3,820.66 | 182.10 | **4,055.03** |
+| 122 | R\&R Condenser unit — 3.5 ton — up to 13 SEER | 1.00 |  EA  | 52.27 |      — | 2,775.66 | 119.40 | **2,947.33** |
+| 123 | R\&R Condenser unit — 3.5 ton — 14–15 SEER    | 1.00 |  EA  | 52.27 |      — | 3,302.93 | 151.04 | **3,506.24** |
+| 124 | R\&R Condenser unit — 4 ton — up to 13 SEER   | 1.00 |  EA  | 52.27 |      — | 2,988.85 | 128.70 | **3,169.82** |
+| 125 | R\&R Condenser unit — 4 ton — 14–15 SEER      | 1.00 |  EA  | 52.27 |      — | 3,383.85 | 152.40 | **3,588.52** |
+| 126 | R\&R Condenser unit — 4 ton — 16–21 SEER      | 1.00 |  EA  | 52.27 |      — | 3,993.85 | 189.00 | **4,235.12** |
+| 127 | R\&R Condenser unit — 5 ton — up to 13 SEER   | 1.00 |  EA  | 52.27 |      — | 3,457.71 | 152.78 | **3,662.76** |
+| 128 | R\&R Condenser unit — 5 ton — 14–15 SEER      | 1.00 |  EA  | 52.27 |      — | 3,783.36 | 172.32 | **4,007.95** |
+| 129 | R\&R Condenser unit — 5 ton — 16–21 SEER      | 1.00 |  EA  | 52.27 |      — | 4,578.36 | 220.02 | **4,850.65** |
+
+
+|   # | DESCRIPTION                                       |  QTY | UNIT |  RESET | REMOVE |  REPLACE |    TAX |        TOTAL |
+| --: | ------------------------------------------------- | ---: | :--: | -----: | -----: | -------: | -----: | -----------: |
+| 130 | R\&R Central A/C system — 2 ton — up to 13 SEER   | 1.00 |  EA  | 173.44 |      — | 3,584.73 | 132.23 | **3,890.40** |
+| 131 | R\&R Central A/C system — 2 ton — 14–15 SEER      | 1.00 |  EA  | 173.44 |      — | 3,828.13 | 146.84 | **4,148.41** |
+| 132 | R\&R Central A/C system — 2 ton — 16–21 SEER      | 1.00 |  EA  | 173.44 |      — | 4,642.73 | 195.71 | **5,011.88** |
+| 133 | R\&R Central A/C system — 2.5 ton — up to 13 SEER | 1.00 |  EA  | 173.44 |      — | 3,601.33 | 133.23 | **3,908.00** |
+| 134 | R\&R Central A/C system — 2.5 ton — 14–15 SEER    | 1.00 |  EA  | 173.44 |      — | 3,866.20 | 149.12 | **4,188.76** |
+| 135 | R\&R Central A/C system — 3 ton — up to 13 SEER   | 1.00 |  EA  | 173.44 |      — | 4,259.39 | 146.20 | **4,579.03** |
+| 136 | R\&R Central A/C system — 3 ton — 14–15 SEER      | 1.00 |  EA  | 173.44 |      — | 4,890.58 | 184.07 | **5,248.09** |
+| 137 | R\&R Central A/C system — 3 ton — 16–21 SEER      | 1.00 |  EA  | 173.44 |      — | 5,481.63 | 219.53 | **5,874.60** |
+| 138 | R\&R Central A/C system — 3.5 ton — up to 13 SEER | 1.00 |  EA  | 173.44 |      — | 4,436.63 | 156.83 | **4,766.90** |
+| 139 | R\&R Central A/C system — 3.5 ton — 14–15 SEER    | 1.00 |  EA  | 173.44 |      — | 4,963.90 | 188.47 | **5,325.81** |
+| 140 | R\&R Central A/C system — 4 ton — up to 13 SEER   | 1.00 |  EA  | 173.44 |      — | 4,997.40 | 176.69 | **5,347.53** |
+| 141 | R\&R Central A/C system — 4 ton — 14–15 SEER      | 1.00 |  EA  | 173.44 |      — | 5,392.40 | 200.39 | **5,766.23** |
+| 142 | R\&R Central A/C system — 4 ton — 16–21 SEER      | 1.00 |  EA  | 173.44 |      — | 6,002.40 | 236.99 | **6,412.83** |
+| 143 | R\&R Central A/C system — 5 ton — up to 13 SEER   | 1.00 |  EA  | 302.69 |      — | 5,738.33 | 207.60 | **6,248.62** |
+| 144 | R\&R Central A/C system — 5 ton — 14–15 SEER      | 1.00 |  EA  | 302.69 |      — | 6,063.98 | 227.13 | **6,593.80** |
+| 145 | R\&R Central A/C system — 5 ton — 16–21 SEER      | 1.00 |  EA  | 302.69 |      — | 6,858.98 | 274.83 | **7,436.50** |
+
+
+|   # | DESCRIPTION                                     |    QTY | UNIT | RESET | REMOVE | REPLACE |   TAX |      TOTAL |
+| --: | ----------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ----: | ---------: |
+| 146 | R\&R Ductwork system — hot & cold air (per run) |   1.00 |  EA  | 41.71 |      — |  541.89 | 10.81 | **594.41** |
+| 152 | R\&R Blown-in insulation — 14" depth — R38      | 144.00 |  SF  |  1.33 |      — |    1.92 | 12.36 | **480.36** |
+
+__
+
+# ROOM R&R FULL 
+
+"384.00  SF Walls
+528.00  SF Walls & Ceiling
+16.00  SY Flooring
+48.00  LF Ceil. Perimeter"										"144.00  SF Ceiling
+144.00  SF Floor
+48.00  LF Floor Perimeter"																						
+
+The following line items account for the repair and/or replacement of the damaged items within this room. Items in this room have been depreciated according to their age and condition unless otherwise noted.
+The following line items account for the repair and/or replacement of the damaged items within this room.
+Items in this room have been depreciated according to their age and condition unless otherwise noted."
+
+
+Prep & Protection -
+
+|   # | DESCRIPTION                                         |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | --------------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 360 | Contents – move out then reset                      |   1.00 |  EA  |  0.00 |      — |   89.09 | 0.00 |  **89.09** |
+| 361 | Floor protection – plastic & tape – 10 mil          | 528.00 |  SF  |  0.00 |      — |    0.36 | 3.80 | **193.88** |
+| 362 | Mask & prep for paint – tape only (per LF)          |  48.00 |  LF  |  0.00 |      — |    0.73 | 0.14 |  **35.18** |
+| 363 | Mask & cover large light fixture                    |   1.00 |  EA  |  0.00 |      — |   23.19 | 0.05 |  **23.24** |
+| 364 | Window blind – horizontal/vertical – Detach & reset |   1.00 |  EA  |  0.00 |      — |   41.26 | 0.00 |  **41.26** |
+
+
+Drywall & Insulation - 
+
+|   # | DESCRIPTION                                               |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |    TOTAL |
+| --: | --------------------------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | -------: |
+| 366 | R\&R 5/8" drywall – hung, taped, ready for texture        | 1.00 |  SF  |  0.52 |      — |    2.90 | 0.05 | **3.47** |
+| 368 | R\&R 5/8" drywall – hung, taped, floated, ready for paint | 1.00 |  SF  |  0.52 |      — |    3.28 | 0.05 | **3.85** |
+| 369 | R\&R 1/2" drywall – hung, taped, ready for texture        | 1.00 |  SF  |  0.52 |      — |    2.75 | 0.05 | **3.32** |
+| 370 | R\&R 1/2" drywall – hung, taped, floated, ready for paint | 1.00 |  SF  |  0.52 |      — |    3.14 | 0.05 | **3.71** |
+| 371 | R\&R Blown-in insulation – 10" depth – R26                | 1.00 |  SF  |  1.08 |      — |    1.39 | 0.06 | **2.53** |
+| 372 | R\&R Batt insulation – 4" – R11 – unfaced                 | 1.00 |  SF  |  0.31 |      — |    0.85 | 0.03 | **1.19** |
+| 373 | R\&R Batt insulation – 6" – R19 – unfaced                 | 1.00 |  SF  |  0.35 |      — |    1.44 | 0.06 | **1.85** |
+| 374 | Apply anti-microbial agent to surface area                | 1.00 |  SF  |  0.00 |      — |    0.37 | 0.00 | **0.37** |
+
+
+Textures & Paint (General) -
+
+|   # | DESCRIPTION                             |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | --------------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 376 | Texture drywall – machine – knockdown   |   1.00 |  SF  |  0.00 |      — |    1.17 | 0.00 |   **1.17** |
+| 377 | Texture drywall – light hand texture    |   1.00 |  SF  |  0.00 |      — |    1.22 | 0.01 |   **1.23** |
+| 378 | Texture drywall – heavy hand texture    |   1.00 |  SF  |  0.00 |      — |    1.66 | 0.02 |   **1.68** |
+| 379 | Seal/prime (1 coat) then paint (1 coat) |   1.00 |  SF  |  0.00 |      — |    1.13 | 0.01 |   **1.14** |
+| 380 | Paint walls & ceiling – one coat        | 528.00 |  SF  |  0.00 |      — |    0.79 | 5.07 | **422.19** |
+
+
+Plaster & Stucco -
+
+|   # | DESCRIPTION                                    |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ---------------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 381 | Thin coat plaster (no lath)                    | 1.00 |  SF  |  0.00 |      — |    8.03 | 0.03 |   **8.06** |
+| 383 | R\&R Two-coat plaster (no lath)                | 1.00 |  SF  |  1.12 |      — |   11.76 | 0.06 |  **12.94** |
+| 384 | R\&R Two-coat plaster over metal lath          | 1.00 |  SF  |  1.74 |      — |   16.18 | 0.11 |  **18.03** |
+| 385 | Tear off plaster on wood lath                  | 1.00 |  SF  |  2.04 |      — |    0.00 | 0.00 |   **2.04** |
+| 386 | Plaster – add for ceiling detailing/trim       | 1.00 |  LF  |  0.00 |      — |   47.48 | 0.23 |  **47.71** |
+| 387 | R\&R Metal lath & stucco                       | 1.00 |  SF  |  0.93 |      — |    9.49 | 0.08 |  **10.50** |
+| 389 | R\&R Two-coat plaster over 1/2" blueboard      | 1.00 |  SF  |  1.36 |      — |   15.02 | 0.12 |  **16.50** |
+| 390 | R\&R Thin coat plaster over 1/2" blueboard     | 1.00 |  SF  |  1.36 |      — |   10.31 | 0.07 |  **11.74** |
+| 391 | Plaster patch / small repair – ready for paint | 1.00 |  EA  |  0.00 |      — |  599.26 | 0.60 | **599.86** |
+
+
+Acoustic Ceilings -
+
+|   # | DESCRIPTION                                    |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ---------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 392 | R\&R Acoustic ceiling tile                     |   1.00 |  SF  |  0.76 |      — |    4.52 | 0.10 |   **5.38** |
+| 394 | R\&R Acoustic ceiling tile furring             |   1.00 |  SF  |  0.38 |      — |    1.02 | 0.02 |   **1.42** |
+| 395 | Seal & paint acoustic ceiling tile             | 144.00 |  SF  |  0.00 |      — |    1.44 | 3.46 | **210.82** |
+| 401 | Texture drywall – machine                      |   1.00 |  SF  |  0.00 |      — |    0.84 | 0.00 |   **0.84** |
+| 402 | Tear off painted acoustic ceiling (popcorn)    | 144.00 |  SF  |  1.14 |      — |    0.00 | 0.00 | **164.16** |
+| 403 | Seal surface w/ latex stain blocker – one coat |   1.00 |  SF  |  0.00 |      — |    0.72 | 0.01 |   **0.73** |
+| 404 | Acoustic ceiling (popcorn) texture             | 144.00 |  SF  |  0.00 |      — |    1.35 | 0.78 | **195.18** |
+
+
+Window Blinds (PVC – 2") - 
+
+|   # | DESCRIPTION                               |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ----------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 405 | R\&R Window blind – PVC – 2" – 7.1–14 SF  | 1.00 |  EA  | 12.59 |      — |  103.62 | 3.17 | **119.38** |
+| 406 | R\&R Window blind – PVC – 2" – up to 7 SF | 1.00 |  EA  | 12.59 |      — |   87.20 | 2.34 | **102.13** |
+| 407 | R\&R Window blind – PVC – 2" – 14.1–20 SF | 1.00 |  EA  | 12.59 |      — |  143.04 | 5.37 | **161.00** |
+| 408 | R\&R Window blind – PVC – 2" – 20.1–32 SF | 1.00 |  EA  | 12.59 |      — |  178.61 | 6.60 | **197.80** |
+
+
+Electrical & Fixtures -
+
+|   # | DESCRIPTION                                   |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | --------------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 409 | R\&R Ceiling fan & light                      | 1.00 |  EA  | 23.61 |      — |  403.33 | 9.07 | **436.01** |
+| 411 | R\&R Light fixture                            | 1.00 |  EA  | 10.43 |      — |   82.23 | 2.16 |  **94.82** |
+| 412 | R\&R Recessed light fixture                   | 1.00 |  EA  | 13.94 |      — |  147.54 | 2.21 | **163.69** |
+| 413 | R\&R Heat/AC register – mechanically attached | 1.00 |  EA  |  3.13 |      — |   34.10 | 0.79 |  **38.02** |
+| 414 | R\&R Heat/AC register – floor                 | 1.00 |  EA  |  1.75 |      — |   22.29 | 0.79 |  **24.83** |
+| 415 | Prime & paint heat register                   | 1.00 |  EA  |  0.00 |      — |   19.15 | 0.20 |  **19.35** |
+
+
+Wallcoverings - 
+
+|   # | DESCRIPTION           |   QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | --------------------- | ----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 416 | R\&R Wallpaper        |  1.00 |  SF  |  1.15 |      — |    2.78 | 0.07 |   **4.00** |
+| 418 | R\&R Wallpaper border | 48.00 |  LF  |  0.99 |      — |    3.20 | 4.15 | **205.27** |
+
+
+Underlayments & Subfloor -
+
+|   # | DESCRIPTION                             |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |    TOTAL |
+| --: | --------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | -------: |
+| 419 | R\&R Underlayment – 1/2" OSB            | 1.00 |  SF  |  0.83 |      — |    2.02 | 0.04 | **2.89** |
+| 420 | R\&R Underlayment – 5/8" OSB            | 1.00 |  SF  |  0.83 |      — |    2.35 | 0.06 | **3.24** |
+| 421 | R\&R Underlayment – 1/2" BC plywood     | 1.00 |  SF  |  2.07 |      — |    2.97 | 0.09 | **5.13** |
+| 423 | R\&R Underlayment – 5/8" BC plywood     | 1.00 |  SF  |  0.83 |      — |    3.01 | 0.10 | **3.94** |
+| 424 | R\&R Underlayment – 1/2" particle board | 1.00 |  SF  |  0.83 |      — |    2.34 | 0.06 | **3.23** |
+| 425 | R\&R Underlayment – 5/8" particle board | 1.00 |  SF  |  0.83 |      — |    2.44 | 0.07 | **3.34** |
+
+
+Flooring – Carpet & Vinyl -
+
+|   # | DESCRIPTION                                              |    QTY | UNIT | RESET | REMOVE | REPLACE |   TAX |      TOTAL |
+| --: | -------------------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ----: | ---------: |
+| 426 | Remove tear-out additional layer of vinyl floor covering | 144.00 |  SF  |  0.38 |      — |    0.00 |  0.00 |  **54.72** |
+| 427 | R\&R Carpet pad – standard grade                         | 144.00 |  SF  |  0.16 |      — |    0.52 |  3.20 | **101.12** |
+| 429 | Remove carpet – standard grade                           | 144.00 |  SF  |  0.35 |      — |    0.00 |  0.00 |  **50.40** |
+| 430 | Carpet – standard grade                                  | 165.60 |  SF  |  0.00 |      — |    3.08 | 19.67 | **529.72** |
+| 431 | Lift carpet for drying                                   | 144.00 |  SF  |  0.00 |      — |    0.55 |  0.00 |  **79.20** |
+| 432 | Carpet – Detach & relay                                  | 144.00 |  SF  |  0.00 |      — |    1.18 |  0.26 | **170.18** |
+| 433 | Clean & deodorize carpet                                 | 144.00 |  SF  |  0.00 |      — |    0.69 |  0.09 |  **99.45** |
+| 435 | R\&R Carpet – metal transition strip                     |   1.00 |  LF  |  0.94 |      — |    3.99 |  0.12 |   **5.05** |
+| 436 | R\&R Vinyl reducer strip – for carpet                    |   1.00 |  LF  |  0.49 |      — |    4.60 |  0.16 |   **5.25** |
+| 460 | R\&R Vinyl floor covering (sheet goods) – standard       | 144.00 |  SF  |  1.15 |      — |    3.61 | 15.72 | **701.16** |
+| 461 | R\&R Vinyl tile – standard grade                         | 144.00 |  SF  |  1.42 |      — |    3.33 | 12.10 | **696.10** |
+| 462 | R\&R Vinyl – metal transition strip                      |   1.00 |  LF  |  0.94 |      — |    3.99 |  0.12 |   **5.05** |
+| 463 | Floor prep (scrape rubber back residue)                  |   1.00 |  SF  |  0.00 |      — |    0.90 |  0.00 |   **0.90** |
+
+
+Flooring – Tile, Stone & Mortar -
+
+|   # | DESCRIPTION                               |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |     TOTAL |
+| --: | ----------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | --------: |
+| 464 | Regrout tile                              | 1.00 |  SF  |  0.00 |      — |    5.50 | 0.02 |  **5.52** |
+| 466 | R\&R Mortar bed for tile floors           | 1.00 |  SF  |  1.69 |      — |    5.99 | 0.14 |  **7.82** |
+| 468 | R\&R Ceramic tile – standard grade        | 1.00 |  SF  |  2.50 |      — |   15.77 | 0.21 | **18.48** |
+| 469 | R\&R Marble or granite floor tile         | 1.00 |  SF  |  3.13 |      — |   25.81 | 0.55 | **29.49** |
+| 471 | R\&R Threshold – natural marble           | 1.00 |  LF  |  4.09 |      — |   79.77 | 1.68 | **85.54** |
+| 472 | R\&R Threshold – cultured marble          | 1.00 |  LF  |  4.09 |      — |   46.25 | 0.60 | **50.94** |
+| 473 | R\&R Quarry tile floor                    | 1.00 |  SF  |  3.13 |      — |   20.34 | 0.22 | **23.69** |
+| 474 | R\&R Tile floor covering – standard grade | 1.00 |  SF  |  3.13 |      — |   12.35 | 0.20 | **15.68** |
+
+
+Trim – Baseboard, Shoes, Crown, Chair Rail, Casing -
+
+|   # | DESCRIPTION                                       |   QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ------------------------------------------------- | ----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 475 | Detach & reset baseboard – 3 1/4"                 |  1.00 |  LF  |  3.84 |      — |    0.00 | 0.00 |   **3.84** |
+| 476 | R\&R Baseboard – 3 1/4"                           |  1.00 |  LF  |  0.57 |      — |    4.85 | 0.13 |   **5.55** |
+| 477 | Seal (1) & paint (1) baseboard                    |  1.00 |  LF  |  0.00 |      — |    1.78 | 0.01 |   **1.79** |
+| 478 | Paint baseboard – one coat                        | 48.00 |  LF  |  0.00 |      — |    1.13 | 0.32 |  **54.56** |
+| 479 | Stain & finish baseboard                          | 48.00 |  LF  |  0.00 |      — |    1.88 | 0.78 |  **91.02** |
+| 480 | Detach & reset baseboard – 4 1/4" w/ shoe         |  1.00 |  LF  |  4.51 |      — |    0.00 | 0.00 |   **4.51** |
+| 481 | R\&R Baseboard – 4 1/4" w/ shoe                   |  1.00 |  LF  |  0.66 |      — |    7.79 | 0.23 |   **8.68** |
+| 482 | Seal (1) & paint (1) baseboard w/ cap and/or shoe |  1.00 |  LF  |  0.00 |      — |    2.12 | 0.02 |   **2.14** |
+| 483 | Paint baseboard w/ cap and/or shoe – one coat     | 48.00 |  LF  |  0.00 |      — |    1.36 | 0.66 |  **65.94** |
+| 484 | Stain & finish baseboard w/ cap and/or shoe       | 48.00 |  LF  |  0.00 |      — |    2.21 | 0.78 | **106.86** |
+| 485 | Detach & reset base shoe                          |  1.00 |  LF  |  2.18 |      — |    0.00 | 0.00 |   **2.18** |
+| 486 | R\&R Base shoe                                    |  1.00 |  LF  |  0.21 |      — |    1.98 | 0.05 |   **2.24** |
+| 487 | Paint base shoe or quarter round – 1 coat         | 48.00 |  LF  |  0.00 |      — |    0.65 | 0.32 |  **31.52** |
+| 488 | Seal & paint base shoe or quarter round           | 48.00 |  LF  |  0.00 |      — |    0.97 | 0.40 |  **46.96** |
+| 489 | Stain & finish base shoe or quarter round         | 48.00 |  LF  |  0.00 |      — |    1.52 | 0.78 |  **73.74** |
+| 490 | Detach & reset crown molding – 4 1/4"             |  1.00 |  LF  |  5.16 |      — |    0.00 | 0.00 |   **5.16** |
+| 491 | R\&R Crown molding – 4 1/4"                       |  1.00 |  LF  |  0.84 |      — |    6.84 | 0.18 |   **7.86** |
+| 492 | Seal (1) & paint (1) crown molding                |  1.00 |  LF  |  0.00 |      — |    1.79 | 0.01 |   **1.80** |
+| 493 | Paint crown molding – one coat                    | 48.00 |  LF  |  0.00 |      — |    1.19 | 0.43 |  **57.55** |
+| 494 | Stain & finish crown molding                      | 48.00 |  LF  |  0.00 |      — |    2.02 | 0.78 |  **97.74** |
+| 495 | Detach & reset chair rail – 2 1/2"                |  1.00 |  LF  |  3.21 |      — |    0.00 | 0.00 |   **3.21** |
+| 496 | R\&R Chair rail – 2 1/2"                          |  1.00 |  LF  |  0.52 |      — |    4.22 | 0.11 |   **4.85** |
+| 497 | Seal (1) & paint (1) chair rail                   |  1.00 |  LF  |  0.00 |      — |    1.72 | 0.01 |   **1.73** |
+| 498 | Paint chair rail – one coat                       | 48.00 |  LF  |  0.00 |      — |    1.16 | 0.40 |  **56.08** |
+| 499 | Stain & finish chair rail                         | 48.00 |  LF  |  0.00 |      — |    1.88 | 0.78 |  **91.02** |
+| 500 | Detach & reset casing – 2 1/4"                    |  1.00 |  LF  |  2.73 |      — |    0.00 | 0.00 |   **2.73** |
+| 501 | R\&R Casing – 2 1/4"                              |  1.00 |  LF  |  0.63 |      — |    3.01 | 0.09 |   **3.73** |
+| 502 | Detach & reset casing – 3 1/4"                    |  1.00 |  LF  |  2.73 |      — |    0.00 | 0.00 |   **2.73** |
+| 503 | R\&R Casing – 3 1/4"                              |  1.00 |  LF  |  0.63 |      — |    4.07 | 0.16 |   **4.86** |
+| 504 | Seal (1) & paint (1) casing                       |  1.00 |  LF  |  0.00 |      — |    1.80 | 0.01 |   **1.81** |
+| 505 | Paint casing – one coat                           | 48.00 |  LF  |  0.00 |      — |    1.16 | 0.40 |  **56.08** |
+| 506 | Detach & reset quarter round – 3/4"               |  1.00 |  LF  |  2.18 |      — |    0.00 | 0.00 |   **2.18** |
+| 507 | R\&R Quarter round – 3/4"                         |  1.00 |  LF  |  0.21 |      — |    2.23 | 0.06 |   **2.50** |
+
+
+Doors & Openings (Interior) - 
+
+|   # | DESCRIPTION                                               |  QTY | UNIT | RESET | REMOVE |  REPLACE |   TAX |        TOTAL |
+| --: | --------------------------------------------------------- | ---: | :--: | ----: | -----: | -------: | ----: | -----------: |
+| 508 | R\&R Attic entrance cover & trim                          | 1.00 |  EA  |  9.62 |      — |   114.91 |  1.65 |   **126.18** |
+| 509 | Interior door – Detach & reset – slab only                | 1.00 |  EA  |  0.00 |      — |    30.54 |  0.00 |    **30.54** |
+| 510 | R\&R Interior door – birch – slab only                    | 1.00 |  EA  | 10.43 |      — |   250.12 |  9.51 |   **270.06** |
+| 511 | R\&R Interior door – Colonist – slab only                 | 1.00 |  EA  | 10.43 |      — |   202.43 |  6.65 |   **219.51** |
+| 512 | R\&R Interior door unit                                   | 1.00 |  EA  | 23.45 |      — |   352.57 | 16.27 |   **392.29** |
+| 513 | R\&R Interior double door – Colonist – pre-hung           | 1.00 |  EA  | 26.81 |      — |   592.95 | 28.25 |   **648.01** |
+| 514 | R\&R Interior double door – full louvered – pre-hung      | 1.00 |  EA  | 28.87 |      — | 1,138.99 | 61.01 | **1,228.87** |
+| 515 | Detach & reset door knob – interior                       | 1.00 |  EA  | 27.54 |      — |     0.00 |  0.00 |    **27.54** |
+| 516 | R\&R Door opening (jamb & casing) – 32"–36" – paint grade | 1.00 |  EA  |  7.87 |      — |   202.14 |  7.88 |   **217.89** |
+| 517 | Paint door/window trim & jamb – 2 coats (per side)        | 1.00 |  EA  |  0.00 |      — |    37.48 |  0.37 |    **37.85** |
+| 518 | Prime & paint door slab only – exterior (per side)        | 1.00 |  EA  |  0.00 |      — |    53.96 |  1.01 |    **54.97** |
+
+
+Windows, Sills & Paneling -
+
+|   # | DESCRIPTION                                                |    QTY | UNIT | RESET | REMOVE | REPLACE |   TAX |        TOTAL |
+| --: | ---------------------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ----: | -----------: |
+| 519 | R\&R Window sill                                           |   1.00 |  LF  |  0.87 |      — |    3.98 |  0.06 |     **4.91** |
+| 520 | Seal & paint window sill                                   |   1.00 |  LF  |  0.00 |      — |    3.04 |  0.02 |     **3.06** |
+| 521 | R\&R Window stool & apron                                  |   1.00 |  LF  |  0.95 |      — |   10.05 |  0.26 |    **11.26** |
+| 522 | R\&R Paneling                                              |   1.00 |  SF  |  0.38 |      — |    3.40 |  0.05 |     **3.83** |
+| 524 | Sand wood – interior                                       | 384.00 |  SF  |  0.00 |      — |    5.58 |  3.23 | **2,145.95** |
+| 525 | Seal & paint paneling                                      | 384.00 |  SF  |  0.00 |      — |    1.40 |  5.53 |   **543.13** |
+| 526 | Stain & finish paneling                                    | 384.00 |  SF  |  0.00 |      — |    1.97 | 10.60 |   **767.08** |
+| 527 | R\&R Judges paneling – flat panel w/ molding – paint grade |   1.00 |  SF  |  1.26 |      — |   29.26 |  0.31 |    **30.83** |
+| 528 | R\&R Judges paneling – raised panel – paint grade          |   1.00 |  SF  |  1.26 |      — |   38.65 |  0.35 |    **40.26** |
+| 529 | Sand wood – interior                                       | 384.00 |  SF  |  0.00 |      — |    5.58 |  3.23 | **2,145.95** |
+| 530 | Stain & finish wood judges paneling                        | 384.00 |  SF  |  0.00 |      — |    5.68 |  9.22 | **2,190.34** |
+| 531 | Seal (1) & paint (1) – judges paneling                     | 384.00 |  SF  |  0.00 |      — |    5.22 |  7.14 | **2,011.62** |
+
+
+Counters, Toe Kicks & Cabinetry -
+
+|   # | DESCRIPTION                                                |  QTY | UNIT | RESET | REMOVE | REPLACE |   TAX |      TOTAL |
+| --: | ---------------------------------------------------------- | ---: | :--: | ----: | -----: | ------: | ----: | ---------: |
+| 532 | Countertop – post-formed plastic laminate – Detach & reset | 1.00 |  LF  |  0.00 |      — |   26.46 |  0.01 |  **26.47** |
+| 534 | Countertop – cultured marble – Detach & reset              | 1.00 |  SF  |  0.00 |      — |   14.77 |  0.01 |  **14.78** |
+| 535 | Countertop – solid surface/granite – Detach & reset        | 1.00 |  SF  |  0.00 |      — |   46.51 |  0.01 |  **46.52** |
+| 536 | Countertop – flat-laid plastic laminate – Detach & reset   | 1.00 |  LF  |  0.00 |      — |   26.46 |  0.01 |  **26.47** |
+| 537 | Toe kick – Detach & reset                                  | 1.00 |  LF  |  0.00 |      — |   10.64 |  0.01 |  **10.65** |
+| 538 | R\&R Toe kick – pre-finished wood – 1/2"                   | 1.00 |  LF  |  2.34 |      — |   11.42 |  0.26 |  **14.02** |
+| 539 | Stain & finish toe kick                                    | 1.00 |  LF  |  0.00 |      — |    1.88 |  0.02 |   **1.90** |
+| 540 | R\&R Cabinetry – lower (base) units                        | 1.00 |  LF  |  9.40 |      — |  253.58 | 11.92 | **274.90** |
+| 541 | R\&R Cabinetry – upper (wall) units                        | 1.00 |  LF  |  9.40 |      — |  182.07 |  7.63 | **199.10** |
+| 542 | Stain & finish cabinetry – lower – inside & out            | 1.00 |  LF  |  0.00 |      — |   77.63 |  0.55 |  **78.18** |
+| 543 | Stain & finish cabinetry – upper – faces only              | 1.00 |  LF  |  0.00 |      — |   38.02 |  0.30 |  **38.32** |
+| 544 | Stain & finish cabinetry – upper – inside & out            | 1.00 |  LF  |  0.00 |      — |   67.06 |  0.51 |  **67.57** |
+| 545 | R\&R Vanity                                                | 1.00 |  LF  |  9.40 |      — |  257.43 | 12.15 | **278.98** |
+
+
+Bath, Laundry & Appliances – D&R - 
+
+|   # | DESCRIPTION                           |  QTY | UNIT |  RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ------------------------------------- | ---: | :--: | -----: | -----: | ------: | ---: | ---------: |
+| 546 | Detach & reset fiberglass shower unit | 1.00 |  EA  | 819.29 |      — |    0.00 | 0.00 | **819.29** |
+| 548 | Mirror – plate glass – Detach & reset | 1.00 |  SF  |   0.00 |      — |    7.42 | 0.00 |   **7.42** |
+| 550 | Detach & reset medicine cabinet       | 1.00 |  EA  |  69.90 |      — |    0.00 | 0.00 |  **69.90** |
+| 551 | Toilet – Detach & reset               | 1.00 |  EA  |   0.00 |      — |  396.19 | 0.55 | **396.74** |
+| 552 | Dryer – Remove & reset                | 1.00 |  EA  |   0.00 |      — |   48.85 | 0.00 |  **48.85** |
+| 553 | Washer – Remove & reset               | 1.00 |  EA  |   0.00 |      — |   63.36 | 0.00 |  **63.36** |
+| 554 | Refrigerator – Remove & reset         | 1.00 |  EA  |   0.00 |      — |   65.12 | 0.00 |  **65.12** |
+| 555 | Dishwasher – Detach & reset           | 1.00 |  EA  |   0.00 |      — |  381.84 | 0.00 | **381.84** |
+| 556 | Range – electric – Remove & reset     | 1.00 |  EA  |   0.00 |      — |   48.85 | 0.00 |  **48.85** |
+| 557 | Range – gas – Remove & reset          | 1.00 |  EA  |   0.00 |      — |  261.77 | 0.00 | **261.77** |
+| 558 | Sink – single – Detach & reset        | 1.00 |  EA  |   0.00 |      — |  245.08 | 0.05 | **245.13** |
+| 559 | Sink – double basin – Detach & reset  | 1.00 |  EA  |   0.00 |      — |  262.13 | 0.06 | **262.19** |
+
+
+Cleaning - 
+
+|   # | DESCRIPTION      |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |     TOTAL |
+| --: | ---------------- | -----: | :--: | ----: | -----: | ------: | ---: | --------: |
+| 560 | Clean floor      | 144.00 |  SF  |  0.00 |      — |    0.65 | 0.09 | **93.69** |
+| 561 | Clean countertop |   1.00 |  SF  |  0.00 |      — |    1.18 | 0.00 |  **1.18** |
+| 562 | Clean toilet     |   1.00 |  EA  |  0.00 |      — |   34.51 | 0.00 | **34.51** |
+| 563 | Clean shower     |   1.00 |  EA  |  0.00 |      — |   68.45 | 0.01 | **68.46** |
+
+
+Electrical – Wiring -
+
+|   # | DESCRIPTION                               |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ----------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 564 | R\&R 110v copper wiring run, box & switch | 1.00 |  EA  |  6.72 |      — |   94.31 | 1.33 | **102.36** |
+| 565 | R\&R 110v copper wiring run, box & outlet | 1.00 |  EA  |  6.72 |      — |   93.61 | 1.28 | **101.61** |
+
+
+Cabinet Finishes (Extra) -
+
+|   # | DESCRIPTION                                   |  QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |     TOTAL |
+| --: | --------------------------------------------- | ---: | :--: | ----: | -----: | ------: | ---: | --------: |
+| 566 | Stain & finish cabinetry – lower – faces only | 1.00 |  LF  |  0.00 |      — |   44.29 | 0.37 | **44.66** |
+
+
+
+
+Cleaning
+
+|   # | DESCRIPTION                         |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ----------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 606 | Clean floor                         | 454.00 |  SF  |  0.00 |      — |    0.43 | 0.00 | **195.22** |
+| 612 | Clean stud wall                     | 199.33 |  SF  |  0.00 |      — |    0.86 | 0.12 | **171.54** |
+| 621 | Clean floor                         | 454.00 |  SF  |  0.00 |      — |    0.43 | 0.00 | **195.22** |
+| 631 | Clean floor                         | 454.00 |  SF  |  0.00 |      — |    0.43 | 0.00 | **195.22** |
+| 658 | Clean the floor with pressure steam | 454.00 |  SF  |  0.00 |      — |    1.00 | 3.81 | **457.81** |
+
+
+Mitigation De-construction
+
+|   # | DESCRIPTION                                                 |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | ----------------------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 607 | Tear out wet drywall, cleanup, bag, per LF – up to 2' tall  |  99.67 |  LF  |  3.58 |      — |    0.00 | 2.45 | **359.27** |
+| 608 | Tear out baseboard                                          |  99.67 |  LF  |  0.50 |      — |    0.00 | 0.00 |  **49.84** |
+| 609 | Water extraction from carpeted floor                        | 454.00 |  SF  |  0.00 |      — |    0.53 | 0.00 | **240.62** |
+| 610 | Tear out wet non-salvageable carpet, cut & bag for disposal | 454.00 |  SF  |  0.60 |      — |    0.00 | 2.18 | **274.58** |
+| 611 | Tear out wet carpet pad and bag for disposal                | 454.00 |  SF  |  0.56 |      — |    0.00 | 2.18 | **256.42** |
+| 617 | Tear out wet drywall… – 2' after hours                      |  99.67 |  LF  |  3.55 |      — |    0.00 | 2.21 | **356.04** |
+| 618 | Tear out baseboard – after hours                            |  99.67 |  LF  |  0.49 |      — |    0.00 | 0.00 |  **48.84** |
+| 619 | Tear out wet non-salvage carpet – after hours               | 454.00 |  SF  |  0.58 |      — |    0.00 | 1.91 | **265.23** |
+| 620 | Tear out wet carpet pad – after hours                       | 454.00 |  SF  |  0.55 |      — |    0.00 | 1.91 | **251.61** |
+| 626 | Tear out baseboard                                          |  99.67 |  LF  |  0.33 |      — |    0.00 | 0.00 |  **32.89** |
+| 627 | Drill holes for wall cavity drying                          |  99.67 |  EA  |  0.00 |      — |    0.44 | 0.00 |  **43.85** |
+| 629 | Tear out wet carpet pad and bag for disposal                | 454.00 |  SF  |  0.38 |      — |    0.00 | 1.91 | **174.43** |
+| 630 | Lift carpet for drying                                      | 454.00 |  SF  |  0.00 |      — |    0.31 | 0.00 | **140.74** |
+| 644 | Tear out wet non-salvage carpet – after hours               | 454.00 |  SF  |  0.58 |      — |    0.00 | 1.91 | **265.23** |
+| 645 | Tear out baseboard – after hours                            |  99.67 |  LF  |  0.49 |      — |    0.00 | 0.00 |  **48.84** |
+| 646 | Drill holes for wall cavity drying – after hours            |  99.67 |  EA  |  0.00 |      — |    0.62 | 0.00 |  **61.80** |
+| 647 | Water extraction from carpeted floor – after hours          | 454.00 |  SF  |  0.00 |      — |    0.69 | 0.00 | **313.26** |
+| 648 | Tear out wet carpet pad – after hours                       | 454.00 |  SF  |  0.55 |      — |    0.00 | 1.91 | **251.61** |
+| 653 | Tear out wet carpet pad – Category 3 water                  | 454.00 |  SF  |  0.55 |      — |    0.00 | 1.91 | **251.61** |
+| 654 | Tear out baseboard & bag for disposal – up to Cat 3         |  99.67 |  LF  |  0.69 |      — |    0.00 | 1.20 |  **69.97** |
+| 657 | Tear out wet non-salvageable carpet – Cat 3 water           | 454.00 |  SF  |  0.58 |      — |    0.00 | 1.91 | **265.23** |
+
+
+Antimicrobial / Disinfectant
+
+|   # | DESCRIPTION                                                     |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | --------------------------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 613 | Apply anti-microbial agent to more than the floor               | 653.33 |  SF  |  0.00 |      — |    0.25 | 1.57 | **164.90** |
+| 623 | Apply anti-microbial agent to more than the floor – after hours | 653.33 |  SF  |  0.00 |      — |    0.30 | 1.18 | **197.18** |
+
+
+Mitigation-Related Equipment
+
+|   # | DESCRIPTION                                                        |    QTY | UNIT | RESET | REMOVE | REPLACE |   TAX |      TOTAL |
+| --: | ------------------------------------------------------------------ | -----: | :--: | ----: | -----: | ------: | ----: | ---------: |
+| 614 | Air mover (per 24 hr) – no monitoring (3 days)                     |   3.00 |  EA  |  0.00 |      — |   26.50 |  0.00 |  **79.50** |
+| 615 | Dehumidifier (per 24 hr) – X-Large – no monitoring (3 days)        |   3.00 |  EA  |  0.00 |      — |  118.00 |  0.00 | **354.00** |
+| 616 | Water extraction from carpeted floor – after hours                 | 454.00 |  SF  |  0.00 |      — |    0.69 |  0.00 | **313.26** |
+| 624 | Air mover (per 24 hr) – no monitoring (3 days)                     |   3.00 |  EA  |  0.00 |      — |   26.50 |  0.00 |  **79.50** |
+| 625 | Dehumidifier (per 24 hr) – X-Large – no monitoring (3 days)        |   3.00 |  EA  |  0.00 |      — |  118.00 |  0.00 | **354.00** |
+| 661 | Air mover (per 24 hr) – no monitoring (3 days)                     |   3.00 |  EA  |  0.00 |      — |   26.50 |  0.00 |  **79.50** |
+| 662 | Dehumidifier (per 24 hr) – X-Large – no monitoring (3 days)        |   3.00 |  EA  |  0.00 |      — |  118.00 |  0.00 | **354.00** |
+| 663 | Negative air fan/Air scrubber (per 24 hr) – no monitoring (3 days) |   3.00 |  DA  |  0.00 |      — |   73.16 |  0.00 | **219.48** |
+| 664 | Add for HEPA filter (for negative air exhaust fan)                 |   1.00 |  EA  |  0.00 |      — |  192.11 | 10.94 | **203.05** |
+
+
+# Crawlspace (Height: 8')
+
+|   # | DESCRIPTION                                                          |    QTY | UNIT | RESET | REMOVE | REPLACE |  TAX |      TOTAL |
+| --: | -------------------------------------------------------------------- | -----: | :--: | ----: | -----: | ------: | ---: | ---------: |
+| 665 | Dehumidifier (per 24 hr) – X-Large – no monitoring (3 days)          |   3.00 |  EA  |  0.00 |      — |  118.00 | 0.00 | **354.00** |
+| 666 | Water extraction from hard surface floor – Cat 3 water               | 369.00 |  SF  |  0.00 |      — |    1.21 | 0.00 | **446.49** |
+| 667 | Tear out & bag wet insulation in confined space – Cat 3              | 369.00 |  SF  |  2.23 |      — |    0.00 | 1.77 | **824.64** |
+| 668 | Clean the floor with pressure steam                                  | 369.00 |  SF  |  0.00 |      — |    2.14 | 3.76 | **793.42** |
+| 669 | Clean stud wall *(confined space)*                                   | 171.00 |  SF  |  0.00 |      — |    1.98 | 0.21 | **338.79** |
+| 670 | Clean floor or roof joist system *(confined space)*                  | 369.00 |  SF  |  0.00 |      — |    2.47 | 0.44 | **911.87** |
+| 671 | Apply anti-microbial agent to more than the floor *(confined space)* | 454.50 |  SF  |  0.00 |      — |    0.49 | 1.09 | **223.80** |
+
+
+Crawlspace Equipment
+
+|   # | DESCRIPTION                                                        |  QTY | UNIT | RESET | REMOVE | REPLACE |   TAX |      TOTAL |
+| --: | ------------------------------------------------------------------ | ---: | :--: | ----: | -----: | ------: | ----: | ---------: |
+| 672 | Air mover (per 24 hr) – no monitoring (3 days)                     | 3.00 |  EA  |  0.00 |      — |   26.50 |  0.00 |  **79.50** |
+| 673 | Negative air fan/Air scrubber (per 24 hr) – no monitoring (3 days) | 3.00 |  DA  |  0.00 |      — |   73.16 |  0.00 | **219.48** |
+| 674 | Add for HEPA filter (for negative air exhaust fan)                 | 1.00 |  EA  |  0.00 |      — |  194.36 | 10.94 | **205.30** |
+
+_____________________________________________________________________________________________________
+
+General Guidlines for agent:
+use this knowledge base seemlessly without telling the user about sources.
+
+# General Pricing for new construction
+
+* A full kitchen remodel services typically costs $20,000 to $100,000.
+
+* to guttered and remodel a room of 8/8 (remove drywall, )
+
+* A "full bath" remodel from can cost between $5,000 and $75,000+, depending on the type and size of the bathroom. A standard guest bathroom remodel typically costs $14,000–$20,000, while a luxury master bath remodel can reach $35,000 and up.
+
+# Insurace_agent: 
+1. In case more then 40% of the surfece (block) of the object is damaged you replace the entire block. ex: if a half of a roof shingles are damaged you replace the entire shingles. if half a floor is flooded by black water you replace the entire flooring.
+
+2. In case of heavy equipment in a room, you give more labor to clear and reset. ex: The garage room may have lots of equipment to take out and bring back in case of a flood.  
+
+
+
+
+
 """

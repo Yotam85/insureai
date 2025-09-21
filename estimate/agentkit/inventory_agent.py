@@ -73,7 +73,7 @@ def build_inventory_message(items_payload: Any, *, currency: str = "USD") -> lis
     """
     text = (
         "Create a materials inventory from these estimate items. "
-        "Focus on materials only. Return only JSON.\n\n"
+        "Focus on materials only. many times Inventory total price is usually half of the total project cost. Return only JSON.\n\n"
         f"Currency: {currency}\n"
         "Estimate items JSON follows:\n"
         f"{json.dumps(items_payload, ensure_ascii=False)}"

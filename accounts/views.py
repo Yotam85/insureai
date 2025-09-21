@@ -9,9 +9,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 
-from .models import LoginCode
+from .models import LoginCode, ContractorProfile, User
 from estimate.utils import get_guest_key
 from estimate.models import Upload, EstimateJob, EstimateResult, Project
 
@@ -138,3 +138,101 @@ def claim_guest_work(request):
     EstimateResult.objects.filter(guest_key=gk, owner__isnull=True).update(owner=request.user, guest_key=None)
 
     return Response({"detail": "Claimed."}, status=200)
+
+
+# -------- Contractor role/profile endpoints --------
+from rest_framework import viewsets
+from .serializers import ContractorProfileSerializer, ContractorIdentitySerializer
+from rest_framework.permissions import IsAdminUser
+from django.shortcuts import get_object_or_404
+
+class ContractorMeViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=False, methods=["post"], url_path="register")
+    def register(self, request):
+        user = request.user
+        # Promote the authenticated user to contractor role when they explicitly register
+        if getattr(user, "role", None) != User.Role.CONTRACTOR:
+            user.role = User.Role.CONTRACTOR
+            user.save(update_fields=["role"])
+        prof, _ = ContractorProfile.objects.get_or_create(user=user)
+        ser = ContractorProfileSerializer(prof, data=request.data, partial=True, context={"request": request})
+        ser.is_valid(raise_exception=True)
+        ser.save()
+        return Response(ser.data, status=201)
+
+    @action(detail=False, methods=["get", "patch"], url_path="me")
+    def me(self, request):
+        if request.method == "GET":
+            prof = ContractorProfile.objects.filter(user=request.user).first()
+            if not prof:
+                return Response({"detail": "Contractor profile not found."}, status=404)
+            return Response(ContractorProfileSerializer(prof, context={"request": request}).data)
+        prof = ContractorProfile.objects.filter(user=request.user).first()
+        if not prof:
+            prof = ContractorProfile.objects.create(user=request.user)
+        ser = ContractorProfileSerializer(prof, data=request.data, partial=True, context={"request": request})
+        ser.is_valid(raise_exception=True)
+        ser.save()
+        return Response(ser.data)
+
+    @action(detail=False, methods=["get"], url_path="status")
+    def status(self, request):
+        prof = ContractorProfile.objects.filter(user=request.user).first()
+        role = getattr(request.user, "role", None)
+        is_contractor = role == User.Role.CONTRACTOR
+        return Response({
+            "is_contractor": is_contractor,
+            "has_profile": bool(prof),
+            "identity_status": getattr(prof, "identity_status", None) if prof else None,
+            "applied_at": getattr(prof, "created", None) if prof else None,
+        })
+
+    @action(detail=False, methods=["patch"], url_path="me/identity")
+    def me_identity(self, request):
+        prof, _ = ContractorProfile.objects.get_or_create(user=request.user)
+        ser = ContractorIdentitySerializer(prof, data=request.data, partial=True)
+        ser.is_valid(raise_exception=True)
+        prof.identity_status = ContractorProfile.VerifyStatus.PENDING
+        ser.save()
+        prof.save(update_fields=["identity_status"])
+        return Response({"detail": "Identity submitted. Verification pending."}, status=200)
+
+
+class ContractorAdminViewSet(viewsets.ViewSet):
+    permission_classes = [IsAdminUser]
+
+    @action(detail=False, methods=["get"], url_path="pending")
+    def pending(self, request):
+        qs = ContractorProfile.objects.filter(identity_status=ContractorProfile.VerifyStatus.PENDING).select_related("user")
+        data = [{
+            "user_id": p.user_id,
+            "email": getattr(p.user, "email", ""),
+            "phone": p.phone,
+            "website": p.website,
+            "years_experience": p.years_experience,
+            "created": p.created,
+        } for p in qs[:200]]
+        return Response(data)
+
+    @action(detail=True, methods=["get"], url_path="identity")
+    def identity(self, request, pk=None):
+        prof = get_object_or_404(ContractorProfile, user_id=pk)
+        resp = {"identity_number": prof.identity_number or "", "has_document": bool(prof.identity_document)}
+        return Response(resp)
+
+    @action(detail=True, methods=["post"], url_path="approve")
+    def approve(self, request, pk=None):
+        prof = get_object_or_404(ContractorProfile, user_id=pk)
+        prof.identity_status = ContractorProfile.VerifyStatus.APPROVED
+        prof.save(update_fields=["identity_status"])
+        return Response({"detail": "Approved"}, status=200)
+
+    @action(detail=True, methods=["post"], url_path="reject")
+    def reject(self, request, pk=None):
+        prof = get_object_or_404(ContractorProfile, user_id=pk)
+        prof.identity_status = ContractorProfile.VerifyStatus.REJECTED
+        prof.identity_note = str(request.data.get("note") or "")
+        prof.save(update_fields=["identity_status", "identity_note"])
+        return Response({"detail": "Rejected"}, status=200)

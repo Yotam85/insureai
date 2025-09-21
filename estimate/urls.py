@@ -3,14 +3,20 @@ from django.urls import path, include
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from estimate.views import (
-    UploadViewSet, EstimateJobViewSet, EstimateResultViewSet,
-    results_mine, results_guest, guest_quota,
+    UploadViewSet,
+    EstimateJobViewSet,
+    EstimateResultViewSet,
+    ContractorLeadViewSet,
+    results_mine,
+    results_guest,
+    guest_quota,
 )
 
 router = DefaultRouter()
 router.register(r'files',   UploadViewSet,         basename='upload')
 router.register(r'jobs',    EstimateJobViewSet,    basename='job')
 router.register(r'results', EstimateResultViewSet, basename='result')
+router.register(r'contractor-leads', ContractorLeadViewSet, basename='contractor-lead')
 
 
 urlpatterns = [

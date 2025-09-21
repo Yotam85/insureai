@@ -6,7 +6,14 @@ from django.db import transaction
 from django.utils.html import escape
 from rest_framework import serializers
 
-from .models import Upload, EstimateJob, EstimateResult, Project
+from .models import (
+    Upload,
+    EstimateJob,
+    EstimateResult,
+    Project,
+    ContractorLead,
+    ContractorLeadResponse,
+)
 from .utils import get_guest_key
 
 
@@ -152,15 +159,20 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
     created = serializers.SerializerMethodField()
     job_title = serializers.SerializerMethodField()
     job_claim_short = serializers.SerializerMethodField()
+    project = serializers.SerializerMethodField()
+    project_name = serializers.SerializerMethodField()
+    project_zip = serializers.SerializerMethodField()
+    instructions = serializers.SerializerMethodField()
     peril   = serializers.SerializerMethodField()
-    premium = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    total_cost = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True, source="total_cost")
     pdf_url = serializers.SerializerMethodField()
 
     class Meta:
         model  = EstimateResult
         fields = ("id", "job", "job_number", "job_title", "job_claim_short", "created",
+            "project", "project_name", "project_zip",
             "inventory_status",
-            "inventory_updated", "peril", "premium", "pdf_url")
+            "inventory_updated", "instructions", "peril", "total_cost", "pdf_url")
 
     def _abs(self, url: Optional[str]) -> Optional[str]:
         if not url:
@@ -186,38 +198,136 @@ class EstimateResultListItemSerializer(serializers.ModelSerializer):
         except Exception:
             return ""
 
-    def get_job_number(self, obj):
+    def _project(self, obj):
         try:
-            return getattr(obj.job, "project_seq", None)
+            return getattr(obj.job, "project", None)
         except Exception:
             return None
 
-    def get_job_claim_short(self, obj):
+    def get_project(self, obj):
+        project = self._project(obj)
+        return project.pk if project else None
+
+    def get_project_name(self, obj):
+        project = self._project(obj)
+        return getattr(project, "name", "") if project else ""
+
+    def get_project_zip(self, obj):
+        project = self._project(obj)
+        return getattr(project, "zip", "") if project else ""
+
+    def get_instructions(self, obj):
         try:
-            cn = getattr(obj.job, "claim_number", "") or ""
-            return cn[:15]
+            return obj.job.instructions
         except Exception:
             return ""
 
-    def get_peril(self, obj):
-        payload = obj.raw_json or {}
-        return payload.get("peril") or (payload.get("estimate") or {}).get("peril")
+
+class ContractorLeadSerializer(serializers.ModelSerializer):
+    job_id = serializers.IntegerField(source="job.pk", read_only=True)
+    project_name = serializers.SerializerMethodField()
+    project_zip = serializers.SerializerMethodField()
+    job_instructions = serializers.SerializerMethodField()
+    pdf_url = serializers.SerializerMethodField()
+    responded = serializers.SerializerMethodField()
+    responded_at = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ContractorLead
+        fields = [
+            "id", "status", "headline", "summary", "total_cost",
+            "line_items", "appendix", "metadata",
+            "posted_at", "updated_at",
+            "job_id", "project_name", "project_zip", "job_instructions",
+            "pdf_url", "responded", "responded_at",
+        ]
+        read_only_fields = fields
+
+    def get_project_name(self, obj):
+        try:
+            return getattr(obj.job.project, "name", "")
+        except Exception:
+            return ""
+
+    def get_project_zip(self, obj):
+        try:
+            return getattr(obj.job.project, "zip", "")
+        except Exception:
+            return ""
+
+    def get_job_instructions(self, obj):
+        try:
+            return obj.job.instructions
+        except Exception:
+            return ""
 
     def get_pdf_url(self, obj):
-        f = getattr(obj, "pdf_file", None)
-        if not f:
+        result = getattr(obj, "result", None)
+        file_field = getattr(result, "pdf_file", None)
+        if not file_field:
             return None
         try:
-            return self._abs(f.url)
+            url = file_field.url
         except Exception:
             return None
+        request = self.context.get("request")
+        if request:
+            try:
+                return request.build_absolute_uri(url)
+            except Exception:
+                return url
+        return url
+
+    def _get_user_response(self, obj):
+        request = self.context.get("request")
+        user = getattr(request, "user", None)
+        if not user or not user.is_authenticated:
+            return None
+        try:
+            return obj.responses.filter(contractor=user).first()
+        except Exception:
+            return None
+
+    def get_responded(self, obj):
+        return self._get_user_response(obj) is not None
+
+    def get_responded_at(self, obj):
+        resp = self._get_user_response(obj)
+        if resp:
+            return resp.created
+        return None
+
+
+class ContractorLeadResponseSerializer(serializers.ModelSerializer):
+    contractor_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ContractorLeadResponse
+        fields = ["id", "lead", "contractor", "contractor_name", "decision", "note", "created", "updated"]
+        read_only_fields = ["id", "lead", "contractor", "contractor_name", "created", "updated"]
+
+    def get_contractor_name(self, obj):
+        contractor = getattr(obj, "contractor", None)
+        if not contractor:
+            return ""
+        return contractor.get_full_name() or contractor.username or contractor.email or f"User {contractor.pk}"
+
+
+class ContractorLeadRespondSerializer(serializers.Serializer):
+    note = serializers.CharField(max_length=600, required=False, allow_blank=True, allow_null=True)
+    decision = serializers.ChoiceField(choices=ContractorLeadResponse.Decision.choices, required=False)
+
+    def validate(self, attrs):
+        if not attrs.get("note"):
+            attrs["note"] = ""
+        if not attrs.get("decision"):
+            attrs["decision"] = ContractorLeadResponse.Decision.AVAILABLE
+        return attrs
 
 import json
 # serializers.py
 from typing import Any, Dict, List, Optional
 from django.utils.html import escape
-
-
 
 # -----------------------------
 # Results – detail (used by /results/by-job/:id/)
@@ -228,6 +338,9 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
     job_title   = serializers.SerializerMethodField()
     job_number  = serializers.SerializerMethodField()
     job_claim_short = serializers.SerializerMethodField()
+    project     = serializers.SerializerMethodField()
+    project_name = serializers.SerializerMethodField()
+    project_zip  = serializers.SerializerMethodField()
     inventory   = serializers.JSONField(required=False)
     has_inventory = serializers.SerializerMethodField()
     inventory_total = serializers.SerializerMethodField()
@@ -235,11 +348,12 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
     created     = serializers.DateTimeField(read_only=True)
     inventory_status = serializers.CharField(read_only=True)
     inventory_updated = serializers.DateTimeField(read_only=True)
-    premium     = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    total_cost  = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True)
     pdf_url     = serializers.SerializerMethodField()
     uploads     = serializers.SerializerMethodField()
     html_report = serializers.SerializerMethodField()
     raw_json    = serializers.SerializerMethodField()
+    instructions = serializers.SerializerMethodField()
 
     class Meta:
         model  = EstimateResult
@@ -250,6 +364,9 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
             "job_title",
             "job_claim_short",
             "created",
+            "project",
+            "project_name",
+            "project_zip",
             "inventory_status",
             "inventory_updated",
             "inventory",
@@ -257,10 +374,11 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
             "inventory_total",
             "inventory_html",
             "raw_json",
-            "premium",
+            "total_cost",
             "pdf_url",
             "uploads",
             "html_report",
+            "instructions",
         )
 
     # ---- helpers -------------------------------------------------
@@ -297,6 +415,30 @@ class EstimateResultDetailSerializer(serializers.ModelSerializer):
         try:
             cn = getattr(obj.job, "claim_number", "") or ""
             return cn[:15]
+        except Exception:
+            return ""
+
+    def _project(self, obj):
+        try:
+            return getattr(obj.job, "project", None)
+        except Exception:
+            return None
+
+    def get_project(self, obj):
+        project = self._project(obj)
+        return project.pk if project else None
+
+    def get_project_name(self, obj):
+        project = self._project(obj)
+        return getattr(project, "name", "") if project else ""
+
+    def get_project_zip(self, obj):
+        project = self._project(obj)
+        return getattr(project, "zip", "") if project else ""
+
+    def get_instructions(self, obj):
+        try:
+            return obj.job.instructions
         except Exception:
             return ""
 

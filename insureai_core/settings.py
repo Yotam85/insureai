@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
@@ -66,6 +67,7 @@ AUTH_USER_MODEL = "accounts.User"
 REST_FRAMEWORK = {
   'DEFAULT_AUTHENTICATION_CLASSES': [
     'rest_framework.authentication.TokenAuthentication',
+    'accounts.authentication.BearerTokenAuthentication',
   ],
   'DEFAULT_PERMISSION_CLASSES': [
     'rest_framework.permissions.AllowAny',
@@ -95,6 +97,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
+
+PRIVATE_MEDIA_ROOT = os.path.join(BASE_DIR, "private_media")
+FERNET_KEYS = [os.environ.get("FERNET_KEY", "")]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -215,4 +220,3 @@ CELERY_BROKER_URL = "redis://localhost:6379/0"
 CELERY_RESULT_BACKEND = "redis://localhost:6379/1"  # separate DB
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
-

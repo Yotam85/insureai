@@ -11,10 +11,19 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import Count
 
 
-from .models import Upload, EstimateJob, EstimateResult, Project
+from .models import (
+    Upload,
+    EstimateJob,
+    EstimateResult,
+    Project,
+    ContractorLead,
+    ContractorLeadResponse,
+)
 from .serializers import (
     UploadSerializer,
-    EstimateJobSerializer, ProjectSerializer
+    EstimateJobSerializer, ProjectSerializer,
+    ContractorLeadSerializer,
+    ContractorLeadRespondSerializer,
 )
 
 import json
@@ -27,6 +36,7 @@ from .tasks import run_estimate
 from celery.result import AsyncResult
 from .utils import get_guest_key
 from .pdf_export import export_estimate_pdf_bytes
+from accounts.permissions import IsContractor
 
 # estimate/views.py (add near imports)
 
@@ -251,6 +261,16 @@ class EstimateJobViewSet(viewsets.ModelViewSet):
         if self.request.user.is_authenticated:
             return EstimateJob.objects.filter(owner=self.request.user).select_related("project")
         return EstimateJob.objects.none()
+
+    def get_throttles(self):
+        """Apply guest throttle only to anonymous POSTs."""
+        # Apply scoped throttle only when creating jobs and the caller is not authenticated
+        if getattr(self, "action", None) == "create":
+            user = getattr(self.request, "user", None)
+            if user and user.is_authenticated:
+                return []
+            return [throttle() for throttle in self.throttle_classes]
+        return super().get_throttles()
 
     def _get_project_checked(self, request, project_id: int) -> Project:
         proj = get_object_or_404(Project, pk=project_id)
@@ -599,6 +619,10 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         phone      = (payload.get("phone") or "").strip()
         special    = (payload.get("special_request") or "").strip()
         tasks_list = payload.get("tasks") or []
+        state_in   = (payload.get("state") or "").strip().upper()
+        zip_in     = (payload.get("zip") or "").strip()
+        # normalize state to 2 letters when present
+        state_norm = state_in[:2] if state_in else ""
         if not first_name or not timeframe:
             return Response({"detail": "first_name and timeframe are required."}, status=400)
 
@@ -625,6 +649,11 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         lines.append(f"First name: {first_name}")
         lines.append(f"Timeframe: {timeframe}")
         if phone:   lines.append(f"Phone: {phone}")
+        if state_norm or zip_in:
+            loc_bits = []
+            if state_norm: loc_bits.append(state_norm)
+            if zip_in:     loc_bits.append(zip_in)
+            lines.append("Location: " + ", ".join(loc_bits))
         if special: lines.append(f"Special request: {special}")
         if isinstance(tasks_list, list) and tasks_list:
             try:
@@ -723,6 +752,7 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
             "has_inventory": bool(result.inventory),
         }, status=200)
 
+
     @action(detail=False, methods=["post"], url_path="by-job/(?P<job_id>[^/.]+)/inventory/refresh")
     def inventory_refresh_by_job(self, request, job_id=None):
         try:
@@ -788,6 +818,9 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         phone      = (payload.get("phone") or "").strip()
         special    = (payload.get("special_request") or "").strip()
         tasks_list = payload.get("tasks") or []
+        state_in   = (payload.get("state") or "").strip().upper()
+        zip_in     = (payload.get("zip") or "").strip()
+        state_norm = state_in[:2] if state_in else ""
         if not first_name or not timeframe:
             return Response({"detail": "first_name and timeframe are required."}, status=400)
 
@@ -812,6 +845,11 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
         lines.append(f"First name: {first_name}")
         lines.append(f"Timeframe: {timeframe}")
         if phone:   lines.append(f"Phone: {phone}")
+        if state_norm or zip_in:
+            loc_bits = []
+            if state_norm: loc_bits.append(state_norm)
+            if zip_in:     loc_bits.append(zip_in)
+            lines.append("Location: " + ", ".join(loc_bits))
         if special: lines.append(f"Special request: {special}")
         if isinstance(tasks_list, list) and tasks_list:
             try:
@@ -882,7 +920,70 @@ class EstimateResultViewSet(viewsets.ModelViewSet):
             "updated": getattr(result, "inventory_updated", None),
             "has_inventory": bool(result.inventory),
         }, status=200)
-    
+
+
+class ContractorLeadViewSet(viewsets.ReadOnlyModelViewSet):
+    """Message-board style leads surfaced to authenticated contractors."""
+
+    serializer_class = ContractorLeadSerializer
+    permission_classes = [IsAuthenticated, IsContractor]
+
+    def get_queryset(self):
+        qs = (ContractorLead.objects
+              .select_related("job", "job__project", "result")
+              .prefetch_related("responses"))
+        status_filter = self.request.query_params.get("status")
+        if status_filter:
+            allowed = {s for s, _ in ContractorLead.Status.choices}
+            if status_filter in allowed:
+                qs = qs.filter(status=status_filter)
+        else:
+            qs = qs.filter(status=ContractorLead.Status.OPEN)
+        return qs
+
+    @action(detail=True, methods=["post"], url_path="respond")
+    def respond(self, request, pk=None):
+        lead = self.get_object()
+        serializer = ContractorLeadRespondSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        response, created = ContractorLeadResponse.objects.get_or_create(
+            lead=lead,
+            contractor=request.user,
+            defaults={
+                "decision": data.get("decision"),
+                "note": data.get("note", ""),
+            },
+        )
+
+        if not created:
+            changed = False
+            decision = data.get("decision")
+            note = data.get("note", "")
+            if decision and decision != response.decision:
+                response.decision = decision
+                changed = True
+            if note != response.note:
+                response.note = note
+                changed = True
+            if changed:
+                response.save(update_fields=["decision", "note", "updated"])
+
+        if lead.status == ContractorLead.Status.OPEN and data.get("decision") == ContractorLeadResponse.Decision.AVAILABLE:
+            lead.status = ContractorLead.Status.MATCHED
+            lead.save(update_fields=["status", "updated_at"])
+
+        detail_message = "Thanks! We'll reach out to set up a call ASAP."
+        context = self.get_serializer_context()
+        payload = ContractorLeadSerializer(lead, context=context).data
+        status_code = status.HTTP_201_CREATED if created else status.HTTP_200_OK
+        return Response({
+            "detail": detail_message,
+            "response_id": response.pk,
+            "lead": payload,
+        }, status=status_code)
+
 
 @api_view(["GET"])
 @permission_classes([AllowAny])
@@ -921,7 +1022,7 @@ def _row_for_result(r, request):
         "id": r.pk,          # 👈 pk works whether PK is job or id
         "job": r.job_id,
         "created": created,
-        "premium": str(r.premium) if r.premium is not None else None,
+        "total_cost": str(r.total_cost) if getattr(r, "total_cost", None) is not None else None,
         "peril": peril,
         "pdf_url": pdf_url,
     }
