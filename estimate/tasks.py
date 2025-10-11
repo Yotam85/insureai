@@ -21,7 +21,6 @@ from django.core.files.storage import default_storage
 
 from .models import EstimateJob, EstimateResult
 from .pdf_export import export_estimate_pdf_bytes
-from django.utils import timezone
 
 from estimate.agentkit.insurance_agents import (
     build_agent,          # pick one by job.agent_kind (or triage)
@@ -34,6 +33,12 @@ from estimate.agentkit.inventory_agent import (
     build_run_config as build_inv_run_config,
     build_inventory_message,
 )
+from estimate.agentkit.project_plan_agent import (
+    build_plan_agent,
+    build_run_config as build_plan_run_config,
+    build_plan_messages,
+)
+from estimate.agentkit.project_planner import plan_project_schedule, normalize_slots
 
 try:
     import cv2  # type: ignore
@@ -166,7 +171,7 @@ def _video_to_base64_frames(
     if ffmpeg_bin:
         with tempfile.TemporaryDirectory() as tmpdir:
             output_pattern = str(Path(tmpdir) / "frame_%05d.jpg")
-            vf_filters: List[str] = [f"select=not(mod(n\,{sample_every_n}))"]
+            vf_filters: List[str] = [f"select=not(mod(n\\,{sample_every_n}))"]
             if resize_max:
                 vf_filters.append(f"scale='min({resize_max},iw)':-2")
             vf = ",".join(vf_filters)
@@ -237,6 +242,139 @@ def _video_to_base64_frames(
 
     return frames
 
+
+def normalize_plan_output(data: Any) -> Dict[str, Any]:
+    if not isinstance(data, dict):
+        raise ValueError("AI plan must be a JSON object")
+
+    timeline_in = data.get("timeline") or {}
+    if not isinstance(timeline_in, dict):
+        timeline_in = {}
+
+    timeline: Dict[str, List[Dict[str, Any]]] = {}
+    for raw_day, assignments in timeline_in.items():
+        day = str(raw_day).strip()
+        if not day:
+            continue
+        if not isinstance(assignments, list):
+            continue
+        cleaned: List[Dict[str, Any]] = []
+        for item in assignments:
+            if not isinstance(item, dict):
+                continue
+            task_id = item.get("taskId")
+            if not task_id:
+                continue
+            entry: Dict[str, Any] = {"taskId": str(task_id)}
+            duration = item.get("durationDays")
+            try:
+                if duration is not None:
+                    duration_val = float(duration)
+                    if duration_val > 0:
+                        entry["durationDays"] = duration_val
+            except Exception:
+                pass
+            status = item.get("status")
+            if isinstance(status, str) and status.strip():
+                entry["status"] = status.strip()
+            notes = item.get("notes")
+            if isinstance(notes, str) and notes.strip():
+                entry["notes"] = notes.strip()
+            cleaned.append(entry)
+        if cleaned:
+            timeline[day] = cleaned
+
+    unscheduled = []
+    for item in data.get("unscheduled") or []:
+        if isinstance(item, (str, int)):
+            unscheduled.append(str(item))
+
+    notes = data.get("notes") if isinstance(data.get("notes"), str) else ""
+    summary = data.get("summary") if isinstance(data.get("summary"), str) else ""
+
+    confidence_obj = {}
+    confidence_in = data.get("confidence")
+    if isinstance(confidence_in, dict):
+        rating = confidence_in.get("rating")
+        rationale = confidence_in.get("rationale")
+        if isinstance(rating, str) and rating.strip():
+            confidence_obj["rating"] = rating.strip()
+        if isinstance(rationale, str) and rationale.strip():
+            confidence_obj["rationale"] = rationale.strip()
+    result: Dict[str, Any] = {
+        "timeline": timeline,
+        "unscheduled": unscheduled,
+    }
+    if notes:
+        result["notes"] = notes
+    if summary:
+        result["summary"] = summary
+    if confidence_obj:
+        result["confidence"] = confidence_obj
+
+    slots_in = data.get("slots")
+    if isinstance(slots_in, list):
+        slots_out: List[Dict[str, str]] = []
+        for index, slot in enumerate(slots_in):
+            if not isinstance(slot, dict):
+                continue
+            slot_id = str(slot.get("id") or "").strip()
+            if not slot_id:
+                slot_id = f"day-{index + 1}"
+            slot_label = str(slot.get("label") or "").strip() or slot_id
+            slots_out.append({"id": slot_id, "label": slot_label})
+        if slots_out:
+            result["slots"] = slots_out
+    return result
+
+
+def generate_project_plan_with_ai(
+    payload: Dict[str, Any],
+    *,
+    model_name: Optional[str] = None,
+    max_turns: int = 6,
+    fallback_on_failure: bool = True,
+) -> Dict[str, Any]:
+    """Run the planning agent and normalise the response."""
+
+    try:
+        task_count = len(payload.get("tasks") or [])
+        normalize_slots(payload, min_slots=max(1, task_count))
+
+        agent = build_plan_agent()
+        run_cfg = build_plan_run_config(model_name or os.getenv("OPENAI_PLAN_MODEL") or os.getenv("OPENAI_MODEL"))
+        try:
+            run_cfg.workflow_name = "ProjectPlanning"
+        except Exception:
+            pass
+        messages = build_plan_messages(payload)
+
+        created_loop = None
+        try:
+            asyncio.get_running_loop()
+        except RuntimeError:
+            created_loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(created_loop)
+
+        try:
+            result = Runner.run_sync(agent, messages, run_config=run_cfg, max_turns=max_turns)
+        finally:
+            if created_loop is not None:
+                try:
+                    created_loop.close()
+                except Exception:
+                    pass
+                asyncio.set_event_loop(None)
+
+        plan_raw = _extract_json(getattr(result, "final_output", None)) or _extract_json(getattr(result, "text", ""))
+        plan = normalize_plan_output(plan_raw)
+        return plan
+    except Exception:
+        log.exception("Project planning agent failed")
+        if not fallback_on_failure:
+            raise
+
+    return plan_project_schedule(payload)
 
 def _safe_update(model_obj, fields: List[str]) -> None:
     """Save only fields that actually exist on the model (guards mixed schemas)."""

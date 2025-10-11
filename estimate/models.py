@@ -22,6 +22,9 @@ class Project(models.Model):
     )
     guest_key = models.CharField(max_length=64, blank=True, null=True, db_index=True)
     created   = models.DateTimeField(auto_now_add=True)
+    plan_ai_payload  = models.JSONField(default=dict, blank=True)
+    plan_ai_response = models.JSONField(default=dict, blank=True)
+    plan_ai_updated  = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         indexes = [

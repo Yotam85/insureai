@@ -80,3 +80,8 @@ def build_inventory_message(items_payload: Any, *, currency: str = "USD") -> lis
     )
     return [{"role": "user", "content": [{"type": "input_text", "text": text}]}]
 
+
+
+
+
+

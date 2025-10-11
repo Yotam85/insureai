@@ -9,6 +9,7 @@ from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Count
+from django.utils import timezone
 
 
 from .models import (
@@ -21,9 +22,12 @@ from .models import (
 )
 from .serializers import (
     UploadSerializer,
-    EstimateJobSerializer, ProjectSerializer,
+    EstimateJobSerializer,
+    ProjectSerializer,
     ContractorLeadSerializer,
     ContractorLeadRespondSerializer,
+    AiPlanPayloadSerializer,
+    AiPlanSaveSerializer,
 )
 
 import json
@@ -32,7 +36,8 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.core.mail import send_mail
 from django.conf import settings
-from .tasks import run_estimate
+from .tasks import run_estimate, generate_project_plan_with_ai, normalize_plan_output
+from estimate.agentkit.project_planner import plan_project_schedule, normalize_slots
 from celery.result import AsyncResult
 from .utils import get_guest_key
 from .pdf_export import export_estimate_pdf_bytes
@@ -207,6 +212,83 @@ class ProjectViewSet(viewsets.ModelViewSet):
         proj = self.get_object()
         proj.delete()
         return Response(status=204)
+
+    @action(detail=True, methods=["post", "patch", "put"], url_path="ai-plan")
+    def ai_plan(self, request, pk=None):
+        project = self.get_object()
+
+        if request.method == "POST":
+            serializer = AiPlanPayloadSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+
+            payload = serializer.validated_data
+            task_count = len(payload.get("tasks") or [])
+            normalize_slots(payload, min_slots=max(1, task_count))
+            project_payload = payload.get("project") or {}
+
+            incoming_id = project_payload.get("id")
+            if incoming_id is not None and int(incoming_id) != project.pk:
+                return Response({"detail": "Project id mismatch."}, status=400)
+
+            project_payload.update({
+                "id": project.pk,
+                "name": project.name,
+                "zip": project.zip,
+            })
+
+            plan_source = "ai"
+            try:
+                plan = generate_project_plan_with_ai(payload, fallback_on_failure=False)
+            except ValueError as exc:
+                return Response({"detail": str(exc)}, status=400)
+            except Exception:
+                log.exception("AI planning agent failed for project %s", project.pk)
+                plan = plan_project_schedule(payload)
+                plan_source = "fallback"
+
+            Project.objects.filter(pk=project.pk).update(
+                plan_ai_payload=payload,
+                plan_ai_response=plan,
+                plan_ai_updated=timezone.now(),
+            )
+
+            response = Response(plan, status=200)
+            response["X-Plan-Source"] = plan_source
+            return response
+
+        serializer = AiPlanSaveSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        payload = serializer.validated_data["payload"]
+        task_count = len(payload.get("tasks") or [])
+        normalize_slots(payload, min_slots=max(1, task_count))
+
+        project_payload = payload.get("project") or {}
+        incoming_id = project_payload.get("id")
+        if incoming_id is not None and int(incoming_id) != project.pk:
+            return Response({"detail": "Project id mismatch."}, status=400)
+
+        project_payload.update({
+            "id": project.pk,
+            "name": project.name,
+            "zip": project.zip,
+        })
+
+        plan_raw = serializer.validated_data.get("plan") or {}
+        try:
+            plan = normalize_plan_output(plan_raw)
+        except ValueError as exc:
+            return Response({"detail": str(exc)}, status=400)
+
+        Project.objects.filter(pk=project.pk).update(
+            plan_ai_payload=payload,
+            plan_ai_response=plan,
+            plan_ai_updated=timezone.now(),
+        )
+
+        response = Response(plan, status=200)
+        response["X-Plan-Source"] = "manual"
+        return response
 
 
 # ---------- Uploads ----------

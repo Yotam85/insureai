@@ -32,10 +32,93 @@ class UploadSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     job_count = serializers.IntegerField(read_only=True)
+    plan_ai_response = serializers.JSONField(read_only=True)
+    plan_ai_payload = serializers.JSONField(read_only=True)
+    plan_ai_updated = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model  = Project
-        fields = ["id", "name", "zip", "created", "job_count"]
+        fields = [
+            "id",
+            "name",
+            "zip",
+            "created",
+            "job_count",
+            "plan_ai_payload",
+            "plan_ai_response",
+            "plan_ai_updated",
+        ]
+
+
+
+class AiPlanPayloadSerializer(serializers.Serializer):
+    project = serializers.JSONField()
+    slots = serializers.ListField(
+        child=serializers.DictField(),
+        required=False,
+        allow_empty=True,
+    )
+    timeline = serializers.JSONField(required=False)
+    unscheduledTaskIds = serializers.ListField(
+        child=serializers.CharField(),
+        required=False,
+        allow_empty=True,
+    )
+    tasks = serializers.JSONField()
+
+    def validate(self, attrs: dict[str, Any]) -> dict[str, Any]:
+        project = attrs.get("project") or {}
+        if not isinstance(project, dict):
+            raise serializers.ValidationError({"project": "must be an object"})
+
+        raw_slots = attrs.get("slots")
+        slots_input = raw_slots if isinstance(raw_slots, list) else []
+        normalized_slots: list[dict[str, str]] = []
+        for index, slot in enumerate(slots_input):
+            if not isinstance(slot, dict):
+                continue
+            slot_id = str(slot.get("id") or "").strip()
+            if not slot_id:
+                slot_id = f"day-{index + 1}"
+            slot_label = str(slot.get("label") or "").strip() or f"Day {index + 1}"
+            if slot_id:
+                normalized_slots.append({"id": slot_id, "label": slot_label})
+        if not normalized_slots:
+            normalized_slots = [{"id": f"day-{i + 1}", "label": f"Day {i + 1}"} for i in range(7)]
+        attrs["slots"] = normalized_slots
+
+        allowed_slot_ids = {slot["id"] for slot in normalized_slots}
+
+        timeline_in = attrs.get("timeline") or {}
+        if not isinstance(timeline_in, dict):
+            timeline_in = {}
+
+        tasks = attrs.get("tasks") or []
+        if not isinstance(tasks, list):
+            raise serializers.ValidationError({"tasks": "must be an array"})
+        task_ids = {str(task.get("id")) for task in tasks if isinstance(task, dict) and "id" in task}
+
+        normalized_timeline: dict[str, List[str]] = {}
+        for raw_day, ids in timeline_in.items():
+            day = str(raw_day)
+            if allowed_slot_ids and day not in allowed_slot_ids:
+                continue
+            filtered: List[str] = []
+            for value in ids or []:
+                value_str = str(value)
+                if value_str in task_ids:
+                    filtered.append(value_str)
+            normalized_timeline[day] = filtered
+        attrs["timeline"] = normalized_timeline
+
+        unscheduled = attrs.get("unscheduledTaskIds") or []
+        attrs["unscheduledTaskIds"] = [str(tid) for tid in unscheduled if str(tid) in task_ids]
+        return attrs
+
+
+class AiPlanSaveSerializer(serializers.Serializer):
+    payload = AiPlanPayloadSerializer()
+    plan = serializers.JSONField()
 
 
 
@@ -102,7 +185,7 @@ class EstimateJobSerializer(serializers.ModelSerializer):
         model  = EstimateJob
         fields = [
             "id", "project", "title", "project_seq", "agent_kind", "instructions",
-            "claim_number", "claim_number_short", "property_type", "work_grade", "status", "created"
+            "claim_number", "claim_number_short", "property_type", "work_grade", "status", "created", "uploads"
         ]
         read_only_fields = ["status", "created"]
 
